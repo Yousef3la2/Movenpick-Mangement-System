@@ -22,6 +22,7 @@ public class Main extends Application {
         //Scene scene = new Scene(root, 550, 410);
 
         Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+
         Scene scene = new Scene(root);
 
         stage.setTitle("Swa7 (The tourist guide)");
