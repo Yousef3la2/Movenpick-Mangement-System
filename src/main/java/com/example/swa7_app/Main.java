@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 
-        //Al
+        
 
         Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
 
