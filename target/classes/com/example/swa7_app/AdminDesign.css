@@ -64,7 +64,7 @@
     -fx-font-family: "Tahoma";
 }
 .textfield:focused{
-    -fx-background-color: linear-gradient(to bottom right,#2f3f89,#9231b5);
+    /*-fx-background-color: linear-gradient(to bottom right,#2f3f89,#9231b5);*/
     -fx-border-width: 0px 0px 1.5px 0px;
 }
 .combo-box{
