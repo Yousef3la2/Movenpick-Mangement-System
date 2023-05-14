@@ -39,6 +39,12 @@
                                           <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
                                        </graphic>
                                     </Button>
+                                    <FontAwesomeIcon fill="#2f3f89" glyphName="BUILDING" layoutX="14.0" layoutY="26.0" size="1.2em" />
+                                    <Label layoutX="35.0" layoutY="13.0" text="Hotel Managment System">
+                                       <font>
+                                          <Font name="Tahoma" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -236,7 +242,22 @@
                               </AnchorPane>
                               <AnchorPane layoutX="266.0" layoutY="75.0" prefHeight="549.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="850.0" />
+                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="850.0">
+                                       <children>
+                                          <TableView layoutX="10.0" layoutY="55.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
+                                             <columns>
+                                                <TableColumn prefWidth="85.59999084472656" text="Customer #" />
+                                                <TableColumn prefWidth="118.39999389648438" text="First Name" />
+                                                <TableColumn prefWidth="138.39996337890625" text="Last Name" />
+                                                <TableColumn prefWidth="120.00006103515625" text="Phone" />
+                                                <TableColumn prefWidth="98.40008544921875" text="Total Payment" />
+                                                <TableColumn prefWidth="121.5999755859375" text="Checked-In" />
+                                                <TableColumn prefWidth="145.60003662109375" text="Checked-Out" />
+                                             </columns>
+                                          </TableView>
+                                          <TextField layoutX="26.0" layoutY="14.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
+                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="31.0" layoutY="31.0" size="1.2em" />
+                                       </children></AnchorPane>
                                  </children>
                               </AnchorPane>
                            </children>
