@@ -126,7 +126,7 @@
 }
 .table-view {
     -fx-background-color: transparent;
-    -fx-padding: 0 px;
+    -fx-padding: 0px;
     -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
     -fx-border-radius: 0px 0px 9px 9px;
 }
