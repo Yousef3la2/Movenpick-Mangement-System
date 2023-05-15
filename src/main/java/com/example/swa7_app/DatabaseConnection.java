@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 
 
 public class DatabaseConnection {
-    public Connection databaselink;
-    public Connection getConnection(){
+    public static Connection databaselink;
+    public static Connection getConnection(){
         String databaseName = "hms_db" ;
         String databaseUser = "root";
         String databasePassword = "admin";

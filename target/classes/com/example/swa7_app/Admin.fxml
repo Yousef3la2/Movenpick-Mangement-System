@@ -29,14 +29,14 @@
                            <children>
                               <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="close_btn" layoutX="1034.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="48.0" styleClass="close" stylesheets="@AdminDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <Button fx:id="close_btn" layoutX="1034.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="48.0" styleClass="close" stylesheets="@AdminDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <graphic>
-                                          <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
+                                          <FontAwesomeIcon glyphName="CLOSE" size="1.2em" text="" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="minimize_btn" layoutX="1006.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" styleClass="minimize" stylesheets="@AdminDesign.css">
+                                    <Button fx:id="minimize_btn" layoutX="1006.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="40.0" styleClass="minimize" stylesheets="@AdminDesign.css">
                                        <graphic>
-                                          <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
+                                          <FontAwesomeIcon glyphName="MINUS" size="1.2em" text="" />
                                        </graphic>
                                     </Button>
                                     <FontAwesomeIcon fill="#2f3f89" glyphName="BUILDING" layoutX="14.0" layoutY="26.0" size="1.2em" />
@@ -55,7 +55,7 @@
                            <children>
                               <AnchorPane layoutY="64.0" prefHeight="549.6" prefWidth="220.0" styleClass="nav-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="dashboard_btn" layoutX="23.0" layoutY="261.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Dashboard">
+                                    <Button fx:id="dashboard_btn" layoutX="23.0" layoutY="261.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Dashboard">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" />
                                        </graphic>
@@ -72,24 +72,24 @@
                                        </font>
                                     </Label>
                                     <Line endX="100.0" layoutX="98.0" layoutY="228.0" startX="-76.80000305175781" startY="3.0517578125E-5" stroke="WHITE" />
-                                    <Button fx:id="rooms_btn" layoutX="23.0" layoutY="301.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Rooms">
+                                    <Button fx:id="rooms_btn" layoutX="23.0" layoutY="301.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Rooms">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="CHECK_CIRCLE" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="reservition_report_btn" layoutX="23.0" layoutY="341.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Reservition Report">
+                                    <Button fx:id="reservition_report_btn" layoutX="23.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Reservition Report">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="service_report_btn" layoutX="23.0" layoutY="381.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Service Report">
+                                    <Button fx:id="service_report_btn" layoutX="23.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Service Report">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="logout_btn" layoutX="22.0" layoutY="504.0" mnemonicParsing="false" stylesheets="@AdminDesign.css">
+                                    <Button fx:id="logout_btn" layoutX="22.0" layoutY="504.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AdminDesign.css">
                                        <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
+                                          <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" text="" />
                                        </graphic>
                                        <styleClass>
                                           <String fx:value="logout-btn" />
@@ -109,7 +109,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="177.0" prefWidth="854.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -182,7 +182,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="rooms_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="rooms_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="518.0" prefWidth="285.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -214,9 +214,9 @@
                                              </font>
                                           </Label>
                                           <Button fx:id="availableRooms_addBtn" layoutX="23.0" layoutY="241.0" mnemonicParsing="false" onAction="#availableRoomsAdd" prefHeight="35.0" prefWidth="100.0" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
-                                          <Button fx:id="availableRooms_updateBtn" layoutX="154.0" layoutY="241.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
-                                          <Button fx:id="availableRooms_clearBtn" layoutX="23.0" layoutY="290.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="clear-btn" stylesheets="@AdminDesign.css" text="Clear" />
-                                          <Button fx:id="availableRooms_deleteBtn" layoutX="154.0" layoutY="290.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
+                                          <Button fx:id="availableRooms_updateBtn" layoutX="154.0" layoutY="241.0" mnemonicParsing="false" onAction="#availableRoomsUpdate" prefHeight="35.0" prefWidth="100.0" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
+                                          <Button fx:id="availableRooms_clearBtn" layoutX="23.0" layoutY="290.0" mnemonicParsing="false" onAction="#availableRoomClear" prefHeight="35.0" prefWidth="100.0" styleClass="clear-btn" stylesheets="@AdminDesign.css" text="Clear" />
+                                          <Button fx:id="availableRooms_deleteBtn" layoutX="154.0" layoutY="290.0" mnemonicParsing="false" onAction="#availableRoomDelete" prefHeight="35.0" prefWidth="100.0" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
                                           <ComboBox fx:id="availableRooms_roomType" layoutX="104.0" layoutY="82.0" prefHeight="26.0" prefWidth="163.0" promptText="Choose" styleClass="combo-box" stylesheets="@AdminDesign.css" />
                                        </children>
                                     </AnchorPane>
@@ -226,7 +226,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView fx:id="availableRooms_tableView" layoutX="8.0" layoutY="53.0" prefHeight="450.0" prefWidth="534.0">
+                                          <TableView fx:id="availableRooms_tableView" layoutX="8.0" layoutY="53.0" onMouseClicked="#availableRoomsSelectionData" prefHeight="450.0" prefWidth="534.0">
                                             <columns>
                                               <TableColumn fx:id="availableRooms_col_roomNumbr" prefWidth="124.79998779296875" text="Room #" />
                                               <TableColumn fx:id="availableRooms_col_roomType" prefWidth="142.4000244140625" text="Room Type" />
@@ -234,7 +234,7 @@
                                                 <TableColumn fx:id="availableRooms_col_roomPrice" prefWidth="164.00018310546875" text="Price ($)" />
                                             </columns>
                                           </TableView>
-                                          <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
+                                          <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" onMouseClicked="#availableRoomsSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
                                           <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.2em" />
                                        </children>
                                     </AnchorPane>

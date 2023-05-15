@@ -104,6 +104,16 @@ public class LoginController implements Initializable {
                 if(queryResult.getInt(1) == 1){
                     loginMessageLabel.setText("Congratulations!");
                     loginMessageLabel.setAlignment(Pos.CENTER);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//to connect to the admin #start
+                    Parent root = loader.load();
+                    Stage sstage = new Stage();
+                    sstage.setScene(new Scene(root));
+                    sstage.setTitle("Swa7 (The tourist guide)");
+                    sstage.initStyle(StageStyle.UNDECORATED);
+                    sstage.show();
+                    loginButton.getScene().getWindow().hide(); // #end
+
+
                 }else{
                     loginMessageLabel.setText("Invalid login. Please try again.");
                     loginMessageLabel.setAlignment(Pos.CENTER);

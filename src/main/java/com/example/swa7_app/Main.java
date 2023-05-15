@@ -18,7 +18,7 @@ public class Main extends Application {
 
         //Al
 
-        Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
         Scene scene = new Scene(root);
 
