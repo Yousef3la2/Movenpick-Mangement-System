@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
    <children>
       <StackPane layoutX="203.0" layoutY="203.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -72,19 +72,19 @@
                                        </font>
                                     </Label>
                                     <Line endX="100.0" layoutX="98.0" layoutY="228.0" startX="-76.80000305175781" startY="3.0517578125E-5" stroke="WHITE" />
-                                    <Button fx:id="rooms_btn" layoutX="23.0" layoutY="301.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Rooms">
+                                    <Button fx:id="rooms_btn" layoutX="23.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Rooms">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="CHECK_CIRCLE" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="reservition_report_btn" layoutX="23.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Reservition Report">
+                                    <Button fx:id="reservition_report_btn" layoutX="23.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Reservition Report">
                                        <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
+                                          <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="service_report_btn" layoutX="23.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Service Report">
+                                    <Button fx:id="service_report_btn" layoutX="23.0" layoutY="421.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Service Report">
                                        <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
+                                          <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
                                        </graphic>
                                     </Button>
                                     <Button fx:id="logout_btn" layoutX="22.0" layoutY="504.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AdminDesign.css">
@@ -101,6 +101,11 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Button fx:id="EMPLOYEES_btn1" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Employyes">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
+                                       </graphic>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>
