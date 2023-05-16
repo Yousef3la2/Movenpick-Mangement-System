@@ -347,15 +347,6 @@ String deleteData = "DELETE FROM rooms WHERE roomNumber = '"+roomNum+"'";
 connect=DatabaseConnection.getConnection();
 try{
  Alert alert;
-    if (type1==null||status1==null||price1==null||roomNum==null)
-    {
-        alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Please select the data first");
-        alert.showAndWait();
-    }
-    else {
 
 
         alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -381,8 +372,7 @@ try{
 
 
         }
-
-    }
+        
 } catch (Exception e) {
     throw new RuntimeException(e);
 }
