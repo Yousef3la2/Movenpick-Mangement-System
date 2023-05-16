@@ -101,7 +101,7 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="EMPLOYEES_btn1" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Employyes">
+                                    <Button fx:id="EMPLOYEES_btn1" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Employees">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
                                        </graphic>
