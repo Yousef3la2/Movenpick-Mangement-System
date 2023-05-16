@@ -201,6 +201,7 @@ if ((num-1)<-1){
 }
 availableRooms_roomNumber.setText(String.valueOf(roomD.getRoomNumber()));
 availableRooms_roomPrice.setText(String.valueOf(roomD.getPrice()));
+//availableRooms_roomType.setSelectionModel();
     }
 
     public void availableRoomsSearch(){
@@ -298,86 +299,115 @@ availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )
             e.getCause();
         }}
 
-    public void availableRoomsUpdate(){
-        String type1 = (String)availableRooms_roomType.getSelectionModel().getSelectedItem();
-        String status1 = (String)availableRooms_roomStatus.getSelectionModel().getSelectedItem();
-        String price1 =availableRooms_roomPrice.getText();
-        String roomNum =availableRooms_roomNumber.getText();
+    public void availableRoomsUpdate() throws SQLException {
+        String type1 = (String) availableRooms_roomType.getSelectionModel().getSelectedItem();
+        String status1 = (String) availableRooms_roomStatus.getSelectionModel().getSelectedItem();
+        String price1 = availableRooms_roomPrice.getText();
+        String roomNum = availableRooms_roomNumber.getText();
+        String check = "SELECT roomNumber FROM rooms WHERE roomNumber = '" + roomNum + "'";
 
-        String sql ="UPDATE rooms SET type = '"+type1+"', status = '"+status1+"',price ='"+price1+"'WHERE roomNumber ='"+roomNum+"'";
-    connect=DatabaseConnection.getConnection();
-    try {
+        prepare = connect.prepareStatement(check);
+        result = prepare.executeQuery();
+
         Alert alert;
-        if (type1==null||status1==null||price1==null||roomNum==null)
+        if (result.next()) {
+
+            String sql = "UPDATE rooms SET type = '" + type1 + "', status = '" + status1 + "',price ='" + price1 + "'WHERE roomNumber ='" + roomNum + "'";
+            connect = DatabaseConnection.getConnection();
+            try {
+
+                if (type1 == null || status1 == null || price1 == null || roomNum == null) {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please select the data first");
+                    alert.showAndWait();
+
+
+                } else {
+                    prepare = connect.prepareStatement(sql);
+                    prepare.executeUpdate();
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Update !");
+                    alert.showAndWait();
+
+                    availableRoomsShowData();
+                    availableRoomClear();
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Can not update this room " + roomNum + "");
+            alert.showAndWait();
+
+        }
+    }
+    public void availableRoomDelete() throws SQLException {
+        String type1 = (String) availableRooms_roomType.getSelectionModel().getSelectedItem();
+        String status1 = (String) availableRooms_roomStatus.getSelectionModel().getSelectedItem();
+        String price1 = availableRooms_roomPrice.getText();
+        String roomNum = availableRooms_roomNumber.getText();
+        String check = "SELECT roomNumber FROM rooms WHERE roomNumber = '" + roomNum + "'";
+
+        prepare = connect.prepareStatement(check);
+        result = prepare.executeQuery();
+
+        Alert alert;
+        if (result.next()) {
+            String deleteData = "DELETE FROM rooms WHERE roomNumber = '" + roomNum + "'";
+            connect = DatabaseConnection.getConnection();
+            try {
+
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("are you sure you want to delete Room #" + roomNum + " ?");
+
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+
+
+                    statement = connect.createStatement();
+                    statement.executeUpdate(deleteData);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted !");
+                    alert.showAndWait();
+
+                    availableRoomsShowData();
+                    availableRoomClear();
+
+
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else
+
         {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please select the data first");
+            alert.setContentText("Can not delete room " + roomNum + "");
             alert.showAndWait();
 
-
         }
-else {
-    prepare=connect.prepareStatement(sql);
-    prepare.executeUpdate();
-
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("information Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Successfully Update !");
-            alert.showAndWait();
-
-            availableRoomsShowData();
-            availableRoomClear();
-
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-
-    }
-
-    public void availableRoomDelete(){
-        String type1 = (String)availableRooms_roomType.getSelectionModel().getSelectedItem();
-        String status1 = (String)availableRooms_roomStatus.getSelectionModel().getSelectedItem();
-        String price1 =availableRooms_roomPrice.getText();
-        String roomNum =availableRooms_roomNumber.getText();
-String deleteData = "DELETE FROM rooms WHERE roomNumber = '"+roomNum+"'";
-connect=DatabaseConnection.getConnection();
-try{
- Alert alert;
-
-
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("confirmation Message");
-        alert.setHeaderText(null);
-        alert.setContentText("are you sure you want to delete Room #" + roomNum + " ?");
-
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get().equals(ButtonType.OK)) {
-
-
-            statement = connect.createStatement();
-            statement.executeUpdate(deleteData);
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("information Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Successfully Deleted !");
-            alert.showAndWait();
-
-            availableRoomsShowData();
-            availableRoomClear();
-
-
-        }
-        
-} catch (Exception e) {
-    throw new RuntimeException(e);
-}
-    }
-
 
 
 
