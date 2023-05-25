@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
    <children>
       <StackPane layoutX="203.0" layoutY="203.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -101,7 +101,7 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="EMPLOYEES_btn1" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Employees">
+                                    <Button fx:id="employees_btn" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Employees">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
                                        </graphic>
@@ -263,6 +263,30 @@
                                              </columns>
                                           </TableView>
                                        </children></AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="employees_form" prefHeight="550.0" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TextField fx:id="reservition_search1" layoutX="41.0" layoutY="29.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
+                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="46.0" layoutY="46.0" size="1.2em" />
+                                          <TableView fx:id="reservition_tableView1" layoutX="25.0" layoutY="70.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
+                                             <columns>
+                                                <TableColumn fx:id="reservition_customerNumber1" prefWidth="85.59999084472656" text="Employee #" />
+                                                <TableColumn fx:id="reservition_firstName1" prefWidth="118.39999389648438" text="First Name" />
+                                                <TableColumn fx:id="reservition_lastName1" prefWidth="138.39996337890625" text="Last Name" />
+                                                <TableColumn fx:id="reservition_customerPhone1" prefWidth="120.00006103515625" text="Phone" />
+                                                <TableColumn fx:id="reservition_totalPayment1" prefWidth="98.40008544921875" text="Gender" />
+                                                <TableColumn fx:id="reservition_checkedIn1" prefWidth="121.5999755859375" text="Email" />
+                                                <TableColumn fx:id="reservition_checkedOut1" prefWidth="145.60003662109375" text="User Name" />
+                                             </columns>
+                                          </TableView>
+                                          <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
+                                          <Button fx:id="Update_btn" layoutX="667.0" layoutY="32.0" mnemonicParsing="false" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
+                                          <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
                            </children>

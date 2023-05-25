@@ -57,7 +57,7 @@ public class AdminController implements Initializable {
     private TableColumn<roomData, String> availableRooms_col_roomType;
 
     @FXML
-    private Button availableRooms_deleteBtn;
+    private Button availableRooms_deleteBtn,employees_btn;
 
     @FXML
     private TextField availableRooms_roomNumber;
@@ -91,6 +91,9 @@ public class AdminController implements Initializable {
 
     @FXML
     private AnchorPane dashboard_form;
+
+    @FXML
+    private AnchorPane employees_form;
 
     @FXML
     private Label dashboard_incomeToday;
@@ -547,11 +550,13 @@ public void switchForm(ActionEvent event){
         dashboard_form.setVisible(true);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(false);
+        employees_form.setVisible(false);
 
     }else if(event.getSource()==rooms_btn){
         dashboard_form.setVisible(false);
         rooms_form.setVisible(true);
         reservitionReport_form.setVisible(false);
+        employees_form.setVisible(false);
         availableRoomsSearch();
         availableRoomsShowData();
 
@@ -559,7 +564,13 @@ public void switchForm(ActionEvent event){
         dashboard_form.setVisible(false);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(true);
+        employees_form.setVisible(false);
 
+    }else if(event.getSource()==employees_btn){
+        dashboard_form.setVisible(false);
+        rooms_form.setVisible(false);
+        reservitionReport_form.setVisible(false);
+        employees_form.setVisible(true);
 
     }else if(event.getSource()==service_report_btn){
 
