@@ -123,7 +123,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="177.0" prefWidth="854.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -199,7 +199,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="rooms_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="rooms_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="518.0" prefWidth="285.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -303,7 +303,7 @@
                                                 <TableColumn fx:id="reservition_checkedOut1" prefWidth="145.60003662109375" text="User Name" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
+                                          <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
                                           <Button fx:id="Update_btn" layoutX="667.0" layoutY="32.0" mnemonicParsing="false" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
                                           <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
                                        </children>

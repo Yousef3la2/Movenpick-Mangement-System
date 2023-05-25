@@ -55,9 +55,10 @@ public class RegisterController {
         }
     }
     public void cancelButtonOnAction(ActionEvent event){
-        Stage stage = (Stage) CancelButton.getScene().getWindow();
-        stage.close();
-        Platform.exit();
+        ((Node)event.getSource()).getScene().getWindow().hide();
+//        Stage stage = (Stage) CancelButton.getScene().getWindow();
+//        stage.close();
+//        Platform.exit();
     }
     int checkAll = 8;
     public int validate(){

@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
@@ -158,6 +159,19 @@ public class AdminController implements Initializable {
     private Statement statement;
     private ResultSet result;
 
+    public void employeesAdd(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+        Parent root = loader.load();
+
+        Stage sstage = new Stage();
+        sstage.setScene(new Scene(root));
+        sstage.setTitle("Add Employee");
+        sstage.initStyle(StageStyle.UNDECORATED);
+        Image image = new Image("file:icon.png");
+        sstage.getIcons().add(image);
+
+        sstage.show();
+    }
     public ObservableList<roomData>availableRoomListData() {
         ObservableList<roomData> listdata = FXCollections.observableArrayList();
         String sql = "SELECT * FROM rooms";
