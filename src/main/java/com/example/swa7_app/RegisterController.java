@@ -43,7 +43,7 @@ public class RegisterController {
     @FXML
     private Label comfirmPasswordLabel,PasswordNullLabel;
     @FXML
-    private Button SignUnButton;
+    private Button SignUnButton,CancelButton;
 
 
 
@@ -53,7 +53,11 @@ public class RegisterController {
         if (checkPassword == 3 && checkAll == 8 && validate() == 2){
             registerUser();
         }
-
+    }
+    public void cancelButtonOnAction(ActionEvent event){
+        Stage stage = (Stage) CancelButton.getScene().getWindow();
+        stage.close();
+        Platform.exit();
     }
     int checkAll = 8;
     public int validate(){

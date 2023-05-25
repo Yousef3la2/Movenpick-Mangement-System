@@ -27,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -467,6 +468,8 @@ availableRooms_roomType.setItems(list);
                 Parent root = FXMLLoader.load(this.getClass().getResource("Login.fxml"));
                 Stage stage=new Stage();
                 Scene scene = new Scene(root);
+                Image image = new Image("file:icon.png");
+                stage.getIcons().add(image);
 
                 root.setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override

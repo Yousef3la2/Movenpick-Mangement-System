@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #F2F3E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.RegisterController">
+<AnchorPane prefHeight="510.0" prefWidth="800.0" style="-fx-background-color: #F2F3E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.RegisterController">
    <children>
       <AnchorPane prefHeight="37.0" prefWidth="800.0" style="-fx-background-color: #A33845;" />
       <Label fx:id="FirstnameLabel" layoutX="97.0" layoutY="77.0" text="Firstname">
@@ -112,5 +112,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="CancelButton" layoutX="366.0" layoutY="470.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: transparent;" text="Cancel" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
