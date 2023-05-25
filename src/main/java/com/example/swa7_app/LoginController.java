@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
 
         Stage sstage = new Stage();
         sstage.setScene(new Scene(root));
-        sstage.setTitle("Swa7 (The tourist guide)");
+        sstage.setTitle("Add Employee");
         sstage.initStyle(StageStyle.UNDECORATED);
         Image image = new Image("file:icon.png");
         sstage.getIcons().add(image);
@@ -108,7 +108,9 @@ public class LoginController implements Initializable {
                     Parent root = loader.load();
                     Stage sstage = new Stage();
                     sstage.setScene(new Scene(root));
-                    sstage.setTitle("Swa7 (The tourist guide)");
+                    sstage.setTitle("Admin Panel");
+                    Image image = new Image("file:icon.png");
+                    sstage.getIcons().add(image);
                     sstage.initStyle(StageStyle.UNDECORATED);
                     sstage.show();
                     loginButton.getScene().getWindow().hide(); // #end
