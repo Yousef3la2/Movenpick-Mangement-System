@@ -213,6 +213,7 @@ public class RegisterController {
         registerAlert.showAndWait();
         setAlltoEmpty();
 
+//AdminController.availableemployeeShowData();
         //stage.close();
 
 
@@ -241,9 +242,6 @@ public class RegisterController {
         String emailaddress = EmailAddressInput.getText();
         String password = passwordInput.getText();
         String phonenumber = PhoneNumberInput.getText();
-
-
-
 
 
         String insertFields = "INSERT INTO user_account (firstname,lastname,phonenumber,gender,nationality,username,emailaddress,password) VALUES ('";
@@ -276,6 +274,7 @@ public class RegisterController {
         male.setSelected(false);
         female.setSelected(false);
         PhoneNumberInput.setText(null);
+
     }
 
 }

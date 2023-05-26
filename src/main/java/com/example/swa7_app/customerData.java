@@ -1,6 +1,6 @@
 package com.example.swa7_app;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class customerData {
 
@@ -49,8 +49,6 @@ public Date getCheckin(){
 public Date getCheckout(){
     return checkout;
 }
-
-
 
 
 }

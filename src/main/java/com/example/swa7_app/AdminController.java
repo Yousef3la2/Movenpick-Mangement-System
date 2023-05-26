@@ -59,10 +59,29 @@ public class AdminController implements Initializable {
     private TableColumn<roomData, String> availableRooms_col_roomType;
 
     @FXML
+    private TableColumn<employeeData, String> employee_firstName;
+    @FXML
+    private TableColumn<employeeData, String> employee_lastName;
+    @FXML
+    private TableColumn<employeeData, String> employee_Phone;
+    @FXML
+    private TableColumn<employeeData, String> employee_gender;
+    @FXML
+    private TableColumn<employeeData, String> employee_email;
+    @FXML
+    private TableColumn<employeeData, String> employee_username;
+    @FXML
+    private TableColumn<employeeData, String> employee_Number;
+
+
+    @FXML
+    private TableView<employeeData> employee_tableView;
+
+    @FXML
     private Button availableRooms_deleteBtn,employees_btn;
 
     @FXML
-    private TextField availableRooms_roomNumber;
+    private TextField availableRooms_roomNumber,employee_search;
 
     @FXML
     private TextField availableRooms_roomPrice;
@@ -159,19 +178,9 @@ public class AdminController implements Initializable {
     private Statement statement;
     private ResultSet result;
 
-    public void employeesAdd(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
-        Parent root = loader.load();
 
-        Stage sstage = new Stage();
-        sstage.setScene(new Scene(root));
-        sstage.setTitle("Add Employee");
-        sstage.initStyle(StageStyle.UNDECORATED);
-        Image image = new Image("file:icon.png");
-        sstage.getIcons().add(image);
+                          //------------------------- rooms -------------------------//
 
-        sstage.show();
-    }
     public ObservableList<roomData>availableRoomListData() {
         ObservableList<roomData> listdata = FXCollections.observableArrayList();
         String sql = "SELECT * FROM rooms";
@@ -189,29 +198,24 @@ public class AdminController implements Initializable {
                         result.getDouble("price"));
                 listdata.add(roomD);
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listdata;
-
-    }
+            e.printStackTrace();}
+        return listdata;}
 
     private ObservableList<roomData>roomDataList;
 
     public void availableRoomsShowData(){
-roomDataList=availableRoomListData();
-availableRooms_col_roomNumbr.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-availableRooms_col_roomType.setCellValueFactory(new  PropertyValueFactory<>("roomType") );
-availableRooms_col_roomStatus.setCellValueFactory(new  PropertyValueFactory<>("status"));
-availableRooms_col_roomPrice.setCellValueFactory(new  PropertyValueFactory<>("price"));
+        roomDataList=availableRoomListData();
+        availableRooms_col_roomNumbr.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        availableRooms_col_roomType.setCellValueFactory(new  PropertyValueFactory<>("roomType") );
+        availableRooms_col_roomStatus.setCellValueFactory(new  PropertyValueFactory<>("status"));
+        availableRooms_col_roomPrice.setCellValueFactory(new  PropertyValueFactory<>("price"));
 
-availableRooms_tableView.setItems(roomDataList);
+        availableRooms_tableView.setItems(roomDataList);
     }
 
 
-
-    public void availableRoomsSelectionData(){
+public void availableRoomsSelectionData(){
 roomData roomD =availableRooms_tableView.getSelectionModel().getSelectedItem();
 int num = availableRooms_tableView.getSelectionModel().getSelectedIndex();
 if ((num-1)<-1){
@@ -219,10 +223,10 @@ if ((num-1)<-1){
 }
 availableRooms_roomNumber.setText(String.valueOf(roomD.getRoomNumber()));
 availableRooms_roomPrice.setText(String.valueOf(roomD.getPrice()));
-//availableRooms_roomType.setSelectionModel();
+//availableRooms_roomType.setSelectionModel(String.valueOf(roomD.getRoomType()));
     }
 
-    public void availableRoomsSearch(){
+public void availableRoomsSearch(){
         FilteredList<roomData> filter = new FilteredList<>(roomDataList,e->true);
 availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )->{
     filter.setPredicate(predicateRoomData->{
@@ -252,17 +256,11 @@ availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )
 
 
         public void availableRoomsAdd(){
-       /* DatabaseConnection connectnow = new DatabaseConnection();
-        Connection connection = connectnow.getConnection();*/
 
                 String sql="INSERT INTO rooms(roomNumber,type,status,price) VALUES (?,?,?,?)";
 
                 connect=DatabaseConnection.getConnection();
 
-     /*   String insertFields = "INSERT INTO rooms(roomNumber,type,status,price) VALUES ('";
-        String insertValues = roomNumber + "','" + type + "','" + status + "','" + price+ "')";
-        String insertToRegister = insertFields + insertValues ;
-*/
         try{
             String roomNumber = availableRooms_roomNumber.getText();
             String type = (String)availableRooms_roomType.getSelectionModel().getSelectedItem();
@@ -298,9 +296,6 @@ availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )
                     prepare.setString(2, type);
                     prepare.setString(3, status);
                     prepare.setString(4, price);
-
-               /* Statement statement = connection.createStatement();
-                statement.executeUpdate(insertToRegister);*/
                     prepare.executeUpdate();
                     Alert registerAlert = new Alert(Alert.AlertType.INFORMATION);
                     registerAlert.initStyle(StageStyle.UNDECORATED);
@@ -460,15 +455,192 @@ availableRooms_roomType.setItems(list);
         ObservableList list = FXCollections.observableArrayList(listdata);
         availableRooms_roomStatus.setItems(list);
     }
+    //--------------------------------------------------------------------------------------//
+
+                     //------------------------- reservition  -------------------------//
+
+    public ObservableList<customerData>customerListData() {
+        ObservableList<customerData> listDatacust = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customer";
+        connect = DatabaseConnection.getConnection();
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            customerData custD;
+
+            while (result.next()) {
+                custD = new customerData(result.getInt("idcustomer"),
+                        result.getString("firstName"),
+                        result.getString("lastName"),
+                        result.getString("phoneNumber"),
+                        result.getString("email"),
+                        result.getDate("checkin"),
+                        result.getDate("checkout"));
+                listDatacust.add(custD);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }return listDatacust;
+    }
+
+    private ObservableList<customerData>listCustomerData;
+    public void customerShowData(){
+        listCustomerData=customerListData();
+        reservition_customerNumber.setCellValueFactory(new PropertyValueFactory<>("idcustomer"));
+        reservition_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        reservition_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        reservition_customerPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        reservition_totalPayment.setCellValueFactory(new PropertyValueFactory<>("total"));
+        reservition_checkedIn.setCellValueFactory(new PropertyValueFactory<>("checkin"));
+        reservition_checkedOut.setCellValueFactory(new PropertyValueFactory<>("checkout"));
+        reservition_tableView.setItems(listCustomerData);
+
+    }
+
+    public void availablecustomerSearch(){
+        FilteredList<customerData> filter = new FilteredList<>(listCustomerData,e->true);
+        reservition_search.textProperty().addListener((Observable,oldValue,newValue )->{
+            filter.setPredicate(predicatecustomerData->{
+                if(newValue==null&&newValue.isEmpty()){
+                    return  true;
+                }
+                String searchkey=newValue.toLowerCase();
+
+                if (predicatecustomerData.getFirstName().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicatecustomerData.getCheckin().toString().contains(searchkey)) {
+                    return true;
+                }
+                    else if (predicatecustomerData.getCheckout().toString().contains(searchkey)){
+                        return true;
+
+                    }else if (predicatecustomerData.getLastName().toString().contains(searchkey)) {
+                        return true;
+
+                }else if (predicatecustomerData.getPhoneNumber().toString().contains(searchkey)) {
+                    return true;
+                }
+                else if (predicatecustomerData.getTotal().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicatecustomerData.getIdcustomer().toString().contains(searchkey)) {
+                    return true;
 
 
 
+                }else return false;
 
-        private double x=0;
+            });  });
+        SortedList<customerData>sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(reservition_tableView.comparatorProperty());
+        reservition_tableView.setItems(sortList);
+    }
+
+//---------------------------------------------------------------------------------------------------
+
+    // -------------------------------------------employee--------------------------------------------
+
+    public void employeesAdd(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+        Parent root = loader.load();
+
+        Stage sstage = new Stage();
+        sstage.setScene(new Scene(root));
+        sstage.setTitle("Add Employee");
+        sstage.initStyle(StageStyle.UNDECORATED);
+        Image image = new Image("file:icon.png");
+        sstage.getIcons().add(image);
+        sstage.show();
+        availableemployeeShowData();
+    }
+
+    public ObservableList<employeeData>employeeDataObservableList() {
+        ObservableList<employeeData> listdata = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM user_account";
+
+        connect = DatabaseConnection.getConnection();
+        try {
+            employeeData employeeD;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                employeeD = new employeeData(
+                        result.getInt("account_id"),
+                        result.getString("firstName"),
+                        result.getString("lastName"),
+                        result.getString("phoneNumber"),
+                        result.getString("gender"),
+                        result.getString("nationality"),
+                        result.getString("username"),
+                        result.getString("emailaddress"));
+                        listdata.add(employeeD);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();}
+        return listdata;}
+
+    private ObservableList<employeeData>employeeDataList;
+
+    public void availableemployeeShowData(){
+        employeeDataList=employeeDataObservableList();
+        employee_email.setCellValueFactory(new PropertyValueFactory<>("emailaddress"));
+        employee_gender.setCellValueFactory(new  PropertyValueFactory<>("gender") );
+        employee_firstName.setCellValueFactory(new  PropertyValueFactory<>("firstname"));
+        employee_Number.setCellValueFactory(new  PropertyValueFactory<>("account_id"));
+        employee_lastName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        employee_Phone.setCellValueFactory(new  PropertyValueFactory<>("phonenumber") );
+        employee_username.setCellValueFactory(new  PropertyValueFactory<>("username"));
+        employee_tableView.setItems(employeeDataList);
+
+
+    }
+
+
+public void availableemployeesSearch(){
+        FilteredList<employeeData> filter = new FilteredList<>(employeeDataList,e->true);
+    employee_search.textProperty().addListener((Observable,oldValue,newValue )->{
+            filter.setPredicate(predicateemployeeData->{
+                if(newValue==null&&newValue.isEmpty()){
+                    return  true;
+                }
+                String searchkey=newValue.toLowerCase();
+
+                if (predicateemployeeData.getAccount_id().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicateemployeeData.getEmailaddress().toString().contains(searchkey)) {
+                    return true;
+                }else if (predicateemployeeData.getFirstname().toString().contains(searchkey)) {
+                    return true;
+                }else if (predicateemployeeData.getGender().toString().contains(searchkey)) {
+                    return true;
+                }else if (predicateemployeeData.getLastname().toString().contains(searchkey)) {
+                    return true;
+                }else if (predicateemployeeData.getPhonenumber().toString().contains(searchkey)) {
+                    return true;
+                }else if (predicateemployeeData.getUsername().toString().contains(searchkey)) {
+                    return true;
+
+                }else return false;
+
+            });  });
+        SortedList<employeeData>sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(employee_tableView.comparatorProperty());
+    employee_tableView.setItems(sortList);
+    }
+
+
+    //---------------------------------------------------------------------------------------------
+
+
+
+    private double x=0;
     private double y=0;
     public void logout() {
         try {
-
 
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("confirmation Message");
@@ -512,54 +684,10 @@ availableRooms_roomType.setItems(list);
             }else
             {return;}
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-/*
-
-    public ObservableList<customerData>customerListData() {
-        ObservableList<customerData> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM customer";
-        connect = DatabaseConnection.getConnection();
-        try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            customerData custD;
-
-            while (result.next()) {
-                custD = new customerData(result.getInt("idcustomer"),
-                        result.getString("firstName"),
-                        result.getString("lastName"),
-                        result.getString("phoneNumber"),
-                        result.getString("email"),
-                        result.getDate("'checkin"),
-                        result.getDate("'checkout"));
-                listData.add(custD);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }return listData;
-    }
-
-    private ObservableList<customerData>listCustomerData;
-    public void customerShowData(){
-        listCustomerData=customerListData();
-        reservition_customerNumber.setCellValueFactory(new PropertyValueFactory<>("idcustomer"));
-        reservition_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        reservition_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        reservition_customerPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        reservition_totalPayment.setCellValueFactory(new PropertyValueFactory<>("total"));
-        reservition_checkedIn.setCellValueFactory(new PropertyValueFactory<>("checkin"));
-        reservition_checkedOut.setCellValueFactory(new PropertyValueFactory<>("checkout"));
-        reservition_tableView.setItems(listCustomerData);
-
-
-    }
-*/
 
 
 public void switchForm(ActionEvent event){
@@ -582,23 +710,22 @@ public void switchForm(ActionEvent event){
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(true);
         employees_form.setVisible(false);
+        availablecustomerSearch();
+        customerShowData();
 
     }else if(event.getSource()==employees_btn){
         dashboard_form.setVisible(false);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(false);
         employees_form.setVisible(true);
+        availableemployeesSearch();
+        availableemployeeShowData();
+
 
     }else if(event.getSource()==service_report_btn){
 
     }
-
-
-
 }
-
-
-
 
 public  void close(){
         System.exit(0);
@@ -615,7 +742,9 @@ public void minimize(){
         availableRoomsRoomType();
         availableRoomsStatus();
         availableRoomsShowData();
-
-//        customerShowData();
+        customerShowData();
+        //availableemployeesSearch();
+        availablecustomerSearch();
+        availableemployeeShowData();
     }
 }

@@ -270,7 +270,7 @@
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="850.0">
                                        <children>
-                                          <TextField fx:id="reservition_search" layoutX="26.0" layoutY="14.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
+                                          <TextField fx:id="reservition_search" layoutX="26.0" layoutY="14.0" onMouseClicked="#availablecustomerSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
                                           <FontAwesomeIcon glyphName="SEARCH" layoutX="31.0" layoutY="31.0" size="1.2em" />
                                           <TableView fx:id="reservition_tableView" layoutX="10.0" layoutY="55.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
                                              <columns>
@@ -290,17 +290,17 @@
                                  <children>
                                     <AnchorPane prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <TextField fx:id="reservition_search1" layoutX="41.0" layoutY="29.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
+                                          <TextField fx:id="employee_search" layoutX="41.0" layoutY="29.0" onMouseClicked="#availableemployeesSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
                                           <FontAwesomeIcon glyphName="SEARCH" layoutX="46.0" layoutY="46.0" size="1.2em" />
-                                          <TableView fx:id="reservition_tableView1" layoutX="25.0" layoutY="70.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
+                                          <TableView fx:id="employee_tableView" layoutX="25.0" layoutY="70.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
                                              <columns>
-                                                <TableColumn fx:id="reservition_customerNumber1" prefWidth="85.59999084472656" text="Employee #" />
-                                                <TableColumn fx:id="reservition_firstName1" prefWidth="118.39999389648438" text="First Name" />
-                                                <TableColumn fx:id="reservition_lastName1" prefWidth="138.39996337890625" text="Last Name" />
-                                                <TableColumn fx:id="reservition_customerPhone1" prefWidth="120.00006103515625" text="Phone" />
-                                                <TableColumn fx:id="reservition_totalPayment1" prefWidth="98.40008544921875" text="Gender" />
-                                                <TableColumn fx:id="reservition_checkedIn1" prefWidth="121.5999755859375" text="Email" />
-                                                <TableColumn fx:id="reservition_checkedOut1" prefWidth="145.60003662109375" text="User Name" />
+                                                <TableColumn fx:id="employee_Number" prefWidth="85.59999084472656" text="Employee #" />
+                                                <TableColumn fx:id="employee_firstName" prefWidth="118.39999389648438" text="First Name" />
+                                                <TableColumn fx:id="employee_lastName" prefWidth="138.39996337890625" text="Last Name" />
+                                                <TableColumn fx:id="employee_Phone" prefWidth="120.00006103515625" text="Phone" />
+                                                <TableColumn fx:id="employee_gender" prefWidth="98.40008544921875" text="Gender" />
+                                                <TableColumn fx:id="employee_email" prefWidth="121.5999755859375" text="Email" />
+                                                <TableColumn fx:id="employee_username" prefWidth="145.60003662109375" text="User Name" />
                                              </columns>
                                           </TableView>
                                           <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
