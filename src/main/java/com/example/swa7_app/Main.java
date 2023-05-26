@@ -15,11 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-
         //Al
 
-        Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("Receptionist.fxml"));
         Scene scene = new Scene(root);
 
         stage.setTitle("Swa7 (The tourist guide)");

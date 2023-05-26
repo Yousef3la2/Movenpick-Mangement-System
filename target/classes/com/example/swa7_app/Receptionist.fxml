@@ -23,11 +23,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.ReceptionistController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.ReceptionistController">
    <children>
       <StackPane layoutX="203.0" layoutY="203.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="checkinform" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <BorderPane layoutX="244.0" layoutY="147.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <top>
@@ -35,9 +35,9 @@
                            <children>
                               <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="close_btn" layoutX="1034.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="48.0" styleClass="close" stylesheets="@AdminDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <Button fx:id="close_btn" layoutX="1034.0" layoutY="9.0" mnemonicParsing="false" onAction="#closepage" prefHeight="26.0" prefWidth="48.0" styleClass="close" stylesheets="@AdminDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <graphic>
-                                          <FontAwesomeIcon glyphName="CLOSE" size="1.2em" text="" />
+                                          <FontAwesomeIcon fx:id="close" glyphName="CLOSE" onDragDetected="#closepage" size="1.2em" text="" />
                                        </graphic>
                                     </Button>
                                     <ImageView fitHeight="21.0" fitWidth="44.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
@@ -79,7 +79,7 @@
                                           <Font name="Harlow Solid Italic" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="username" alignment="CENTER" layoutX="14.0" layoutY="169.0" prefHeight="38.0" prefWidth="191.0" text="ADMIN" textFill="WHITE">
+                                    <Label fx:id="username" alignment="CENTER" layoutX="14.0" layoutY="169.0" prefHeight="38.0" prefWidth="191.0" text="Receptionist" textFill="WHITE">
                                        <font>
                                           <Font name="Teko SemiBold" size="30.0" />
                                        </font>
@@ -109,7 +109,7 @@
                                           <String fx:value="login-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Label layoutX="67.0" layoutY="506.0" text="Sign Out" textFill="WHITE">
+                                    <Label layoutX="73.0" layoutY="508.0" text="Sign Out" textFill="WHITE">
                                        <font>
                                           <Font name="Consolas Bold" size="18.0" />
                                        </font>
@@ -127,7 +127,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="518.0" prefWidth="409.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -142,13 +142,13 @@
                                           </Label>
                                           <VBox layoutX="154.0" layoutY="52.0" prefHeight="346.0" prefWidth="202.0" spacing="25.0">
                                              <children>
-                                                <TextField promptText="First Name" styleClass="payinput" />
-                                                <TextField promptText="Last Name" styleClass="payinput" />
-                                                <TextField promptText="Passort Num." styleClass="payinput" />
-                                                <TextField promptText="Phone" styleClass="payinput" />
-                                                <TextField promptText="Email" styleClass="payinput" />
-                                                <TextField promptText="Nationality" styleClass="payinput" />
-                                                <TextField promptText="Address" styleClass="payinput" />
+                                                <TextField fx:id="firestnameinput" promptText="First Name" styleClass="payinput" />
+                                                <TextField fx:id="lastnameinput" promptText="Last Name" styleClass="payinput" />
+                                                <TextField fx:id="passinput" promptText="Passort Num." styleClass="payinput" />
+                                                <TextField fx:id="phoneinput" promptText="Phone" styleClass="payinput" />
+                                                <TextField fx:id="emailinput" promptText="Email" styleClass="payinput" />
+                                                <TextField fx:id="nationalityinput" promptText="Nationality" styleClass="payinput" />
+                                                <TextField fx:id="addressinput" promptText="Address" styleClass="payinput" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -190,10 +190,10 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <ComboBox prefHeight="25.0" prefWidth="202.0" GridPane.rowIndex="1" />
-                                                <ComboBox prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <DatePicker promptText="MM-DD-YYYY" styleClass="payinput" GridPane.rowIndex="3" />
-                                                <DatePicker promptText="MM-DD-YYYY" styleClass="payinput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <ComboBox fx:id="roomtype" prefHeight="25.0" prefWidth="202.0" GridPane.rowIndex="1" />
+                                                <ComboBox fx:id="roomnumber" prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <DatePicker fx:id="checkindata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.rowIndex="3" />
+                                                <DatePicker fx:id="chekoutdata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <Label text="Room Type" GridPane.halignment="LEFT" />
                                                 <Label text="Room Number" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
                                                 <Label text="Check-In Date" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
@@ -264,121 +264,80 @@
                                     </AnchorPane>
                                     <HBox alignment="CENTER" layoutX="582.0" layoutY="478.0" prefHeight="58.0" prefWidth="283.0" spacing="30.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Reset" />
-                                          <Button mnemonicParsing="false" text="Comfirm" />
+                                          <Button fx:id="Reset" mnemonicParsing="false" onAction="#resett" text="Reset" />
+                                          <Button fx:id="confirm" mnemonicParsing="false" onAction="#confirmbtn" text="Comfirm" />
                                        </children>
                                     </HBox>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="rooms_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="checkout_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="518.0" prefWidth="285.0" stylesheets="@AdminDesign.css">
+                                    <AnchorPane layoutX="229.0" layoutY="150.0" prefHeight="251.0" prefWidth="423.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TextField fx:id="availableRooms_roomNumber" layoutX="104.0" layoutY="43.0" prefHeight="25.0" prefWidth="164.0" styleClass="textfield" stylesheets="@AdminDesign.css">
-                                             <font>
-                                                <Font name="Inter Regular" size="12.0" />
-                                             </font></TextField>
-                                          <Label layoutX="44.0" layoutY="47.0" text="Room #:">
+                                          <Label layoutX="44.0" layoutY="63.0" text="Room #:">
                                              <font>
                                                 <Font name="Inter Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="25.0" layoutY="86.0" text="Room Type:">
-                                             <font>
-                                                <Font name="Inter Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="50.0" layoutY="129.0" text="Status:">
-                                             <font>
-                                                <Font name="Inter Bold" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="availableRooms_roomStatus" layoutX="104.0" layoutY="125.0" prefHeight="26.0" prefWidth="162.0" promptText="Choose" styleClass="combo-box" stylesheets="@AdminDesign.css" />
-                                          <TextField fx:id="availableRooms_roomPrice" layoutX="104.0" layoutY="163.0" prefHeight="25.0" prefWidth="163.0" styleClass="textfield" stylesheets="@AdminDesign.css">
-                                             <font>
-                                                <Font name="Inter Regular" size="12.0" />
-                                             </font></TextField>
-                                          <Label layoutX="56.0" layoutY="167.0" text="Price :">
-                                             <font>
-                                                <Font name="Inter Bold" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="availableRooms_addBtn" layoutX="23.0" layoutY="241.0" mnemonicParsing="false" onAction="#availableRoomsAdd" prefHeight="35.0" prefWidth="100.0" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
-                                          <Button fx:id="availableRooms_updateBtn" layoutX="154.0" layoutY="241.0" mnemonicParsing="false" onAction="#availableRoomsUpdate" prefHeight="35.0" prefWidth="100.0" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
-                                          <Button fx:id="availableRooms_clearBtn" layoutX="23.0" layoutY="290.0" mnemonicParsing="false" onAction="#availableRoomClear" prefHeight="35.0" prefWidth="100.0" styleClass="clear-btn" stylesheets="@AdminDesign.css" text="Clear" />
-                                          <Button fx:id="availableRooms_deleteBtn" layoutX="154.0" layoutY="290.0" mnemonicParsing="false" onAction="#availableRoomDelete" prefHeight="35.0" prefWidth="100.0" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
-                                          <ComboBox fx:id="availableRooms_roomType" layoutX="104.0" layoutY="82.0" prefHeight="26.0" prefWidth="163.0" promptText="Choose" styleClass="combo-box" stylesheets="@AdminDesign.css" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="318.0" layoutY="15.0" prefHeight="518.0" prefWidth="551.0" stylesheets="@AdminDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
-                                       <children>
-                                          <TableView fx:id="availableRooms_tableView" layoutX="8.0" layoutY="53.0" onMouseClicked="#availableRoomsSelectionData" prefHeight="450.0" prefWidth="534.0">
-                                            <columns>
-                                              <TableColumn fx:id="availableRooms_col_roomNumbr" prefWidth="124.79998779296875" text="Room #" />
-                                              <TableColumn fx:id="availableRooms_col_roomType" prefWidth="142.4000244140625" text="Room Type" />
-                                                <TableColumn fx:id="availableRooms_col_roomStatus" prefWidth="110.39996337890625" text="Status" />
-                                                <TableColumn fx:id="availableRooms_col_roomPrice" prefWidth="164.00018310546875" text="Price ($)" />
-                                            </columns>
-                                          </TableView>
-                                          <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" onMouseClicked="#availableRoomsSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css">
-                                             <font>
-                                                <Font name="Inter Regular" size="12.0" />
-                                             </font></TextField>
-                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.2em" />
+                                          <ComboBox layoutX="104.0" layoutY="57.0" prefHeight="27.0" prefWidth="167.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="reservitionReport_form" layoutX="266.0" layoutY="75.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="rooms_form" layoutX="266.0" layoutY="75.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="850.0">
                                        <children>
-                                          <TextField fx:id="reservition_search" layoutX="26.0" layoutY="14.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
-                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="31.0" layoutY="31.0" size="1.2em" />
-                                          <TableView fx:id="reservition_tableView" layoutX="10.0" layoutY="55.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
-                                             <columns>
-                                                <TableColumn fx:id="reservition_customerNumber" prefWidth="85.59999084472656" text="Customer #" />
-                                                <TableColumn fx:id="reservition_firstName" prefWidth="118.39999389648438" text="First Name" />
-                                                <TableColumn fx:id="reservition_lastName" prefWidth="138.39996337890625" text="Last Name" />
-                                                <TableColumn fx:id="reservition_customerPhone" prefWidth="120.00006103515625" text="Phone" />
-                                                <TableColumn fx:id="reservition_totalPayment" prefWidth="98.40008544921875" text="Total Payment" />
-                                                <TableColumn fx:id="reservition_checkedIn" prefWidth="121.5999755859375" text="Checked-In" />
-                                                <TableColumn fx:id="reservition_checkedOut" prefWidth="145.60003662109375" text="Checked-Out" />
-                                             </columns>
-                                          </TableView>
+                                          <AnchorPane layoutX="4.0" layoutY="1.0" prefHeight="518.0" prefWidth="830.0" stylesheets="@AdminDesign.css">
+                                             <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <TableView fx:id="availableRooms_tableView" layoutX="148.0" layoutY="54.0" onMouseClicked="#availableRoomsSelectionData" prefHeight="450.0" prefWidth="534.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="availableRooms_col_roomNumbr" prefWidth="124.79998779296875" text="Room #" />
+                                                      <TableColumn fx:id="availableRooms_col_roomType" prefWidth="142.4000244140625" text="Room Type" />
+                                                      <TableColumn fx:id="availableRooms_col_roomStatus" prefWidth="110.39996337890625" text="Status" />
+                                                      <TableColumn fx:id="availableRooms_col_roomPrice" prefWidth="164.00018310546875" text="Price ($)" />
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" onMouseClicked="#availableRoomsSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css">
+                                                   <font>
+                                                      <Font name="Inter Regular" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.2em" />
+                                             </children>
+                                          </AnchorPane>
                                        </children></AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="employees_form" prefHeight="550.0" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="guests_form" prefHeight="550.0" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <TextField fx:id="reservition_search1" layoutX="41.0" layoutY="29.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css" />
-                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="46.0" layoutY="46.0" size="1.2em" />
-                                          <TableView fx:id="reservition_tableView1" layoutX="25.0" layoutY="70.0" prefHeight="450.0" prefWidth="829.0" stylesheets="@AdminDesign.css">
+                                          <TableView fx:id="guest_tableView" layoutX="74.0" layoutY="63.0" prefHeight="450.0" prefWidth="732.0" stylesheets="@AdminDesign.css">
                                              <columns>
-                                                <TableColumn fx:id="reservition_customerNumber1" prefWidth="85.59999084472656" text="Employee #" />
-                                                <TableColumn fx:id="reservition_firstName1" prefWidth="118.39999389648438" text="First Name" />
-                                                <TableColumn fx:id="reservition_lastName1" prefWidth="138.39996337890625" text="Last Name" />
-                                                <TableColumn fx:id="reservition_customerPhone1" prefWidth="120.00006103515625" text="Phone" />
-                                                <TableColumn fx:id="reservition_totalPayment1" prefWidth="98.40008544921875" text="Gender" />
-                                                <TableColumn fx:id="reservition_checkedIn1" prefWidth="121.5999755859375" text="Email" />
-                                                <TableColumn fx:id="reservition_checkedOut1" prefWidth="145.60003662109375" text="User Name" />
+                                                <TableColumn fx:id="guest_Room" prefWidth="103.0" text="Room" />
+                                                <TableColumn fx:id="guest_firstName" prefWidth="102.0" text="First Name" />
+                                                <TableColumn fx:id="guest_lastName" prefWidth="138.39996337890625" text="Last Name" />
+                                                <TableColumn fx:id="guest_customerPhone" prefWidth="120.00006103515625" text="Phone" />
+                                                <TableColumn fx:id="guest_checkedIn" prefWidth="121.5999755859375" text="Checked-In" />
+                                                <TableColumn fx:id="guest_checkedOut" prefWidth="145.60003662109375" text="Checked-Out" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
-                                          <Button fx:id="Update_btn" layoutX="667.0" layoutY="32.0" mnemonicParsing="false" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
-                                          <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
                                        </children>
                                     </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="services_form" layoutX="240.0" layoutY="112.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="340.0" layoutY="143.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
