@@ -1,5 +1,4 @@
 package com.example.swa7_app;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
