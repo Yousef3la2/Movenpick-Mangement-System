@@ -31,15 +31,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 
 
-public class RegisterController implements Initializable{
+public class RegisterController {
     @FXML
-    private ImageView newRegImageView;
-    @FXML
-    private TextField FirstnameInput,LastnameInput,Nationalityinput;
+    private TextField FirstnameInput,LastnameInput,Nationalityinput,PhoneNumberInput;
     @FXML
     private RadioButton male , female;
-    @FXML
-    private CheckBox history,culture,food;
     @FXML
     private TextField usernameInput,EmailAddressInput;
     @FXML
@@ -47,47 +43,26 @@ public class RegisterController implements Initializable{
     @FXML
     private Label comfirmPasswordLabel,PasswordNullLabel;
     @FXML
-    private Button SignUpButton,SignInButton,CancelButton;
+    private Button SignUnButton,CancelButton;
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-
-        System.out.println("OK");
-        File  new_regFile = new File("Graphics/new-registration-icon.png");
-        Image new_regImage = new Image(new_regFile.toURI().toString());
-        newRegImageView.setImage(new_regImage);
-
-
-    }
-    public void SignonButtonOnAciton(ActionEvent event) throws IOException{
-//        Stage stage = (Stage) SignInButton.getScene().getWindow();
-//        stage.close();
-
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-
-        Stage sstage = new Stage();
-        sstage.setScene(new Scene(root));
-        sstage.setTitle("Swa7 (The tourist guide)");
-        sstage.initStyle(StageStyle.UNDECORATED);
-        Image image = new Image("file:icon.png");
-        sstage.getIcons().add(image);
-
-        sstage.show();
-    }
     int checkPassword = 0;
     public void SignUpButtonOnAction(ActionEvent event) {
         validate();
-        if (checkPassword == 3 && checkAll == 7 && validate() == 2){
+        if (checkPassword == 3 && checkAll == 8 && validate() == 2){
             registerUser();
         }
-
     }
-    int checkAll = 7;
+    public void cancelButtonOnAction(ActionEvent event){
+        ((Node)event.getSource()).getScene().getWindow().hide();
+//        Stage stage = (Stage) CancelButton.getScene().getWindow();
+//        stage.close();
+//        Platform.exit();
+    }
+    int checkAll = 8;
     public int validate(){
-        checkAll = 7;
+        checkAll = 8;
         checkPassword();
 
         int checkGender = 0 ;
@@ -178,8 +153,16 @@ public class RegisterController implements Initializable{
             checkAll -=1;
 
         }
+        else if (PhoneNumberInput.getText().trim().isEmpty()) {
+            Alert fail= new Alert(Alert.AlertType.INFORMATION);
+            fail.setHeaderText("failure");
+            fail.setContentText("you didn't enter your phone number");
+            fail.showAndWait();
+            checkAll -=1;
 
-        if(checkAll == 7){
+        }
+
+        if(checkAll == 8){
             return 2;
         }
 
@@ -230,24 +213,9 @@ public class RegisterController implements Initializable{
         registerAlert.showAndWait();
         setAlltoEmpty();
 
-        Stage stage = (Stage) SignInButton.getScene().getWindow();
-        stage.close();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//AdminController.availableemployeeShowData();
+        //stage.close();
 
-
-        Stage sstage = new Stage();
-        sstage.setScene(new Scene(root));
-        sstage.setTitle("Swa7 (The tourist guide)");
-        sstage.initStyle(StageStyle.UNDECORATED);
-        Image image = new Image("file:icon.png");
-        sstage.getIcons().add(image);
-
-        sstage.show();
 
     }
     public void registerUser(){
@@ -273,25 +241,11 @@ public class RegisterController implements Initializable{
         String username = usernameInput.getText();
         String emailaddress = EmailAddressInput.getText();
         String password = passwordInput.getText();
+        String phonenumber = PhoneNumberInput.getText();
 
 
-        String travelinterest1 = "";
-        String travelinterest2 = "";
-        String travelinterest3 = "";
-
-        if (history.isSelected()){
-         travelinterest1 = history.getText();
-        }
-        if (culture.isSelected()) {
-            travelinterest2 = culture.getText();
-        }
-        if (food.isSelected()) {
-            travelinterest3 = food.getText();
-        }
-
-
-        String insertFields = "INSERT INTO user_account(firstname,lastname,gender,nationality,username,emailaddress,password,travelinterest1,travelinterest2,travelinterest3) VALUES ('";
-        String insertValues = firstname + "','" +lastname + "','" + gender + "','" + nationality + "','" + username + "','" + emailaddress + "','" + password + "','" + travelinterest1 + "','" + travelinterest2 + "','" + travelinterest3 + "')";
+        String insertFields = "INSERT INTO user_account (firstname,lastname,phonenumber,gender,nationality,username,emailaddress,password) VALUES ('";
+        String insertValues = firstname + "','" +lastname + "','" + phonenumber + "','" + gender + "','" + nationality + "','" + username + "','" + emailaddress + "','" + password  + "')";
         String insertToRegister = insertFields + insertValues ;
 
         System.out.println(insertToRegister);
@@ -307,11 +261,7 @@ public class RegisterController implements Initializable{
 
     }
 
-    public void cancelButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) CancelButton.getScene().getWindow();
-        stage.close();
-        Platform.exit();
-    }
+
     public void setAlltoEmpty(){
         FirstnameInput.setText(null);
         LastnameInput.setText(null);
@@ -323,9 +273,8 @@ public class RegisterController implements Initializable{
         comfirmPasswordLabel.setText(null);
         male.setSelected(false);
         female.setSelected(false);
-        history.setSelected(false);
-        culture.setSelected(false);
-        food.setSelected(false);
+        PhoneNumberInput.setText(null);
+
     }
 
 }

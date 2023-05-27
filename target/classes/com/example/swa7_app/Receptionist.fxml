@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.ReceptionistController">
+   <children>
+      <StackPane layoutX="203.0" layoutY="203.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="checkinform" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="244.0" layoutY="147.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Button fx:id="close_btn" layoutX="1034.0" layoutY="9.0" mnemonicParsing="false" onAction="#closepage" prefHeight="26.0" prefWidth="48.0" styleClass="close" stylesheets="@AdminDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <graphic>
+                                          <FontAwesomeIcon fx:id="close" glyphName="CLOSE" onDragDetected="#closepage" size="1.2em" text="" />
+                                       </graphic>
+                                    </Button>
+                                    <ImageView fitHeight="21.0" fitWidth="44.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../Graphics/small_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button fx:id="minimize_btn" layoutX="1006.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="40.0" styleClass="minimize" stylesheets="@AdminDesign.css">
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="MINUS" size="1.2em" text="" />
+                                       </graphic>
+                                    </Button>
+                                    <Label layoutX="50.0" layoutY="14.0" text="Movenpick Managment System" textFill="#8c7343">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <left>
+                        <AnchorPane prefHeight="550.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane layoutY="64.0" prefHeight="549.6" prefWidth="220.0" styleClass="nav-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Button fx:id="checkin_btn" layoutX="19.0" layoutY="254.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="176.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Check In">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" />
+                                       </graphic>
+                                       <font>
+                                          <Font name="Cooper Black" size="36.0" />
+                                       </font>
+                                    </Button>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="72.0" layoutY="130.0" size="8EM" />
+                                    <Label layoutX="80.0" layoutY="144.0" text="Welcome," textFill="WHITE">
+                                       <font>
+                                          <Font name="Harlow Solid Italic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="username" alignment="CENTER" layoutX="14.0" layoutY="169.0" prefHeight="38.0" prefWidth="191.0" text="Receptionist" textFill="WHITE">
+                                       <font>
+                                          <Font name="Teko SemiBold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" layoutX="98.0" layoutY="232.0" startX="-76.80000305175781" startY="3.0517578125E-5" stroke="WHITE" />
+                                    <Button fx:id="rooms_btn" layoutX="21.0" layoutY="338.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="174.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Rooms">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="CHECK_CIRCLE" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="guests_btn" layoutX="22.0" layoutY="379.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="191.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Guests">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="services_btn" layoutX="24.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="171.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Services">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="logout_btn" layoutX="22.0" layoutY="500.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AdminDesign.css">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" text="" />
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="logout-btn" />
+                                          <String fx:value="login-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Label layoutX="73.0" layoutY="508.0" text="Sign Out" textFill="WHITE">
+                                       <font>
+                                          <Font name="Consolas Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="checkout_btn" layoutX="18.0" layoutY="294.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="179.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Check Out">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="518.0" prefWidth="409.0" stylesheets="@AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="137.0" layoutY="14.0" text="Personal Data">
+                                             <font>
+                                                <Font name="Arial Nova Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox layoutX="154.0" layoutY="52.0" prefHeight="346.0" prefWidth="202.0" spacing="25.0">
+                                             <children>
+                                                <TextField fx:id="firestnameinput" promptText="First Name" styleClass="payinput" />
+                                                <TextField fx:id="lastnameinput" promptText="Last Name" styleClass="payinput" />
+                                                <TextField fx:id="passinput" promptText="Passort Num." styleClass="payinput" />
+                                                <TextField fx:id="phoneinput" promptText="Phone" styleClass="payinput" />
+                                                <TextField fx:id="emailinput" promptText="Email" styleClass="payinput" />
+                                                <TextField fx:id="nationalityinput" promptText="Nationality" styleClass="payinput" />
+                                                <TextField fx:id="addressinput" promptText="Address" styleClass="payinput" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox alignment="CENTER" layoutX="54.0" layoutY="52.0" prefHeight="350.0" prefWidth="100.0" spacing="36.0">
+                                             <children>
+                                                <Label text="First Name" />
+                                                <Label text="Last Name" />
+                                                <Label text="Passport Number" />
+                                                <Label text="Phone" />
+                                                <Label text="Email" />
+                                                <Label text="Nationality" />
+                                                <Label text="Address" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="435.0" layoutY="229.0" prefHeight="250.0" prefWidth="434.0" stylesheets="@AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="171.0" layoutY="14.0" text="Room Data">
+                                             <font>
+                                                <Font name="Arial Nova Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <GridPane hgap="20.0" layoutX="35.0" layoutY="51.0" prefHeight="151.0" prefWidth="350.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <ComboBox fx:id="roomtype" prefHeight="25.0" prefWidth="202.0" GridPane.rowIndex="1" />
+                                                <ComboBox fx:id="roomnumber" prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <DatePicker fx:id="checkindata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.rowIndex="3" />
+                                                <DatePicker fx:id="chekoutdata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Label text="Room Type" GridPane.halignment="LEFT" />
+                                                <Label text="Room Number" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                                                <Label text="Check-In Date" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                                <Label text="Check-Out Date" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="435.0" layoutY="10.0" prefHeight="209.0" prefWidth="434.0" stylesheets="@AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="221.0" layoutY="21.0" text="Payments Details">
+                                             <font>
+                                                <Font name="Arial Nova Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="creditCardField" layoutX="219.0" layoutY="76.0" prefHeight="26.0" prefWidth="202.0" promptText="Card number." styleClass="cardnumber" />
+                                          <TextField fx:id="cardHolderField" layoutX="219.0" layoutY="114.0" prefHeight="26.0" prefWidth="204.0" promptText="Cardholder Name" styleClass="payinput" />
+                                          <TextField fx:id="exp_Mth_Field" layoutX="219.0" layoutY="153.0" prefHeight="26.0" prefWidth="61.0" promptText="Exp. mth" styleClass="payinput" />
+                                          <TextField fx:id="exp_Year_Field" layoutX="286.0" layoutY="153.0" prefHeight="26.0" prefWidth="63.0" promptText="Exp. year" styleClass="payinput" />
+                                          <TextField fx:id="CVV_Field" layoutX="354.0" layoutY="153.0" prefHeight="26.0" prefWidth="66.0" promptText="CVV" styleClass="cvv" />
+                                          <ImageView fitHeight="133.0" fitWidth="182.0" layoutX="17.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/card.png" />
+                                             </image>
+                                          </ImageView>
+                                          <HBox layoutX="22.0" layoutY="12.0" prefHeight="41.0" prefWidth="171.0" spacing="10.0">
+                                             <children>
+                                                <ImageView fitHeight="30.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../Graphics/visa.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="31.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../Graphics/masterCard.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="30.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../Graphics/american-express.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="30.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../Graphics/discover.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="398.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/cvv(1).png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="397.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/credit-card(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" layoutX="582.0" layoutY="478.0" prefHeight="58.0" prefWidth="283.0" spacing="30.0">
+                                       <children>
+                                          <Button fx:id="Reset" mnemonicParsing="false" onAction="#resett" text="Reset" />
+                                          <Button fx:id="confirm" mnemonicParsing="false" onAction="#confirmbtn" text="Comfirm" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="checkout_form" layoutX="25.0" layoutY="85.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="229.0" layoutY="150.0" prefHeight="251.0" prefWidth="423.0" stylesheets="@AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="44.0" layoutY="63.0" text="Room #:">
+                                             <font>
+                                                <Font name="Inter Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox layoutX="104.0" layoutY="57.0" prefHeight="27.0" prefWidth="167.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="rooms_form" layoutX="266.0" layoutY="75.0" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="850.0">
+                                       <children>
+                                          <AnchorPane layoutX="4.0" layoutY="1.0" prefHeight="518.0" prefWidth="830.0" stylesheets="@AdminDesign.css">
+                                             <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <TableView fx:id="availableRooms_tableView" layoutX="148.0" layoutY="54.0" onMouseClicked="#availableRoomsSelectionData" prefHeight="450.0" prefWidth="534.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="availableRooms_col_roomNumbr" prefWidth="124.79998779296875" text="Room #" />
+                                                      <TableColumn fx:id="availableRooms_col_roomType" prefWidth="142.4000244140625" text="Room Type" />
+                                                      <TableColumn fx:id="availableRooms_col_roomStatus" prefWidth="110.39996337890625" text="Status" />
+                                                      <TableColumn fx:id="availableRooms_col_roomPrice" prefWidth="164.00018310546875" text="Price ($)" />
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" onMouseClicked="#availableRoomsSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css">
+                                                   <font>
+                                                      <Font name="Inter Regular" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.2em" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children></AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="guests_form" prefHeight="550.0" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TableView fx:id="guest_tableView" layoutX="74.0" layoutY="63.0" prefHeight="450.0" prefWidth="732.0" stylesheets="@AdminDesign.css">
+                                             <columns>
+                                                <TableColumn fx:id="guest_Room" prefWidth="103.0" text="Room" />
+                                                <TableColumn fx:id="guest_firstName" prefWidth="102.0" text="First Name" />
+                                                <TableColumn fx:id="guest_lastName" prefWidth="138.39996337890625" text="Last Name" />
+                                                <TableColumn fx:id="guest_customerPhone" prefWidth="120.00006103515625" text="Phone" />
+                                                <TableColumn fx:id="guest_checkedIn" prefWidth="121.5999755859375" text="Checked-In" />
+                                                <TableColumn fx:id="guest_checkedOut" prefWidth="145.60003662109375" text="Checked-Out" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="services_form" layoutX="240.0" layoutY="112.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="340.0" layoutY="143.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
