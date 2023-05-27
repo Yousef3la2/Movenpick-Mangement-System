@@ -348,6 +348,7 @@ public class ReceptionistController  implements Initializable {
                 "values(?,?,?,?,?,?,?)" ;
         String insertguestdata = "insert into guest (room,firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
                 "values(?,?,?,?,?,?,?,?)" ;
+        String updateroomdata = "update rooms set status='Not Available' where roomNumber= ?";
         connect = DatabaseConnection.getConnection();
         DatabaseConnection connectnow = new DatabaseConnection();
         Connection connection = connectnow.getConnection();
@@ -359,6 +360,7 @@ public class ReceptionistController  implements Initializable {
             String email = emailinput.getText();
             String Checkin = String.valueOf(checkindata.getValue());
             String Checkout = String.valueOf(chekoutdata.getValue());
+            //String roomNum = roomnumber.getSelectionModel().getSelectedItem().toString();
             int total = 100;
 
             Alert alter;
@@ -399,6 +401,9 @@ public class ReceptionistController  implements Initializable {
                     prepare.setString(6,email);
                     prepare.setString(7,Checkin);
                     prepare.setString(8, Checkout );
+                    prepare.executeUpdate();
+                    prepare = connect.prepareStatement(updateroomdata);
+                    prepare.setString(1,room_num);
                     prepare.executeUpdate();
 
                     alter.setTitle("information message");
