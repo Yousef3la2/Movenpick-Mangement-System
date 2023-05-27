@@ -259,6 +259,7 @@ public class ReceptionistController  implements Initializable {
             rooms_form.setVisible(false);
             guests_form.setVisible(true);
             services_form.setVisible(false);
+            guestShowData();
 
         }else if(event.getSource()==services_btn){
             checkin_form.setVisible(false);
@@ -285,8 +286,8 @@ public class ReceptionistController  implements Initializable {
     void confirmbtn(ActionEvent event) {
         String insertcustomerdata = "insert into customer (firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
                 "values(?,?,?,?,?,?,?)" ;
-        String insertguestdata = "insert into guest (firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
-                "values(?,?,?,?,?,?,?)" ;
+        String insertguestdata = "insert into guest (room,firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
+                "values(?,?,?,?,?,?,?,?)" ;
         connect = DatabaseConnection.getConnection();
         DatabaseConnection connectnow = new DatabaseConnection();
         Connection connection = connectnow.getConnection();
@@ -329,13 +330,14 @@ public class ReceptionistController  implements Initializable {
                     prepare.executeUpdate();
 
                     prepare = connect.prepareStatement(insertguestdata);
-                    prepare.setString(1,firstName);
-                    prepare.setString(2,lastName);
-                    prepare.setString(3, String.valueOf(total));
-                    prepare.setString(4,phoneNumber);
-                    prepare.setString(5,email);
-                    prepare.setString(6,Checkin);
-                    prepare.setString(7, Checkout );
+                    prepare.setString(1,String.valueOf(100));
+                    prepare.setString(2,firstName);
+                    prepare.setString(3,lastName);
+                    prepare.setString(4, String.valueOf(total));
+                    prepare.setString(5,phoneNumber);
+                    prepare.setString(6,email);
+                    prepare.setString(7,Checkin);
+                    prepare.setString(8, Checkout );
                     prepare.executeUpdate();
 
                     alter.setTitle("information message");
@@ -407,6 +409,13 @@ public class ReceptionistController  implements Initializable {
         roomnumber.setValue(null);
         checkindata.setValue(null);
         chekoutdata.setValue(null);
+        firestnameinput.setText(null);
+        lastnameinput.setText(null);
+        passinput.setText(null);
+        phoneinput.setText(null);
+        addressinput.setText(null);
+        nationalityinput.setText(null);
+        emailinput.setText(null);
     }
 
 }

@@ -127,7 +127,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="518.0" prefWidth="409.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
