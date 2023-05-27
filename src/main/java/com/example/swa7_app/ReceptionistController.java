@@ -259,15 +259,15 @@ public class ReceptionistController  implements Initializable {
     ///       room number combo box //////
 
     public void roomNumberList() {
-        String room_TYPE = (String)roomtype.getSelectionModel().getSelectedItem();
-        System.out.println(room_TYPE);
-        String listNumber = "SELECT distinct roomNumber FROM rooms WHERE status = 'Available' AND type = '" + room_TYPE + " ' ";
+        String room_TYPE = (String) roomtype.getSelectionModel().getSelectedItem();
+        String listNumber = "SELECT distinct roomNumber FROM rooms WHERE status = 'Available' AND type = ?";
         connect = DatabaseConnection.getConnection();
-        try{
+        try {
             ObservableList listData = FXCollections.observableArrayList();
             prepare = connect.prepareStatement(listNumber);
+            prepare.setString(1, room_TYPE);
             result = prepare.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 listData.add(result.getString("roomNumber"));
             }
             roomnumber.setItems(listData);
@@ -290,8 +290,9 @@ public class ReceptionistController  implements Initializable {
                 listData.add(result.getString("type"));
             }
             roomtype.setItems(listData);
-
-            roomNumberList();
+            roomtype.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                roomNumberList();
+            });
         }catch(Exception e){
             e.printStackTrace();
         }
