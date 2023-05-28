@@ -16,7 +16,7 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         //Al
 
-        Parent root = FXMLLoader.load(getClass().getResource("Receptionist.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
 
         stage.setTitle("Swa7 (The tourist guide)");

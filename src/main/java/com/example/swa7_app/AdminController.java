@@ -37,14 +37,16 @@ import javafx.stage.StageStyle;
 public class AdminController implements Initializable {
 
 
+
+
     @FXML
     private ComboBox<?> availableRooms_roomType;
 
     @FXML
-    private Button availableRooms_addBtn;
+    private Button availableRooms_addBtn,availableRooms_clearBtn;
 
     @FXML
-    private Button availableRooms_clearBtn;
+    private Button changepassword_icon;
 
     @FXML
     private TableColumn<roomData, String> availableRooms_col_roomNumbr;
@@ -111,10 +113,7 @@ public class AdminController implements Initializable {
     private Button dashboard_btn;
 
     @FXML
-    private AnchorPane dashboard_form;
-
-    @FXML
-    private AnchorPane employees_form;
+    private AnchorPane changepassword_form,dashboard_form,employees_form;
 
     @FXML
     private Label dashboard_incomeToday;
@@ -558,7 +557,7 @@ availableRooms_roomType.setItems(list);
 
     public ObservableList<employeeData>employeeDataObservableList() {
         ObservableList<employeeData> listdata = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM user_account";
+        String sql = "SELECT * FROM user_account WHERE account_id != 1";
 
         connect = DatabaseConnection.getConnection();
         try {
@@ -692,12 +691,14 @@ public void availableemployeesSearch(){
 
 public void switchForm(ActionEvent event){
     if(event.getSource()==dashboard_btn){
+        changepassword_form.setVisible(false);
         dashboard_form.setVisible(true);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(false);
         employees_form.setVisible(false);
 
     }else if(event.getSource()==rooms_btn){
+        changepassword_form.setVisible(false);
         dashboard_form.setVisible(false);
         rooms_form.setVisible(true);
         reservitionReport_form.setVisible(false);
@@ -706,6 +707,7 @@ public void switchForm(ActionEvent event){
         availableRoomsShowData();
 
     }else if(event.getSource()==reservition_report_btn){
+        changepassword_form.setVisible(false);
         dashboard_form.setVisible(false);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(true);
@@ -714,6 +716,7 @@ public void switchForm(ActionEvent event){
         customerShowData();
 
     }else if(event.getSource()==employees_btn){
+        changepassword_form.setVisible(false);
         dashboard_form.setVisible(false);
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(false);
@@ -726,6 +729,16 @@ public void switchForm(ActionEvent event){
 
     }
 }
+public void changePass (MouseEvent event){
+    if(event.getSource()==username){
+        changepassword_form.setVisible(true);
+        dashboard_form.setVisible(false);
+        rooms_form.setVisible(false);
+        reservitionReport_form.setVisible(false);
+        employees_form.setVisible(false);
+    }
+}
+
 
 public  void close(){
         System.exit(0);

@@ -26,6 +26,8 @@ public class ReceptionistController  implements Initializable {
 
 
     @FXML
+    private ComboBox<?> CheukOut;
+    @FXML
     private AnchorPane checkout_form,services_form,guests_form;
 
     @FXML
@@ -193,7 +195,9 @@ public class ReceptionistController  implements Initializable {
     @FXML
     private TableColumn<guestData,String> guest_checkedOut;
 
-
+    public void setText(String text) {
+        username.setText(text);
+    }
 
 
 
@@ -410,19 +414,70 @@ public class ReceptionistController  implements Initializable {
                     alter.setHeaderText(null);
                     alter.setContentText("successfully checked-in");
                     alter.showAndWait();
-
+                    reset();
 
                 }else {
                     return;
                 }
             }
 
-
+            checkout();
         }catch(Exception e){
             e.printStackTrace();
         };
     }
+    /////////////////////////
+    public void checkout() {
+        String listNumber = "SELECT room FROM guest ";
+        connect = DatabaseConnection.getConnection();
+        try {
+            ObservableList listData = FXCollections.observableArrayList();
+            prepare = connect.prepareStatement(listNumber);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                listData.add(result.getString("room"));
+            }
+            CheukOut.setItems(listData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void CheckOut_btn(ActionEvent event) {
+        String roomNUM = (String) CheukOut.getSelectionModel().getSelectedItem();
+        String deleteData = "DELETE FROM guest WHERE room = ?";
+        String updateRoom = "UPDATE rooms SET status = 'Available' WHERE roomNumber = ?";
+        connect = DatabaseConnection.getConnection();
+        Alert alert;
+        try {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to Checkout Room #" + roomNUM + "?");
 
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+                prepare = connect.prepareStatement(deleteData);
+                prepare.setString(1, roomNUM);
+                prepare.executeUpdate();
+
+                prepare = connect.prepareStatement(updateRoom);
+                prepare.setString(1, roomNUM);
+                prepare.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Checked Out!");
+                alert.showAndWait();
+                checkout();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+//////////////////////////////
     public ObservableList<guestData> guestListData() {
         ObservableList<guestData> listDatacust = FXCollections.observableArrayList();
         String sql = "SELECT idcustomer,room,firstName,lastName,phoneNumber,checkin,checkout FROM guest";
@@ -462,9 +517,14 @@ public class ReceptionistController  implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        guestShowData();
-        roomTypeList();
-        roomNumberList();
+        try {
+            guestShowData();
+            roomTypeList();
+            roomNumberList();
+            checkout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -473,6 +533,9 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     void resett(ActionEvent event) {
+        reset();
+    }
+    void reset(){
         roomtype.setValue(null);
         roomnumber.setValue(null);
         checkindata.setValue(null);
