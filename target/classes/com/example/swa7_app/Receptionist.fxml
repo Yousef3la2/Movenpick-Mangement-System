@@ -31,7 +31,7 @@
                <children>
                   <BorderPane layoutX="244.0" layoutY="147.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <top>
-                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
                            <children>
                               <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -127,7 +127,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="518.0" prefWidth="409.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -191,7 +191,7 @@
                                             </rowConstraints>
                                              <children>
                                                 <ComboBox fx:id="roomtype" prefHeight="25.0" prefWidth="202.0" GridPane.rowIndex="1" />
-                                                <ComboBox fx:id="roomnumber" prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <ComboBox fx:id="roomnumber"  prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <DatePicker fx:id="checkindata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.rowIndex="3" />
                                                 <DatePicker fx:id="chekoutdata" promptText="MM-DD-YYYY" styleClass="payinput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <Label text="Room Type" GridPane.halignment="LEFT" />
@@ -278,12 +278,13 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <Label layoutX="44.0" layoutY="63.0" text="Room #:">
+                                          <Label layoutX="58.0" layoutY="84.0" text="Room #:">
                                              <font>
-                                                <Font name="Inter Bold" size="13.0" />
+                                                <Font name="Inter Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox layoutX="104.0" layoutY="57.0" prefHeight="27.0" prefWidth="167.0" />
+                                          <ComboBox fx:id="CheukOut" layoutX="124.0" layoutY="86.0" prefHeight="27.0" prefWidth="219.0" promptText="Choose" />
+                                          <Button layoutX="177.0" layoutY="155.0" mnemonicParsing="false" onAction="#CheckOut_btn" text="CheckOut" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -298,7 +299,7 @@
                                                 <String fx:value="shadow" />
                                              </styleClass>
                                              <children>
-                                                <TableView fx:id="availableRooms_tableView" layoutX="148.0" layoutY="54.0" onMouseClicked="#availableRoomsSelectionData" prefHeight="450.0" prefWidth="534.0">
+                                                <TableView fx:id="availableRooms_tableView" layoutX="148.0" layoutY="54.0"  prefHeight="450.0" prefWidth="534.0">
                                                    <columns>
                                                       <TableColumn fx:id="availableRooms_col_roomNumbr" prefWidth="124.79998779296875" text="Room #" />
                                                       <TableColumn fx:id="availableRooms_col_roomType" prefWidth="142.4000244140625" text="Room Type" />
@@ -306,7 +307,7 @@
                                                       <TableColumn fx:id="availableRooms_col_roomPrice" prefWidth="164.00018310546875" text="Price ($)" />
                                                    </columns>
                                                 </TableView>
-                                                <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" onMouseClicked="#availableRoomsSearch" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css">
+                                                <TextField fx:id="availableRooms_search" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="206.0" promptText="Search" styleClass="search" stylesheets="@AdminDesign.css">
                                                    <font>
                                                       <Font name="Inter Regular" size="12.0" />
                                                    </font>
@@ -335,7 +336,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="services_form" layoutX="240.0" layoutY="112.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="services_form" layoutX="240.0" layoutY="112.0" prefHeight="550.0" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="340.0" layoutY="143.0" prefHeight="550.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>

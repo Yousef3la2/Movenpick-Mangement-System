@@ -104,17 +104,35 @@ public class LoginController implements Initializable {
                 if(queryResult.getInt(1) == 1){
                     loginMessageLabel.setText("Congratulations!");
                     loginMessageLabel.setAlignment(Pos.CENTER);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//to connect to the admin #start
-                    Parent root = loader.load();
-                    Stage sstage = new Stage();
-                    sstage.setScene(new Scene(root));
-                    sstage.setTitle("Admin Panel");
-                    Image image = new Image("file:icon.png");
-                    sstage.getIcons().add(image);
-                    sstage.initStyle(StageStyle.UNDECORATED);
-                    sstage.show();
-                    loginButton.getScene().getWindow().hide(); // #end
 
+                    String checkAdmin = "SELECT account_id,firstname,lastname FROM user_account WHERE username = '" + usernameTextField.getText() + "' and password = '" + enterPasswordField.getText() +"';";
+                    queryResult = statement.executeQuery(checkAdmin);
+                    FXMLLoader loader = null ;
+                    Parent root = null ;
+                    while(queryResult.next()) {
+                        if (queryResult.getInt(1) == 1) {
+                            loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//to connect to the admin #start
+                            root = loader.load();
+                        } else {
+                            String firstname = queryResult.getString(2);
+                            String lastname = queryResult.getString(3);
+                            String inputText = firstname + " " + lastname;
+                            loader = new FXMLLoader(getClass().getResource("Receptionist.fxml"));//to connect to the receptionist #start
+                            root = loader.load();
+                            ReceptionistController changeUserName = loader.getController();
+                            changeUserName.setText(inputText);
+                        }
+                        //Parent root = loader.load();
+                        //Parent root = loader.load();
+                        Stage sstage = new Stage();
+                        sstage.setScene(new Scene(root));
+                        sstage.setTitle("Admin Panel");
+                        Image image = new Image("file:icon.png");
+                        sstage.getIcons().add(image);
+                        sstage.initStyle(StageStyle.UNDECORATED);
+                        sstage.show();
+                        loginButton.getScene().getWindow().hide(); // #end
+                    }
 
                 }else{
                     loginMessageLabel.setText("Invalid login. Please try again.");

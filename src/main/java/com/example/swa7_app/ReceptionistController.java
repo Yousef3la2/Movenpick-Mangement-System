@@ -15,10 +15,9 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -26,6 +25,8 @@ import java.util.function.UnaryOperator;
 public class ReceptionistController  implements Initializable {
 
 
+    @FXML
+    private ComboBox<?> CheukOut;
     @FXML
     private AnchorPane checkout_form,services_form,guests_form;
 
@@ -144,19 +145,19 @@ public class ReceptionistController  implements Initializable {
     private ComboBox<?> availableRooms_roomType;
 
     @FXML
-    private TableView<?> availableRooms_tableView;
+    private TableView<roomData> availableRooms_tableView;
 
     @FXML
-    private TableColumn<?, ?> availableRooms_col_roomNumbr;
+    private TableColumn<roomData,String> availableRooms_col_roomNumbr;
 
     @FXML
-    private TableColumn<?, ?> availableRooms_col_roomType;
+    private TableColumn<roomData,String> availableRooms_col_roomType;
 
     @FXML
-    private TableColumn<?, ?> availableRooms_col_roomStatus;
+    private TableColumn<roomData,String> availableRooms_col_roomStatus;
 
     @FXML
-    private TableColumn<?, ?> availableRooms_col_roomPrice;
+    private TableColumn<roomData,String> availableRooms_col_roomPrice;
 
     @FXML
     private TextField availableRooms_search;
@@ -194,16 +195,8 @@ public class ReceptionistController  implements Initializable {
     @FXML
     private TableColumn<guestData,String> guest_checkedOut;
 
-
-
-    @FXML
-    void availableRoomsSearch(MouseEvent event) {
-
-    }
-
-    @FXML
-    void availableRoomsSelectionData(MouseEvent event) {
-
+    public void setText(String text) {
+        username.setText(text);
     }
 
 
@@ -214,10 +207,7 @@ public class ReceptionistController  implements Initializable {
         System.exit(0);
     }
 
-    @FXML
-    void employeesAdd(ActionEvent event) {
 
-    }
 
     @FXML
     void logout(ActionEvent event) {
@@ -252,13 +242,14 @@ public class ReceptionistController  implements Initializable {
             rooms_form.setVisible(true);
             guests_form.setVisible(false);
             services_form.setVisible(false);
-
+            availableRoomsShowData();
         }else if(event.getSource()==guests_btn){
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
             guests_form.setVisible(true);
             services_form.setVisible(false);
+            guestShowData();
 
         }else if(event.getSource()==services_btn){
             checkin_form.setVisible(false);
@@ -269,11 +260,85 @@ public class ReceptionistController  implements Initializable {
 
         }
     }
+    ///       room number combo box //////
+
+    public void roomNumberList() {
+        String room_TYPE = (String) roomtype.getSelectionModel().getSelectedItem();
+        String listNumber = "SELECT distinct roomNumber FROM rooms WHERE status = 'Available' AND type = ?";
+        connect = DatabaseConnection.getConnection();
+        try {
+            ObservableList listData = FXCollections.observableArrayList();
+            prepare = connect.prepareStatement(listNumber);
+            prepare.setString(1, room_TYPE);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                listData.add(result.getString("roomNumber"));
+            }
+            roomnumber.setItems(listData);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+/////////////////////////////////////////
+    ///       room type combo box //////
+
+    public void roomTypeList() {
+        String listType = "SELECT distinct type FROM rooms WHERE status = 'Available'";
+        connect = DatabaseConnection.getConnection();
+        try{
+            ObservableList listData = FXCollections.observableArrayList();
+            prepare = connect.prepareStatement(listType);
+            result = prepare.executeQuery();
+            while (result.next()){
+                listData.add(result.getString("type"));
+            }
+            roomtype.setItems(listData);
+            roomtype.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                roomNumberList();
+            });
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        //roomNumberList();
+    }
+/////////////////////////////////////////
+    ///       room table //////
+    public ObservableList<roomData>availableRoomListData() {
+        ObservableList<roomData> listdata = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM rooms";
+
+        connect = DatabaseConnection.getConnection();
+        try {
+            roomData roomD;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                roomD = new roomData(result.getInt("roomNumber"),
+                        result.getString("type"),
+                        result.getString("status"),
+                        result.getDouble("price"));
+                listdata.add(roomD);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();}
+        return listdata;}
+//////////////////////////////////
+    private ObservableList<roomData>roomDataList;
 
 
+    public void availableRoomsShowData(){
+        roomDataList=availableRoomListData();
+        availableRooms_col_roomNumbr.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        availableRooms_col_roomType.setCellValueFactory(new  PropertyValueFactory<>("roomType") );
+        availableRooms_col_roomStatus.setCellValueFactory(new  PropertyValueFactory<>("status"));
+        availableRooms_col_roomPrice.setCellValueFactory(new  PropertyValueFactory<>("price"));
 
+        availableRooms_tableView.setItems(roomDataList);
+    }
 
-
+        //////////////////////////////////////////////
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;
@@ -285,8 +350,9 @@ public class ReceptionistController  implements Initializable {
     void confirmbtn(ActionEvent event) {
         String insertcustomerdata = "insert into customer (firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
                 "values(?,?,?,?,?,?,?)" ;
-        String insertguestdata = "insert into guest (firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
-                "values(?,?,?,?,?,?,?)" ;
+        String insertguestdata = "insert into guest (room,firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
+                "values(?,?,?,?,?,?,?,?)" ;
+        String updateroomdata = "update rooms set status='Not Available' where roomNumber= ?";
         connect = DatabaseConnection.getConnection();
         DatabaseConnection connectnow = new DatabaseConnection();
         Connection connection = connectnow.getConnection();
@@ -298,10 +364,12 @@ public class ReceptionistController  implements Initializable {
             String email = emailinput.getText();
             String Checkin = String.valueOf(checkindata.getValue());
             String Checkout = String.valueOf(chekoutdata.getValue());
+            //String roomNum = roomnumber.getSelectionModel().getSelectedItem().toString();
             int total = 100;
 
             Alert alter;
-            if(firstName== null || lastName== null || phoneNumber == null || email ==null ||Checkin==null||Checkout==null ){
+            if(firstName== null || lastName== null || phoneNumber == null || email ==null ||Checkin==null||Checkout==null ||
+                    nationalityinput==null ||roomtype==null || roomnumber==null || addressinput==null ||passinput ==null ){
                 alter = new Alert(Alert.AlertType.ERROR);
                 alter.setTitle("Error message");
                 alter.setHeaderText(null);
@@ -327,34 +395,89 @@ public class ReceptionistController  implements Initializable {
                     prepare.setString(6,Checkin);
                     prepare.setString(7, Checkout );
                     prepare.executeUpdate();
-
+                    String room_num = (String)roomnumber.getSelectionModel().getSelectedItem();
                     prepare = connect.prepareStatement(insertguestdata);
-                    prepare.setString(1,firstName);
-                    prepare.setString(2,lastName);
-                    prepare.setString(3, String.valueOf(total));
-                    prepare.setString(4,phoneNumber);
-                    prepare.setString(5,email);
-                    prepare.setString(6,Checkin);
-                    prepare.setString(7, Checkout );
+                    prepare.setString(1,room_num);
+                    prepare.setString(2,firstName);
+                    prepare.setString(3,lastName);
+                    prepare.setString(4, String.valueOf(total));
+                    prepare.setString(5,phoneNumber);
+                    prepare.setString(6,email);
+                    prepare.setString(7,Checkin);
+                    prepare.setString(8, Checkout );
+                    prepare.executeUpdate();
+                    prepare = connect.prepareStatement(updateroomdata);
+                    prepare.setString(1,room_num);
                     prepare.executeUpdate();
 
                     alter.setTitle("information message");
                     alter.setHeaderText(null);
                     alter.setContentText("successfully checked-in");
                     alter.showAndWait();
-
+                    reset();
 
                 }else {
                     return;
                 }
             }
 
-
+            checkout();
         }catch(Exception e){
             e.printStackTrace();
         };
     }
+    /////////////////////////
+    public void checkout() {
+        String listNumber = "SELECT room FROM guest ";
+        connect = DatabaseConnection.getConnection();
+        try {
+            ObservableList listData = FXCollections.observableArrayList();
+            prepare = connect.prepareStatement(listNumber);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                listData.add(result.getString("room"));
+            }
+            CheukOut.setItems(listData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void CheckOut_btn(ActionEvent event) {
+        String roomNUM = (String) CheukOut.getSelectionModel().getSelectedItem();
+        String deleteData = "DELETE FROM guest WHERE room = ?";
+        String updateRoom = "UPDATE rooms SET status = 'Available' WHERE roomNumber = ?";
+        connect = DatabaseConnection.getConnection();
+        Alert alert;
+        try {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to Checkout Room #" + roomNUM + "?");
 
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+                prepare = connect.prepareStatement(deleteData);
+                prepare.setString(1, roomNUM);
+                prepare.executeUpdate();
+
+                prepare = connect.prepareStatement(updateRoom);
+                prepare.setString(1, roomNUM);
+                prepare.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Checked Out!");
+                alert.showAndWait();
+                checkout();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+//////////////////////////////
     public ObservableList<guestData> guestListData() {
         ObservableList<guestData> listDatacust = FXCollections.observableArrayList();
         String sql = "SELECT idcustomer,room,firstName,lastName,phoneNumber,checkin,checkout FROM guest";
@@ -394,7 +517,14 @@ public class ReceptionistController  implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        guestShowData();
+        try {
+            guestShowData();
+            roomTypeList();
+            roomNumberList();
+            checkout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -403,10 +533,22 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     void resett(ActionEvent event) {
+        reset();
+    }
+    void reset(){
         roomtype.setValue(null);
         roomnumber.setValue(null);
         checkindata.setValue(null);
         chekoutdata.setValue(null);
+        firestnameinput.setText(null);
+        lastnameinput.setText(null);
+        passinput.setText(null);
+        phoneinput.setText(null);
+        addressinput.setText(null);
+        nationalityinput.setText(null);
+        emailinput.setText(null);
     }
+
+
 
 }

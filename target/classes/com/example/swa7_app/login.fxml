@@ -44,15 +44,10 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="SignupButton" layoutX="190.0" layoutY="269.0" mnemonicParsing="false" onAction="#SignupButtonOnAciton" style="-fx-background-color: transparent;" text="Create">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
             <Button fx:id="CancelButton" layoutX="134.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: transparent;" text="Cancel" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label layoutX="72.0" layoutY="273.0" text="Don't have a account?" />
             <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="84.0" layoutY="210.0" prefHeight="18.0" prefWidth="153.0" textAlignment="CENTER" textFill="RED" />
          </children>
       </AnchorPane>
