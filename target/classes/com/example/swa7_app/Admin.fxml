@@ -30,7 +30,7 @@
                <children>
                   <BorderPane layoutX="244.0" layoutY="147.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <top>
-                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
                            <children>
                               <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -127,7 +127,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="changepassword_form" prefHeight="549.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="changepassword_form" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="163.0" layoutY="75.0" prefHeight="322.0" prefWidth="461.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -169,7 +169,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="dashboard_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="177.0" prefWidth="854.0" stylesheets="@AdminDesign.css">
                                        <styleClass>
@@ -351,7 +351,7 @@
                                           </TableView>
                                           <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
                                           <Button fx:id="Update_btn" layoutX="667.0" layoutY="32.0" mnemonicParsing="false" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
-                                          <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
+                                          <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" onAction="#Delete_btnOnAcion" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
                                        </children>
                                     </AnchorPane>
                                  </children>

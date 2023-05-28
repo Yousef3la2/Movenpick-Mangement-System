@@ -31,7 +31,7 @@
                <children>
                   <BorderPane layoutX="244.0" layoutY="147.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <top>
-                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #f99284;" styleClass="main-top-form" stylesheets="@AdminDesign.css" BorderPane.alignment="CENTER">
                            <children>
                               <AnchorPane layoutX="91.0" layoutY="-75.0" prefHeight="42.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@AdminDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
