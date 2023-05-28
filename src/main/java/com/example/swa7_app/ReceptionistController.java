@@ -18,6 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,7 +74,7 @@ public class ReceptionistController  implements Initializable {
     private TextField firestnameinput;
 
     @FXML
-    private TextField lastnameinput;
+    private TextField lastnameinput,availableguest_search1;
 
     @FXML
     private TextField passinput;
@@ -300,7 +303,7 @@ public class ReceptionistController  implements Initializable {
             guests_form.setVisible(true);
             services_form.setVisible(false);
             guestShowData();
-
+            guestSearchData();
         }else if(event.getSource()==services_btn){
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
@@ -310,6 +313,78 @@ public class ReceptionistController  implements Initializable {
 
         }
     }
+    ////    guestSearchData   ////
+    public void availableRoomsSearch(){
+        FilteredList<roomData> filter = new FilteredList<>(roomDataList, e->true);
+        availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )->{
+            filter.setPredicate(predicateRoomData->{
+                if(newValue==null&&newValue.isEmpty()){
+                    return  true;
+                }
+                String searchkey=newValue.toLowerCase();
+
+                if (predicateRoomData.getRoomNumber().toString().contains(searchkey)){
+                    return true;
+                } else if (predicateRoomData.getRoomType().toLowerCase().contains(searchkey)) {
+                    return true;
+
+                }else if (predicateRoomData.getStatus().toLowerCase().contains(searchkey)) {
+                    return true;
+
+                }else if (predicateRoomData.getPrice().toString().contains(searchkey)) {
+                    return true;
+
+                }else return false;
+
+            });  });
+        SortedList<roomData> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(availableRooms_tableView.comparatorProperty());
+        availableRooms_tableView.setItems(sortList);
+    }
+
+
+
+
+    public void guestSearchData(){
+        FilteredList<guestData> filter = new FilteredList<>(listguestData,e->true);
+        availableguest_search1.textProperty().addListener((Observable,oldValue,newValue )->{
+            filter.setPredicate(predicateguestData->{
+                if(newValue==null&&newValue.isEmpty()){
+                    return  true;
+                }
+                String searchkey=newValue.toLowerCase();
+
+                if (predicateguestData.getIdcustomer().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicateguestData.getRoom().toString().contains(searchkey)) {
+                    return true;
+                }
+                else if (predicateguestData.getFirstName().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicateguestData.getLastName().toString().contains(searchkey)) {
+                    return true;
+
+                }else if (predicateguestData.getPhoneNumber().toString().contains(searchkey)) {
+                    return true;
+                }
+                else if (predicateguestData.getCheckin().toString().contains(searchkey)){
+                    return true;
+
+                }else if (predicateguestData.getCheckout().toString().contains(searchkey)) {
+                    return true;
+
+                }else return false;
+
+            });  });
+        SortedList<guestData>sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(guest_tableView.comparatorProperty());
+        guest_tableView.setItems(sortList);
+    }
+
+
+    /////////////
     ///       room number combo box //////
 
     public void roomNumberList() {
