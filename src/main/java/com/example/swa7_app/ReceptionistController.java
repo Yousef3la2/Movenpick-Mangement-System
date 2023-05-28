@@ -5,15 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -211,7 +217,51 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     void logout(ActionEvent event) {
+        try {
 
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("are you sure you want to logout ?");
+
+            Optional<ButtonType> option =alert.showAndWait();
+
+            if(option.get().equals(ButtonType.OK)){
+
+                Parent root = FXMLLoader.load(this.getClass().getResource("Login.fxml"));
+                Stage stage=new Stage();
+                Scene scene = new Scene(root);
+                Image image = new Image("file:icon.png");
+                stage.getIcons().add(image);
+
+                root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        x=mouseEvent.getScreenX();
+                        y=mouseEvent.getScreenY();
+
+                    }
+                });
+
+                root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        stage.setX(mouseEvent.getScreenX()-x);
+                        stage.setY(mouseEvent.getScreenY()-y);
+
+                    }
+                });
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(scene);
+                stage.show();
+                logout_btn.getScene().getWindow().hide();
+
+            }else
+            {return;}
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -478,6 +528,10 @@ public class ReceptionistController  implements Initializable {
         }
     }
 //////////////////////////////
+    private double x=0;
+    private double y=0;
+
+    /////////////////////////////////
     public ObservableList<guestData> guestListData() {
         ObservableList<guestData> listDatacust = FXCollections.observableArrayList();
         String sql = "SELECT idcustomer,room,firstName,lastName,phoneNumber,checkin,checkout FROM guest";

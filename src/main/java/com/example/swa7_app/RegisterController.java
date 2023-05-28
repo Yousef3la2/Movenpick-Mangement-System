@@ -213,10 +213,6 @@ public class RegisterController {
         registerAlert.showAndWait();
         setAlltoEmpty();
 
-//AdminController.availableemployeeShowData();
-        //stage.close();
-
-
     }
     public void registerUser(){
         DatabaseConnection connectnow = new DatabaseConnection();

@@ -564,42 +564,43 @@ availableRooms_roomType.setItems(list);
         availableemployeeShowData();
     }
     public void  Delete_btnOnAcion (ActionEvent event) {
-        availableemployeesSelectionData();
-        String e_username = roomD.getUsername();
-        System.out.println(e_username);
-        String deleteData = "DELETE FROM user_account WHERE username = '" + e_username + "'";
-        connect = DatabaseConnection.getConnection();
-        Alert alert;
-        try {
 
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("confirmation Message");
-            alert.setHeaderText(null);
-            alert.setContentText("are you sure you want to delete this employee ?");
+            availableemployeesSelectionData();
+            String e_username = roomD.getUsername();
+            //System.out.println(e_username);
+            String deleteData = "DELETE FROM user_account WHERE username = '" + e_username + "'";
+            connect = DatabaseConnection.getConnection();
+            Alert alert;
+            try {
 
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (option.get().equals(ButtonType.OK)) {
-
-
-                statement = connect.createStatement();
-                statement.executeUpdate(deleteData);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("information Message");
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("confirmation Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Successfully Deleted !");
-                alert.showAndWait();
+                alert.setContentText("are you sure you want to delete this employee ?");
 
-                availableemployeeShowData();
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
 
 
+                    statement = connect.createStatement();
+                    statement.executeUpdate(deleteData);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted !");
+                    alert.showAndWait();
 
+                    availableemployeeShowData();
+
+
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
+
     public ObservableList<employeeData>employeeDataObservableList() {
         ObservableList<employeeData> listdata = FXCollections.observableArrayList();
         String sql = "SELECT * FROM user_account WHERE account_id != 1";
