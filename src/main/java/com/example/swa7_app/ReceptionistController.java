@@ -33,7 +33,14 @@ import java.util.function.UnaryOperator;
 
 public class ReceptionistController  implements Initializable {
 
-
+    @FXML
+    private AnchorPane paycash_form;
+    @FXML
+    private Button checkValidate;
+    @FXML
+    private TextField VoucherCode_Input;
+    @FXML
+    private CheckBox CreditPay;
     @FXML
     private ComboBox<?> CheukOut;
     @FXML
@@ -92,16 +99,16 @@ public class ReceptionistController  implements Initializable {
     private TextField addressinput;
 
     @FXML
-    private ComboBox<?> roomtype;
+    private ComboBox<?> roomtype,roomtype1;
 
     @FXML
-    private ComboBox<?> roomnumber;
+    private ComboBox<?> roomnumber,roomnumber1;
 
     @FXML
-    private DatePicker checkindata;
+    private DatePicker checkindata,checkindata1;
 
     @FXML
-    private DatePicker chekoutdata;
+    private DatePicker chekoutdata,chekoutdata1;
 
     @FXML
     private TextField creditCardField;
@@ -207,9 +214,31 @@ public class ReceptionistController  implements Initializable {
     public void setText(String text) {
         username.setText(text);
     }
+    @FXML
+    void creditPayOnAction(ActionEvent event){
+        if (CreditPay.isSelected()){
+            paycash_form.setVisible(false);
+        }else{
+            paycash_form.setVisible(true);
+        }
 
+    }
 
+/*if(event.getSource()==checkin_btn){
+            checkin_form.setVisible(true);
+            checkout_form.setVisible(false);
+            rooms_form.setVisible(false);
+            guests_form.setVisible(false);
+            services_form.setVisible(false);
 
+        }else if(event.getSource()==checkout_btn){
+            checkin_form.setVisible(false);
+            checkout_form.setVisible(true);
+            rooms_form.setVisible(false);
+            guests_form.setVisible(false);
+            services_form.setVisible(false);
+
+        }*/
 
     @FXML
     void closepage(ActionEvent event) {
@@ -281,6 +310,7 @@ public class ReceptionistController  implements Initializable {
             rooms_form.setVisible(false);
             guests_form.setVisible(false);
             services_form.setVisible(false);
+            reset();
 
         }else if(event.getSource()==checkout_btn){
             checkin_form.setVisible(false);
@@ -388,7 +418,12 @@ public class ReceptionistController  implements Initializable {
     ///       room number combo box //////
 
     public void roomNumberList() {
-        String room_TYPE = (String) roomtype.getSelectionModel().getSelectedItem();
+        String room_TYPE;
+        if (CreditPay.isSelected()) {
+            room_TYPE = (String) roomtype.getSelectionModel().getSelectedItem();
+        }else{
+            room_TYPE = (String) roomtype1.getSelectionModel().getSelectedItem();
+        }
         String listNumber = "SELECT distinct roomNumber FROM rooms WHERE status = 'Available' AND type = ?";
         connect = DatabaseConnection.getConnection();
         try {
@@ -399,7 +434,10 @@ public class ReceptionistController  implements Initializable {
             while (result.next()) {
                 listData.add(result.getString("roomNumber"));
             }
-            roomnumber.setItems(listData);
+            if (CreditPay.isSelected()){
+            roomnumber.setItems(listData);}
+            else{
+            roomnumber1.setItems(listData);}
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -419,9 +457,16 @@ public class ReceptionistController  implements Initializable {
                 listData.add(result.getString("type"));
             }
             roomtype.setItems(listData);
-            roomtype.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                roomNumberList();
-            });
+            roomtype1.setItems(listData);
+
+                roomtype.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    roomNumberList();
+                });
+
+                roomtype1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    roomNumberList();
+                });
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -479,72 +524,116 @@ public class ReceptionistController  implements Initializable {
                 "values(?,?,?,?,?,?,?,?)" ;
         String updateroomdata = "update rooms set status='Not Available' where roomNumber= ?";
         connect = DatabaseConnection.getConnection();
-        DatabaseConnection connectnow = new DatabaseConnection();
-        Connection connection = connectnow.getConnection();
-        try
-        {
+
+        try {
+
             String firstName = firestnameinput.getText();
             String lastName = lastnameinput.getText();
             String phoneNumber = phoneinput.getText();
             String email = emailinput.getText();
             String Checkin = String.valueOf(checkindata.getValue());
             String Checkout = String.valueOf(chekoutdata.getValue());
+            String room_num = (String) roomnumber.getSelectionModel().getSelectedItem();
+            if (!CreditPay.isSelected()) {
+                Checkin = String.valueOf(checkindata1.getValue());
+                Checkout = String.valueOf(chekoutdata1.getValue());
+            }
             //String roomNum = roomnumber.getSelectionModel().getSelectedItem().toString();
-            int total = 100;
-
+            int total = 100 , check = 1;
             Alert alter;
-            if(firstName== null || lastName== null || phoneNumber == null || email ==null ||Checkin==null||Checkout==null ||
-                    nationalityinput==null ||roomtype==null || roomnumber==null || addressinput==null ||passinput ==null ){
-                alter = new Alert(Alert.AlertType.ERROR);
-                alter.setTitle("Error message");
-                alter.setHeaderText(null);
-                alter.setContentText("please complete information");
-                alter.showAndWait();
-            }else {
+            // || roomtype1.getSelectionModel().isEmpty() || roomnumber1.getSelectionModel().isEmpty() ||  checkindata1.getValue() == null || chekoutdata1.getValue() == null
+            if (firstName.equals("") || lastName.equals("") || phoneNumber.equals("") || email.equals("")
+                    || nationalityinput.getText().isEmpty()|| addressinput.getText().isEmpty() || passinput.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please complete information.");
+                alert.showAndWait();
+                check = 0;
+            } else if (CreditPay.isSelected()) {
+                if (roomtype.getSelectionModel().isEmpty() || roomnumber.getSelectionModel().isEmpty() ||  checkindata.getValue() == null || chekoutdata.getValue() == null){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please complete room data.");
+                    alert.showAndWait();
+                    check = 0;
+                }
+                else if (cardHolderField.getText().isEmpty() || CVV_Field.getText().isEmpty() || creditCardField.getText().isEmpty() || exp_Mth_Field.getText().isEmpty() || exp_Year_Field.getText().isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please complete your card data.");
+                    alert.showAndWait();
+                    check = 0;
+                }
 
-
-                alter = new Alert(Alert.AlertType.CONFIRMATION);
-                alter.setTitle("CONFIRMATION message");
-                alter.setHeaderText(null);
-                alter.setContentText("Are you sure ?");
-
-                Optional<ButtonType> option =alter.showAndWait();
-
-                if(option.get().equals(ButtonType.OK)){
-                    prepare = connect.prepareStatement(insertcustomerdata);
-                    prepare.setString(1,firstName);
-                    prepare.setString(2,lastName);
-                    prepare.setString(3, String.valueOf(total));
-                    prepare.setString(4,phoneNumber);
-                    prepare.setString(5,email);
-                    prepare.setString(6,Checkin);
-                    prepare.setString(7, Checkout );
-                    prepare.executeUpdate();
-                    String room_num = (String)roomnumber.getSelectionModel().getSelectedItem();
-                    prepare = connect.prepareStatement(insertguestdata);
-                    prepare.setString(1,room_num);
-                    prepare.setString(2,firstName);
-                    prepare.setString(3,lastName);
-                    prepare.setString(4, String.valueOf(total));
-                    prepare.setString(5,phoneNumber);
-                    prepare.setString(6,email);
-                    prepare.setString(7,Checkin);
-                    prepare.setString(8, Checkout );
-                    prepare.executeUpdate();
-                    prepare = connect.prepareStatement(updateroomdata);
-                    prepare.setString(1,room_num);
-                    prepare.executeUpdate();
-
-                    alter.setTitle("information message");
-                    alter.setHeaderText(null);
-                    alter.setContentText("successfully checked-in");
-                    alter.showAndWait();
-                    reset();
-
-                }else {
-                    return;
+            }
+            else if (!CreditPay.isSelected()) {
+                if (roomtype1.getSelectionModel().isEmpty() || roomnumber1.getSelectionModel().isEmpty() || checkindata1.getValue() == null || chekoutdata1.getValue() == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please complete room data.");
+                    alert.showAndWait();
+                    check = 0;
                 }
             }
+
+            if (check == 1){
+                    alter = new Alert(Alert.AlertType.CONFIRMATION);
+                    alter.setTitle("CONFIRMATION message");
+                    alter.setHeaderText(null);
+                    alter.setContentText("Are you sure ?");
+
+                    Optional<ButtonType> option = alter.showAndWait();
+
+                    if (option.get().equals(ButtonType.OK)) {
+                        prepare = connect.prepareStatement(insertcustomerdata);
+                        prepare.setString(1, firstName);
+                        prepare.setString(2, lastName);
+                        prepare.setString(3, String.valueOf(total));
+                        prepare.setString(4, phoneNumber);
+                        prepare.setString(5, email);
+                        prepare.setString(6, Checkin);
+                        prepare.setString(7, Checkout);
+                        prepare.executeUpdate();
+                        room_num = (String) roomnumber.getSelectionModel().getSelectedItem();
+                        if (!CreditPay.isSelected()) {
+                            room_num = (String) roomnumber1.getSelectionModel().getSelectedItem();
+                        }
+                        prepare = connect.prepareStatement(insertguestdata);
+                        prepare.setString(1, room_num);
+                        prepare.setString(2, firstName);
+                        prepare.setString(3, lastName);
+                        prepare.setString(4, String.valueOf(total));
+                        prepare.setString(5, phoneNumber);
+                        prepare.setString(6, email);
+                        prepare.setString(7, Checkin);
+                        prepare.setString(8, Checkout);
+                        prepare.executeUpdate();
+                        prepare = connect.prepareStatement(updateroomdata);
+                        prepare.setString(1, room_num);
+                        prepare.executeUpdate();
+
+                        alter.setTitle("information message");
+                        alter.setHeaderText(null);
+                        alter.setContentText("successfully checked-in");
+                        alter.showAndWait();
+                        reset();
+
+                    } else {
+                        return;
+                    }
+                }
+
+//else {
+//                alter = new Alert(Alert.AlertType.ERROR);
+//                alter.setTitle("Error message");
+//                alter.setHeaderText(null);
+//                alter.setContentText("please complete information.");
+//                alter.showAndWait();
+//        }
 
             checkout();
         }catch(Exception e){
@@ -569,37 +658,50 @@ public class ReceptionistController  implements Initializable {
     }
     @FXML
     void CheckOut_btn(ActionEvent event) {
-        String roomNUM = (String) CheukOut.getSelectionModel().getSelectedItem();
-        String deleteData = "DELETE FROM guest WHERE room = ?";
-        String updateRoom = "UPDATE rooms SET status = 'Available' WHERE roomNumber = ?";
-        connect = DatabaseConnection.getConnection();
         Alert alert;
-        try {
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Message");
+
+        if (CheukOut.getSelectionModel().isEmpty()){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error message");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to Checkout Room #" + roomNUM + "?");
+            alert.setContentText("You Don't have guest.");
+            alert.showAndWait();
+        }else {
+            String roomNUM = (String) CheukOut.getSelectionModel().getSelectedItem();
+            String deleteData = "DELETE FROM guest WHERE room = ?";
+            String updateRoom = "UPDATE rooms SET status = 'Available' WHERE roomNumber = ?";
+            connect = DatabaseConnection.getConnection();
 
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (option.get().equals(ButtonType.OK)) {
-                prepare = connect.prepareStatement(deleteData);
-                prepare.setString(1, roomNUM);
-                prepare.executeUpdate();
-
-                prepare = connect.prepareStatement(updateRoom);
-                prepare.setString(1, roomNUM);
-                prepare.executeUpdate();
-
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+            try {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Successfully Checked Out!");
-                alert.showAndWait();
-                checkout();
+                alert.setContentText("Are you sure you want to Checkout Room #" + roomNUM + "?");
+
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    prepare = connect.prepareStatement(deleteData);
+                    prepare.setString(1, roomNUM);
+                    prepare.executeUpdate();
+
+                    prepare = connect.prepareStatement(updateRoom);
+                    prepare.setString(1, roomNUM);
+                    prepare.executeUpdate();
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Checked Out!");
+                    alert.showAndWait();
+                    checkout();
+                    roomTypeList();
+                    roomNumberList();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 //////////////////////////////
@@ -662,6 +764,7 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     void resett(ActionEvent event) {
+
         reset();
     }
     void reset(){
@@ -669,6 +772,12 @@ public class ReceptionistController  implements Initializable {
         roomnumber.setValue(null);
         checkindata.setValue(null);
         chekoutdata.setValue(null);
+        ///\
+        roomtype1.setValue(null);
+        roomnumber1.setValue(null);
+        checkindata1.setValue(null);
+        chekoutdata1.setValue(null);
+        //
         firestnameinput.setText(null);
         lastnameinput.setText(null);
         passinput.setText(null);
@@ -676,6 +785,7 @@ public class ReceptionistController  implements Initializable {
         addressinput.setText(null);
         nationalityinput.setText(null);
         emailinput.setText(null);
+
     }
 
 
