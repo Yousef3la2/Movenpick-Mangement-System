@@ -26,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -527,8 +528,6 @@ availableRooms_roomType.setItems(list);
                 }else if (predicatecustomerData.getIdcustomer().toString().contains(searchkey)) {
                     return true;
 
-
-
                 }else return false;
 
             });  });
@@ -682,8 +681,113 @@ public void availableemployeesSearch(){
     //---------------------------------------------------------------------------------------------
 
 
+//-----------------------------------dashboard-------------------------
+private int count =0;
+   public void dashboard() {
+       Date date = new Date();
+       java.sql.Date sqldate = new java.sql.Date(date.getTime());
+       String sql = "SELECT COUNT(id) FROM payment WHERE datee = '" + sqldate + "'";
+       connect = DatabaseConnection.getConnection();
+     count =0 ;
+       try {
 
-    private double x=0;
+           prepare = connect.prepareStatement(sql);
+           result = prepare.executeQuery();
+
+           while (result.next()) {
+            count=result.getInt("COUNT(id)");
+
+           }
+
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+
+   }
+
+   public void displaydashboard(){
+       dashboard();
+       dashboard_bookToday.setText(String.valueOf(count));
+   }
+
+   private double sumtoday =0;
+    public void dashboardincometoday() {
+        Date date = new Date();
+        java.sql.Date sqldate = new java.sql.Date(date.getTime());
+        String sql = "SELECT SUM(currentpayment) FROM payment WHERE datee = '" + sqldate + "'";
+        connect = DatabaseConnection.getConnection();
+        sumtoday=0;
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                sumtoday=result.getDouble("SUM(currentpayment)");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void displaydashboardincometoday(){
+        dashboardincometoday();
+        dashboard_incomeToday.setText("$"+String.valueOf(sumtoday));
+    }
+
+    private double sumtotal =0;
+    public void dashboardincometotal() {
+        Date date = new Date();
+      //  java.sql.Date sqldate = new java.sql.Date(date.getTime());
+        String sql = "SELECT SUM(currentpayment) FROM payment ";
+        connect = DatabaseConnection.getConnection();
+        sumtoday=0;
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                sumtotal=result.getDouble("SUM(currentpayment)");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void displaydashboardincometotal(){
+        dashboardincometotal();
+        dashboard_totalIncome.setText("$"+String.valueOf(sumtotal));
+    }
+
+    public void Dashboard_areaChart(){
+
+        dashboard_areaChart.getData().clear();;
+        //String sql = "SELECT datee,currentpayment FROM payment GROUP BY datee ORDER BY TIMESTAMP (datee) ASC LIMIT 8 ";
+        String sql = "SELECT datee,currentpayment FROM payment ORDER BY TIMESTAMP (datee) ASC LIMIT 8 ";
+        connect = DatabaseConnection.getConnection();
+        XYChart.Series CHART =new XYChart.Series();
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                CHART.getData().add(new XYChart.Data(result.getString(1),result.getInt(2)));
+            }
+            dashboard_areaChart.getData().add(CHART);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+
+
+
+       private double x=0;
     private double y=0;
     public void logout() {
         try {
@@ -743,6 +847,10 @@ public void switchForm(ActionEvent event){
         rooms_form.setVisible(false);
         reservitionReport_form.setVisible(false);
         employees_form.setVisible(false);
+        displaydashboard();
+        displaydashboardincometoday();
+        displaydashboardincometotal();
+        Dashboard_areaChart();
 
     }else if(event.getSource()==rooms_btn){
         changepassword_form.setVisible(false);
@@ -798,7 +906,7 @@ public void minimize(){
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        displaydashboard();
         availableRoomsRoomType();
         availableRoomsStatus();
         availableRoomsShowData();
@@ -806,5 +914,8 @@ public void minimize(){
         //availableemployeesSearch();
         availablecustomerSearch();
         availableemployeeShowData();
+        displaydashboardincometoday();
+        displaydashboardincometotal();
+        Dashboard_areaChart();
     }
 }

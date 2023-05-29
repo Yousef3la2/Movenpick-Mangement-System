@@ -58,7 +58,7 @@ public class ReceptionistController  implements Initializable {
     private Button checkin_btn;
 
     @FXML
-    private Label username ,totalDay,totalpayment;
+    private Label username ,totalDay,totalpayment,totalDay1,totalpayment1;
 
     @FXML
     private Button rooms_btn;
@@ -550,6 +550,9 @@ public class ReceptionistController  implements Initializable {
         String insertguestdata = "insert into guest (room,firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
                 "values(?,?,?,?,?,?,?,?)" ;
         String updateroomdata = "update rooms set status='Not Available' where roomNumber= ?";
+        String addpayment ="insert INTO payment (currentpayment,datee)"+ "VALUES (?,?)";
+
+
         connect = DatabaseConnection.getConnection();
 
         try {
@@ -567,9 +570,10 @@ public class ReceptionistController  implements Initializable {
             }
             //String roomNum = roomnumber.getSelectionModel().getSelectedItem().toString();
             int total = 100 , check = 1;
+            String date;
             Alert alter;
             // || roomtype1.getSelectionModel().isEmpty() || roomnumber1.getSelectionModel().isEmpty() ||  checkindata1.getValue() == null || chekoutdata1.getValue() == null
-            if (firstName.equals("") || lastName.equals("") || phoneNumber.equals("") || email.equals("")
+            if (firestnameinput.getText().isEmpty()|| lastnameinput.getText().isEmpty() || phoneinput.getText().isEmpty() || emailinput.getText().isEmpty()
                     || nationalityinput.getText().isEmpty()|| addressinput.getText().isEmpty() || passinput.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error message");
@@ -626,8 +630,12 @@ public class ReceptionistController  implements Initializable {
                         prepare.setString(7, Checkout);
                         prepare.executeUpdate();
                         room_num = (String) roomnumber.getSelectionModel().getSelectedItem();
+                        date= String.valueOf(checkindata.getValue());
+
                         if (!CreditPay.isSelected()) {
                             room_num = (String) roomnumber1.getSelectionModel().getSelectedItem();
+                            date= String.valueOf(checkindata1.getValue());
+
                         }
                         prepare = connect.prepareStatement(insertguestdata);
                         prepare.setString(1, room_num);
@@ -641,6 +649,12 @@ public class ReceptionistController  implements Initializable {
                         prepare.executeUpdate();
                         prepare = connect.prepareStatement(updateroomdata);
                         prepare.setString(1, room_num);
+                        prepare.executeUpdate();
+
+                        prepare = connect.prepareStatement(addpayment);
+                        prepare.setString(1, String.valueOf(getData.totalpays));
+                        prepare.setString(2, date);
+
                         prepare.executeUpdate();
 
                         alter.setTitle("information message");
@@ -684,26 +698,51 @@ public class ReceptionistController  implements Initializable {
         }
     }
 public void totalDays() {
-    chekoutdata1.valueProperty().addListener((observable, oldValue, newValue) -> {
-        if (newValue != null && checkindata1.getValue() != null) {
+ if (CreditPay.isSelected()){
+    chekoutdata.valueProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue != null && checkindata.getValue() != null) {
             Alert alert;
-    if (chekoutdata1.getValue() != null && checkindata1.getValue() != null && !chekoutdata1.getValue().isAfter(checkindata1.getValue())) {
+    if (chekoutdata.getValue() != null && checkindata.getValue() != null && !chekoutdata.getValue().isAfter(checkindata.getValue())) {
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error message");
         alert.setHeaderText(null);
         alert.setContentText("Invalid check_out date");
         alert.showAndWait();
 
-
     }else {
-
-        getData.totalDays = newValue.compareTo(checkindata1.getValue());
-        totalDay.setText(String.valueOf(getData.totalDays));
+        getData.totalDays = newValue.compareTo(checkindata.getValue());
+        totalDay1.setText(String.valueOf(getData.totalDays));
         displaytotalpay();
-
     }
         }
-    });
+    });}
+ else {
+
+     chekoutdata1.valueProperty().addListener((observable, oldValue, newValue) -> {
+         if (newValue != null && checkindata1.getValue() != null) {
+             Alert alert;
+             if (chekoutdata1.getValue() != null && checkindata1.getValue() != null && !chekoutdata1.getValue().isAfter(checkindata1.getValue())) {
+                 alert = new Alert(Alert.AlertType.ERROR);
+                 alert.setTitle("Error message");
+                 alert.setHeaderText(null);
+                 alert.setContentText("Invalid check_out date");
+                 alert.showAndWait();
+
+
+             }else {
+
+                 getData.totalDays = newValue.compareTo(checkindata1.getValue());
+                 totalDay.setText(String.valueOf(getData.totalDays));
+                 displaytotalpay();
+
+             }
+         }
+     });
+
+
+ }
+
+
 //    } else {
 //        LocalDate checkoutDate = chekoutdata1.getValue();
 //        LocalDate checkinDate = checkindata1.getValue();
@@ -720,20 +759,21 @@ public void totalDays() {
 }
 
     public void displaytotalpay() {
+        String selectItems;
+        if (CreditPay.isSelected()){
+        selectItems = (String)roomnumber.getSelectionModel().getSelectedItem();}
+        else {
+            selectItems = (String)roomnumber1.getSelectionModel().getSelectedItem();
+        }
 
-        //totalDays();
-
-  //      String totald=String.valueOf(getData.totalDays);
-
-//        totalDay.setText(totald);
-
-        String selectItems = (String)roomnumber1.getSelectionModel().getSelectedItem();
         String sql ="SELECT price FROM rooms WHERE roomNumber = '"+selectItems+"'";
-     //   String addpayment ="INSERT INTO payment (currentpayment)"+"VALUES (?)";
+
 
     double pricedata =0;
 
         connect = DatabaseConnection.getConnection();
+
+
         try {
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
@@ -742,7 +782,14 @@ public void totalDays() {
                 pricedata=result.getDouble("price");
             }
             float totalpay=(float)((pricedata)*getData.totalDays);
-            totalpayment.setText("$"+String.valueOf(totalpay));
+            if(CreditPay.isSelected())
+            totalpayment1.setText("$"+String.valueOf(totalpay));
+            else
+                totalpayment.setText("$"+String.valueOf(totalpay));
+
+            getData.totalpays=totalpay;
+
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -875,6 +922,11 @@ public void totalDays() {
         roomnumber1.setValue(null);
         checkindata1.setValue(null);
         chekoutdata1.setValue(null);
+        CVV_Field.setText(null);
+        cardHolderField.setText(null);
+        exp_Mth_Field.setText(null);
+        exp_Year_Field.setText(null);
+        creditCardField.setText(null);
         //
         firestnameinput.setText(null);
         lastnameinput.setText(null);
@@ -883,6 +935,16 @@ public void totalDays() {
         addressinput.setText(null);
         nationalityinput.setText(null);
         emailinput.setText(null);
+        getData.totalDays=0;
+        getData.totalpays=0;
+        totalpayment.setText("$0.0");
+        totalpayment1.setText("$0.0");
+       totalDay1.setText("00");
+       totalDay.setText("00");
+
+        displaytotalpay();
+        totalDays();
+
 
     }
 
