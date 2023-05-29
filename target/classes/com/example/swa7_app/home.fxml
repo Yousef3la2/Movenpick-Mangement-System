@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.HomeController">
    <children>
       <BorderPane layoutX="92.0" layoutY="58.0" prefHeight="575.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -26,7 +26,7 @@
                         <Image url="@../../../../../Graphics/Home/HeaderLogo.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="923.0" layoutY="29.0" mnemonicParsing="false" style="-fx-background-color: #8c7343; -fx-background-radius: 0;" text="Login" textFill="WHITE">
+                  <Button fx:id="loginButton" layoutX="923.0" layoutY="29.0" mnemonicParsing="false" onAction="#loginonAction" style="-fx-background-color: #8c7343; -fx-background-radius: 0;" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Californian FB Bold" size="16.0" />
                      </font></Button>
@@ -37,12 +37,12 @@
                   </Label>
                   <HBox alignment="CENTER" layoutX="200.0" layoutY="8.0" prefHeight="47.0" prefWidth="335.0" spacing="8.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Home">
+                        <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#switchforms" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Home">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Offers">
+                        <Button fx:id="OffersButton" mnemonicParsing="false" onAction="#switchforms" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Offers">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -58,15 +58,15 @@
             </AnchorPane>
          </top>
          <center>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0" vvalue="0.7" BorderPane.alignment="CENTER">
+            <ScrollPane fx:id="TT" hbarPolicy="NEVER" hmax="0.0" maxHeight="-Infinity" prefHeight="582.0" prefWidth="1050.0" vvalue="1.0" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0"  prefHeight="1500.0" prefWidth="1050.0" style="-fx-background-color: #fcfafa;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="1050.0" style="-fx-background-color: #fcfafa;">
                      <children>
-                        <AnchorPane prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_page" prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="400.0" fitWidth="900.0" layoutX="79.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),4,0,0,0);">
+                              <ImageView fitHeight="378.0" fitWidth="768.0" layoutX="154.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),4,0,0,0);">
                                  <image>
-                                    <Image url="@../../../../../Graphics/Home/homePhoto.png" />
+                                    <Image url="@../../../../../Graphics/Home/74541.jpg" />
                                  </image>
                               </ImageView>
                               <VBox alignment="CENTER" layoutX="221.0" layoutY="26.0" prefHeight="222.0" prefWidth="591.0">
@@ -99,11 +99,46 @@
                                     </Label>
                                  </children>
                               </VBox>
+                              <Label layoutX="288.0" layoutY="731.0" prefHeight="38.0" prefWidth="419.0" text=" OUR DELICIOUS DESTINATIONS" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="50.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/phuket.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="382.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/Amesterdam.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="707.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/Marrakech.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="139.0" layoutY="1127.0" prefHeight="28.0" prefWidth="90.0" text="Phuket" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="456.0" layoutY="1127.0" prefHeight="34.0" prefWidth="137.0" text=" Amsterdam" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="770.0" layoutY="1127.0" prefHeight="34.0" prefWidth="142.0" text=" Marrahech" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="125.0" layoutY="17.0" prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="offers_page" layoutX="125.0" layoutY="17.0" prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="475.0" layoutY="32.0" prefHeight="1000.0" prefWidth="1049.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" layoutY="14.0" prefHeight="1000.0" prefWidth="1049.6" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                  <children>
                                     <Label prefHeight="42.0" prefWidth="28.0" />
                                     <Label prefHeight="19.0" prefWidth="46.0" text="OFFERS" textFill="#8c7343">
@@ -137,50 +172,50 @@
                                           <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="260.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="offer1Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../../../../Graphics/Home/11.png" />
+                                                <Image url="@../../../../../Graphics/Home/3.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="260.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="offer2Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../../../../Graphics/Home/22.png" />
+                                                <Image url="@../../../../../Graphics/Home/4.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <Label text="All ways on mind" textFill="#8c7343" GridPane.rowIndex="1">
+                                          <Label fx:id="offer1label" onMouseClicked="#Offer" text="All ways on mind" textFill="#8c7343" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Anniversary Offer" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <Label fx:id="offer2label" onMouseClicked="#Offer" text="Anniversary Offer" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
                                           <Label prefHeight="51.0" prefWidth="392.0" text="Save up to 25% this summer on your stay inclusive of breakfast at Mövenpick participating hotels in the Middle East, Sub Saharan, East Africa and Türkiye." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="2" />
                                           <Label prefHeight="18.0" prefWidth="461.0" text="Celebrating 50 years of Mövenpick Hotels &amp; Resorts. Save 100$ off food &amp; drink." textAlignment="JUSTIFY" textFill="#474747" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                                          <ImageView fitHeight="260.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="offer3Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../../../../Graphics/Home/3.png" />
+                                                <Image url="@../../../../../Graphics/Home/2.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="260.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                             <image>
-                                                <Image url="@../../../../../Graphics/Home/4.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label text="Stay in the moment" textFill="#8c7343" GridPane.rowIndex="4">
+                                          <Label fx:id="offer3label" onMouseClicked="#Offer" text="Stay in the moment" textFill="#8c7343" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Stay and Save" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <Label fx:id="offer4label" onMouseClicked="#Offer" text="Stay and Save" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
                                           <Label prefHeight="51.0" prefWidth="392.0" text="Experience mouth-watering culinary experiences, a slice of cosmopolitan culture with art, design and delicious views on the side at Mövenpick Hotels &amp; Resorts." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="5" />
                                           <Label prefHeight="51.0" prefWidth="392.0" text="Enjoy amazing discounts and breakfast included during your stay at Mövenpick Hotels &amp; Resorts across Africa, Asia, Europe, and the Middle East." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <ImageView fx:id="offer4Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/Home/1.jpeg" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="85.0" right="50.0" top="20.0" />

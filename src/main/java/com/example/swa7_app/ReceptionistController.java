@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -211,6 +212,7 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     private TableColumn<guestData,String> guest_checkedOut;
+
 
     public void setText(String text) {
         username.setText(text);
