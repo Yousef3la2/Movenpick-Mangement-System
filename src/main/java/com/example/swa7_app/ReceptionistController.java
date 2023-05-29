@@ -25,6 +25,7 @@ import javafx.collections.transformation.SortedList;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +58,7 @@ public class ReceptionistController  implements Initializable {
     private Button checkin_btn;
 
     @FXML
-    private Label username;
+    private Label username ,totalDay,totalpayment;
 
     @FXML
     private Button rooms_btn;
@@ -310,6 +311,7 @@ public class ReceptionistController  implements Initializable {
             rooms_form.setVisible(false);
             guests_form.setVisible(false);
             services_form.setVisible(false);
+
             reset();
 
         }else if(event.getSource()==checkout_btn){
@@ -435,15 +437,37 @@ public class ReceptionistController  implements Initializable {
                 listData.add(result.getString("roomNumber"));
             }
             if (CreditPay.isSelected()){
-            roomnumber.setItems(listData);}
+            roomnumber.setItems(listData);
+                roomnumber.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+                    displayAmount();
+                });
+
+
+                //displayAmount();
+            }
             else{
-            roomnumber1.setItems(listData);}
+            roomnumber1.setItems(listData);
+                roomnumber1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+                    displayAmount();
+                });
+            //displayAmount();
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
 
     }
 /////////////////////////////////////////
+    ////////////display pay and days////////////////
+    void displayAmount (){
+        displaytotalpay();
+        totalDays();
+    }
+
+    ///////////////////////////
+    ////////////////////////////
     ///       room type combo box //////
 
     public void roomTypeList() {
@@ -461,10 +485,12 @@ public class ReceptionistController  implements Initializable {
 
                 roomtype.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     roomNumberList();
+                    displayAmount();
                 });
 
                 roomtype1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     roomNumberList();
+                    displayAmount();
                 });
 
         }catch(Exception e){
@@ -518,6 +544,7 @@ public class ReceptionistController  implements Initializable {
 
     @FXML
     void confirmbtn(ActionEvent event) {
+
         String insertcustomerdata = "insert into customer (firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
                 "values(?,?,?,?,?,?,?)" ;
         String insertguestdata = "insert into guest (room,firstName,lastName,total,phoneNumber,email,checkin,checkout) " +
@@ -656,6 +683,74 @@ public class ReceptionistController  implements Initializable {
             e.printStackTrace();
         }
     }
+public void totalDays() {
+    chekoutdata1.valueProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue != null && checkindata1.getValue() != null) {
+            Alert alert;
+    if (chekoutdata1.getValue() != null && checkindata1.getValue() != null && !chekoutdata1.getValue().isAfter(checkindata1.getValue())) {
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error message");
+        alert.setHeaderText(null);
+        alert.setContentText("Invalid check_out date");
+        alert.showAndWait();
+
+
+    }else {
+
+        getData.totalDays = newValue.compareTo(checkindata1.getValue());
+        totalDay.setText(String.valueOf(getData.totalDays));
+        displaytotalpay();
+
+    }
+        }
+    });
+//    } else {
+//        LocalDate checkoutDate = chekoutdata1.getValue();
+//        LocalDate checkinDate = checkindata1.getValue();
+//
+//        if (checkoutDate != null && checkinDate != null) {
+//            getData.totalDays = checkoutDate.compareTo(checkinDate);
+//            totalDay.setText(String.valueOf(getData.totalDays));
+//            // Your code here
+//        }
+//
+//        //getData.totalDays= chekoutdata1.getValue().compareTo(checkindata1.getValue());
+//    }
+
+}
+
+    public void displaytotalpay() {
+
+        //totalDays();
+
+  //      String totald=String.valueOf(getData.totalDays);
+
+//        totalDay.setText(totald);
+
+        String selectItems = (String)roomnumber1.getSelectionModel().getSelectedItem();
+        String sql ="SELECT price FROM rooms WHERE roomNumber = '"+selectItems+"'";
+     //   String addpayment ="INSERT INTO payment (currentpayment)"+"VALUES (?)";
+
+    double pricedata =0;
+
+        connect = DatabaseConnection.getConnection();
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()){
+                pricedata=result.getDouble("price");
+            }
+            float totalpay=(float)((pricedata)*getData.totalDays);
+            totalpayment.setText("$"+String.valueOf(totalpay));
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
     @FXML
     void CheckOut_btn(ActionEvent event) {
         Alert alert;
@@ -752,7 +847,10 @@ public class ReceptionistController  implements Initializable {
             guestShowData();
             roomTypeList();
             roomNumberList();
+            displaytotalpay();
+            totalDays();
             checkout();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -337,7 +337,7 @@
                                                 <Button fx:id="confirm1" mnemonicParsing="false" onAction="#confirmbtn" prefHeight="34.0" prefWidth="78.0" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Comfirm" />
                                              </children>
                                           </HBox>
-                                          <GridPane hgap="10.0" layoutX="35.0" layoutY="327.0" prefHeight="62.0" prefWidth="185.0">
+                                          <GridPane hgap="10.0" layoutX="35.0" layoutY="327.0" prefHeight="62.0" prefWidth="219.0">
                                              <columnConstraints>
                                                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="129.5999755859375" minWidth="10.0" prefWidth="126.39996337890625" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
@@ -353,8 +353,8 @@
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="00" GridPane.columnIndex="1" />
-                                                <Label text="00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <Label fx:id="totalDay" text="00" GridPane.columnIndex="1" />
+                                                <Label fx:id="totalpayment" prefHeight="25.0" prefWidth="82.0" text="00" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
