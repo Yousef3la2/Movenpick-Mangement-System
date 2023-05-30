@@ -494,31 +494,42 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ;
 
         else  if (VoucherCode_Input.getText().equals("456")){
             i=1;
-            if(roomtype1.getItems().contains("Single Room")){
-                code2=1;
-                if(t==3)
-                    roomtype1.getSelectionModel().select(2);
-                else if(t==2)
-                    roomtype1.getSelectionModel().select(1);
-                else if(t==1)
-                    roomtype1.getSelectionModel().select(0);
-                checkindata1.setValue(LocalDate.of(2023,6,1));
-                chekoutdata1.setValue(LocalDate.of(2023,6,3));
-            }
+            if(roomtype1.getItems().contains("Single Room")||roomtype.getItems().contains("Single Room")) {
+                code2 = 1;
+                if (CreditPay.isSelected()) {
 
-        }else  if (VoucherCode_Input.getText().equals("789")) {
+                        roomtype.getSelectionModel().select((t-1));
+                    checkindata.setValue(LocalDate.of(2023, 6, 1));
+                    chekoutdata.setValue(LocalDate.of(2023, 6, 3));
+                } else {
+
+                        roomtype1.getSelectionModel().select((t-1));
+                    checkindata1.setValue(LocalDate.of(2023, 6, 1));
+                    chekoutdata1.setValue(LocalDate.of(2023, 6, 3));
+                } } }
+
+
+        else  if (VoucherCode_Input.getText().equals("789")) {
             i=1;
-            if(roomtype1.getItems().contains("Quad Room")){
+            if(roomtype1.getItems().contains("Quad Room")||roomtype.getItems().contains("Quad Room")){
                 code3=1;
-                if((t==3) ||(t==2&&roomtype1.getItems().contains("Double Room")))
-                    roomtype1.getSelectionModel().select(1);
-                else if((t==1)||(t==2&&roomtype1.getItems().contains("Single Room")))
-                    roomtype1.getSelectionModel().select(0);
-                checkindata1.setValue(LocalDate.of(2023,5,15));
-                chekoutdata1.setValue(LocalDate.of(2023,5,17));
+                if(CreditPay.isSelected()){
+                if((t==3) ||(t==2&&roomtype.getItems().contains("Double Room")))
+                    roomtype.getSelectionModel().select(1);
+                else if((t==1)||(t==2&&roomtype.getItems().contains("Single Room")))
+                    roomtype.getSelectionModel().select(0);
+                checkindata.setValue(LocalDate.of(2023,5,15));
+                chekoutdata.setValue(LocalDate.of(2023,5,17));
             }
+            else {
+                    if ((t == 3) || (t == 2 && roomtype1.getItems().contains("Double Room")))
+                        roomtype1.getSelectionModel().select(1);
+                    else if ((t == 1) || (t == 2 && roomtype1.getItems().contains("Single Room")))
+                        roomtype1.getSelectionModel().select(0);
+                    checkindata1.setValue(LocalDate.of(2023, 5, 15));
+                    chekoutdata1.setValue(LocalDate.of(2023, 5, 17));
+                }}}
 
-        }
 
         if(i==0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
