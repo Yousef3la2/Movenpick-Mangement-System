@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.HomeController">
+   <children>
+      <BorderPane layoutX="92.0" layoutY="58.0" prefHeight="575.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="65.0" prefWidth="1050.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),4,0,0,0);" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="165.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Graphics/Home/HeaderLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="loginButton" layoutX="923.0" layoutY="29.0" mnemonicParsing="false" onAction="#loginonAction" style="-fx-background-color: #8c7343; -fx-background-radius: 0;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="Californian FB Bold" size="16.0" />
+                     </font></Button>
+                  <Label layoutX="872.0" layoutY="5.0" text="For receptionist and manegar" textFill="#8c7343">
+                     <font>
+                        <Font name="Californian FB Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="200.0" layoutY="8.0" prefHeight="47.0" prefWidth="335.0" spacing="8.0">
+                     <children>
+                        <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#switchforms" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Home">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="OffersButton" mnemonicParsing="false" onAction="#switchforms" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;" text="Offers">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: Transparent;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <ScrollPane fx:id="TT" hbarPolicy="NEVER" hmax="0.0" maxHeight="-Infinity" prefHeight="582.0" prefWidth="1050.0" vvalue="1.0" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="1050.0" style="-fx-background-color: #fcfafa;">
+                     <children>
+                        <AnchorPane fx:id="home_page" prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="378.0" fitWidth="768.0" layoutX="154.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),4,0,0,0);">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/74541.jpg" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" layoutX="221.0" layoutY="26.0" prefHeight="222.0" prefWidth="591.0">
+                                 <children>
+                                    <Label alignment="CENTER" text="INDULGENCE DONE RIGHT AT" textFill="#8c7343">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" text="MÖVENPICK HOTELS &amp;" textFill="#8c7343">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" text="RESORTS" textFill="#8c7343">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label />
+                                    <Label alignment="CENTER" text="Taste the good life at Mövenpick Hotels &amp; Resorts, where every moment is designed to be savoured" textFill="#333333">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" text="and every stay is full of possibilities to relish.">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Label layoutX="288.0" layoutY="731.0" prefHeight="38.0" prefWidth="419.0" text=" OUR DELICIOUS DESTINATIONS" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="50.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/phuket.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="382.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/Amesterdam.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="287.0" fitWidth="269.0" layoutX="707.0" layoutY="829.0">
+                                 <image>
+                                    <Image url="@../../../../../Graphics/Home/Marrakech.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="139.0" layoutY="1127.0" prefHeight="28.0" prefWidth="90.0" text="Phuket" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="456.0" layoutY="1127.0" prefHeight="34.0" prefWidth="137.0" text=" Amsterdam" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="770.0" layoutY="1127.0" prefHeight="34.0" prefWidth="142.0" text=" Marrahech" textFill="#8c7343">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="offers_page" layoutX="125.0" layoutY="17.0" prefHeight="1000.0" prefWidth="1034.4" style="-fx-background-color: #fcfafa;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutY="14.0" prefHeight="1000.0" prefWidth="1049.6" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                 <children>
+                                    <Label prefHeight="42.0" prefWidth="28.0" />
+                                    <Label prefHeight="19.0" prefWidth="46.0" text="OFFERS" textFill="#8c7343">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="OFFERS AROUND THE WORLD" textFill="#8c7343">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="521.0" layoutY="10.0" prefHeight="42.0" prefWidth="28.0" />
+                                    <ImageView fitHeight="373.0" fitWidth="970.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),4,0,0,0);">
+                                       <image>
+                                          <Image url="@../../../../../Graphics/Home/offershome1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="521.0" layoutY="125.0" prefHeight="42.0" prefWidth="28.0" />
+                                    <GridPane hgap="50.0" prefHeight="872.0" prefWidth="1050.0" vgap="10.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <ImageView fx:id="offer1Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/Home/3.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="offer2Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/Home/4.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="offer1label" onMouseClicked="#Offer" text="All ways on mind" textFill="#8c7343" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="offer2label" onMouseClicked="#Offer" text="Anniversary Offer" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Save up to 25% this summer on your stay inclusive of breakfast at Mövenpick participating hotels in the Middle East, Sub Saharan, East Africa and Türkiye." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="2" />
+                                          <Label prefHeight="18.0" prefWidth="461.0" text="Celebrating 50 years of Mövenpick Hotels &amp; Resorts. Save 100$ off food &amp; drink." textAlignment="JUSTIFY" textFill="#474747" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                          <ImageView fx:id="offer3Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/Home/2.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="offer3label" onMouseClicked="#Offer" text="Stay in the moment" textFill="#8c7343" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="offer4label" onMouseClicked="#Offer" text="Stay and Save" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Experience mouth-watering culinary experiences, a slice of cosmopolitan culture with art, design and delicious views on the side at Mövenpick Hotels &amp; Resorts." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="5" />
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Enjoy amazing discounts and breakfast included during your stay at Mövenpick Hotels &amp; Resorts across Africa, Asia, Europe, and the Middle East." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <ImageView fx:id="offer4Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../Graphics/Home/1.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="85.0" right="50.0" top="20.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -8,11 +8,11 @@ public class customerData {
     private String firstName ;
     private String lastName;
     private String phoneNumber;
-    private String total;
+    private Double total;
     private Date checkin;
     private Date checkout;
 
-public customerData(Integer idcustomer, String firstName, String lastName, String phoneNumber , String total, Date checkin, Date checkout){
+public customerData(Integer idcustomer, String firstName, String lastName, String phoneNumber , Double total, Date checkin, Date checkout){
 
     this.idcustomer=idcustomer;
     this.firstName=firstName;
@@ -37,7 +37,7 @@ public String getPhoneNumber(){
 
     return phoneNumber;
 }
-public String getTotal(){
+public Double getTotal(){
     return total;
 }
 

@@ -474,7 +474,7 @@ availableRooms_roomType.setItems(list);
                         result.getString("firstName"),
                         result.getString("lastName"),
                         result.getString("phoneNumber"),
-                        result.getString("email"),
+                        result.getDouble("total"),
                         result.getDate("checkin"),
                         result.getDate("checkout"));
                 listDatacust.add(custD);
