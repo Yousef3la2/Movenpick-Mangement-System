@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.OfferPopController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="673.0" styleClass="-" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.OfferPopController">
    <children>
-      <BorderPane prefHeight="344.0" prefWidth="674.0" style="-fx-background-color: fdfcdc;">
+      <BorderPane prefHeight="314.0" prefWidth="674.0" style="-fx-background-color: #ececeb;">
          <top>
             <Label prefHeight="74.0" prefWidth="626.0" text="How to avail this offer :" textFill="#7e6b37" BorderPane.alignment="CENTER">
                <font>
@@ -22,9 +22,9 @@
             </Label>
          </top>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="243.0" prefWidth="674.0" BorderPane.alignment="CENTER">
                <children>
-                  <GridPane layoutX="14.0" layoutY="24.0" prefHeight="199.0" prefWidth="542.0">
+                  <GridPane layoutX="86.0" layoutY="4.0" prefHeight="150.0" prefWidth="547.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.20001220703125" minWidth="10.0" prefWidth="61.199986267089855" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.80001373291014" minWidth="10.0" prefWidth="480.80001373291014" />
@@ -33,7 +33,6 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <ImageView fitHeight="47.0" fitWidth="51.0">
@@ -68,7 +67,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Button fx:id="closeButton" layoutX="292.0" layoutY="202.0" mnemonicParsing="false" onAction="#CloseOnAction" prefHeight="41.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="close" textFill="#7d373f" underline="true">
+                  <Button fx:id="closeButton" layoutX="292.0" layoutY="193.0" mnemonicParsing="false" onAction="#CloseOnAction" prefHeight="41.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="close" textFill="#7d373f" underline="true">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
