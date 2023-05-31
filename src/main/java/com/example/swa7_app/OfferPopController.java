@@ -42,7 +42,7 @@ public class OfferPopController {
 
                 break;
             case 4 :
-                labeltext1.setText(voucherCodeSentence + voucherCode[4]);
+                labeltext1.setText(voucherCodeSentence);
                 vCode.setText(voucherCode[4]);
                 labeltext2.setText(voucherCodeOFF[4] + " off for a "+ voucherCodeRooms[4] +" (of your choice, room number)");
 

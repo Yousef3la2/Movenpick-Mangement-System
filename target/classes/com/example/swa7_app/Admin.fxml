@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
    <children>
       <StackPane layoutX="203.0" layoutY="203.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -90,11 +90,6 @@
                                        </graphic>
                                     </Button>
                                     <Button fx:id="reservition_report_btn" layoutX="22.0" layoutY="379.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="191.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Reservition Report">
-                                       <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="service_report_btn" layoutX="24.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="171.0" styleClass="nav-btn" stylesheets="@AdminDesign.css" text="Service Report">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="FILE" />
                                        </graphic>
@@ -354,8 +349,7 @@
                                                 <TableColumn fx:id="employee_username" prefWidth="145.60003662109375" text="User Name" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="Add_btn" layoutX="607.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
-                                          <Button fx:id="Update_btn" layoutX="667.0" layoutY="32.0" mnemonicParsing="false" styleClass="update-btn" stylesheets="@AdminDesign.css" text="Update" />
+                                          <Button fx:id="Add_btn" layoutX="673.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeesAdd" prefHeight="27.0" prefWidth="64.0" styleClass="add-btn" stylesheets="@AdminDesign.css" text="Add" />
                                           <Button fx:id="Delete_btn" layoutX="743.0" layoutY="32.0" mnemonicParsing="false" onAction="#Delete_btnOnAcion" styleClass="delete-btn" stylesheets="@AdminDesign.css" text="Delete" />
                                        </children>
                                     </AnchorPane>
