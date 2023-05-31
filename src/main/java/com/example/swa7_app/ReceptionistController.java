@@ -402,7 +402,7 @@ public class ReceptionistController  implements Initializable {
     @FXML
     void switchForm(ActionEvent event) {
         if(event.getSource()==checkin_btn){
-            changepassword_form.setVisible(false);
+            //changepassword_form.setVisible(false);
             checkin_form.setVisible(true);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -412,7 +412,7 @@ public class ReceptionistController  implements Initializable {
             reset();
 
         }else if(event.getSource()==checkout_btn){
-            changepassword_form.setVisible(false);
+            //changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(true);
             rooms_form.setVisible(false);
@@ -420,7 +420,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
 
         }else if(event.getSource()==rooms_btn){
-            changepassword_form.setVisible(false);
+            //changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(true);
@@ -428,7 +428,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
             availableRoomsShowData();
         }else if(event.getSource()==guests_btn){
-            changepassword_form.setVisible(false);
+            //changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -437,7 +437,7 @@ public class ReceptionistController  implements Initializable {
             guestShowData();
             guestSearchData();
         }else if(event.getSource()==services_btn){
-            changepassword_form.setVisible(false);
+            //changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -898,6 +898,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                 checkValidate.setText("Check");
                 roomtype.setDisable(false);
                 roomtype1.setDisable(false);
+                VoucherCode_Input.setEditable(true);
                 resetroomdata();
                 code1 = 0;
                 code4 = 0;
