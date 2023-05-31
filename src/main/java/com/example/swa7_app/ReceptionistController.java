@@ -660,6 +660,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                     alert.setHeaderText(null);
                     alert.setContentText("Not Found This Offer");
                     alert.showAndWait();
+                    VoucherCode_Input.setText(null);
                 } else if (code1 == 0 && code2 == 0 && code3 == 0 && code4 == 0) {
 
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -667,6 +668,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                     alert.setHeaderText(null);
                     alert.setContentText("Sorry this offer not available at this time");
                     alert.showAndWait();
+                    VoucherCode_Input.setText(null);
                 }
 
 

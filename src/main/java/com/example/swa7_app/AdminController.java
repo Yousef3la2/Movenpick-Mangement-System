@@ -640,8 +640,12 @@ availableRooms_roomType.setItems(list);
 //availableRooms_roomType.setSelectionModel(String.valueOf(roomD.getRoomType()));
     }
     public void employeesAdd(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
         Parent root = loader.load();
+
+        RegisterController registerController = loader.getController();
+        registerController.setParentController(this);
 
         Stage sstage = new Stage();
         sstage.setScene(new Scene(root));

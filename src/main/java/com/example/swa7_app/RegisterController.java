@@ -45,7 +45,11 @@ public class RegisterController {
     @FXML
     private Button SignUnButton,CancelButton;
 
+    private AdminController parentController; // Reference to the AdminController instance
 
+    public void setParentController(AdminController parentController) {
+        this.parentController = parentController;
+    }
 
     int checkPassword = 0;
     public void SignUpButtonOnAction(ActionEvent event) {
@@ -54,11 +58,11 @@ public class RegisterController {
             registerUser();
         }
     }
-    public void cancelButtonOnAction(ActionEvent event){
-        ((Node)event.getSource()).getScene().getWindow().hide();
-//        Stage stage = (Stage) CancelButton.getScene().getWindow();
-//        stage.close();
-//        Platform.exit();
+
+
+    public void cancelButtonOnAction(ActionEvent event) {
+        ((Node) event.getSource()).getScene().getWindow().hide();
+        parentController.availableemployeeShowData(); // Call the method on AdminController to update data
     }
     int checkAll = 8;
     public int validate(){
@@ -212,6 +216,9 @@ public class RegisterController {
         //registerAlert.getButtonTypes();
         registerAlert.showAndWait();
         setAlltoEmpty();
+        parentController.availableemployeeShowData(); // Call the method on AdminController to update data
+
+
 
     }
     public void registerUser(){

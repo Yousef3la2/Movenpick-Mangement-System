@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.AdminController">
@@ -241,6 +242,7 @@
                                                    </tickLabelFont></NumberAxis>
                                             </yAxis>
                                           </AreaChart>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" layoutX="320.0" layoutY="276.0" stroke="WHITE" strokeType="INSIDE" width="217.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

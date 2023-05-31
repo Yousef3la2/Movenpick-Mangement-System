@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swa7_app.HomeController">
    <children>
       <BorderPane layoutX="92.0" layoutY="58.0" prefHeight="575.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -26,11 +26,11 @@
                         <Image url="@../../../../../Graphics/Home/HeaderLogo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="loginButton" layoutX="923.0" layoutY="29.0" mnemonicParsing="false" onAction="#loginonAction" style="-fx-background-color: #8c7343; -fx-background-radius: 0;" text="Login" textFill="WHITE">
+                  <Button fx:id="loginButton" layoutX="923.0" layoutY="29.0" mnemonicParsing="false" onAction="#loginonAction" style="-fx-background-color: #8f0030; -fx-background-radius: 0;" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Californian FB Bold" size="16.0" />
                      </font></Button>
-                  <Label layoutX="872.0" layoutY="5.0" text="For receptionist and manegar" textFill="#8c7343">
+                  <Label layoutX="872.0" layoutY="5.0" text="For receptionist and manegar" textFill="#8f0030">
                      <font>
                         <Font name="Californian FB Bold" size="13.0" />
                      </font>
@@ -71,17 +71,17 @@
                               </ImageView>
                               <VBox alignment="CENTER" layoutX="221.0" layoutY="26.0" prefHeight="222.0" prefWidth="591.0">
                                  <children>
-                                    <Label alignment="CENTER" text="INDULGENCE DONE RIGHT AT" textFill="#8c7343">
+                                    <Label alignment="CENTER" text="INDULGENCE DONE RIGHT AT" textFill="#8f0030">
                                        <font>
                                           <Font name="System Bold" size="36.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" text="MÖVENPICK HOTELS &amp;" textFill="#8c7343">
+                                    <Label alignment="CENTER" text="MÖVENPICK HOTELS &amp;" textFill="#8f0030">
                                        <font>
                                           <Font name="System Bold" size="36.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" text="RESORTS" textFill="#8c7343">
+                                    <Label alignment="CENTER" text="RESORTS" textFill="#8f0030">
                                        <font>
                                           <Font name="System Bold" size="36.0" />
                                        </font>
@@ -141,7 +141,7 @@
                               <VBox alignment="TOP_CENTER" layoutY="14.0" prefHeight="1000.0" prefWidth="1049.6" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                  <children>
                                     <Label prefHeight="42.0" prefWidth="28.0" />
-                                    <Label prefHeight="19.0" prefWidth="46.0" text="OFFERS" textFill="#8c7343">
+                                    <Label prefHeight="19.0" prefWidth="46.0" text="OFFERS" textFill="#8f0030">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
