@@ -46,7 +46,7 @@ public class ReceptionistController  implements Initializable {
     @FXML
     private ComboBox<?> CheukOut;
     @FXML
-    private AnchorPane checkout_form,services_form,guests_form;
+    private AnchorPane checkout_form,services_form,guests_form,changepassword_form;
 
     @FXML
     private Button close_btn;
@@ -213,9 +213,101 @@ public class ReceptionistController  implements Initializable {
     @FXML
     private TableColumn<guestData,String> guest_checkedOut;
 
+    @FXML
+    private PasswordField Old_Pass_Label,New_Pass_Label,confirm_Pass_Label;
 
-    public void setText(String text) {
+    //------------------------- change passwords -------------------------//
+
+    int receptionistID;
+
+    public void ChangePassOnAction(ActionEvent e){
+        Alert alert ;
+        if (Old_Pass_Label.getText().isEmpty()||New_Pass_Label.getText().isEmpty()||confirm_Pass_Label.getText().isEmpty()){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all blank fields");
+            alert.showAndWait();
+        }else {
+
+            String sql = "SELECT password FROM user_account WHERE account_id = " + receptionistID;
+
+            connect = DatabaseConnection.getConnection();
+            try {
+                prepare = connect.prepareStatement(sql);
+                result = prepare.executeQuery();
+                String oldpasswordSQL = null;
+                while (result.next()) {
+                    oldpasswordSQL = result.getString("password");
+                }
+                if (oldpasswordSQL.equals(Old_Pass_Label.getText())) {
+                    Old_Pass_Label.setStyle("-fx-background-radius: 15px");
+                    Old_Pass_Label.setStyle("-fx-border-color: #05a40a");
+                    if (New_Pass_Label.getText().equals(confirm_Pass_Label.getText())) {
+                        alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("confirmation Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("are you sure you want to change your password ?");
+                        Optional<ButtonType> option = alert.showAndWait();
+
+                        if (option.get().equals(ButtonType.OK)) {
+                            String changePass = "UPDATE user_account SET password = '" + New_Pass_Label.getText() + "' WHERE account_id = " + receptionistID;
+                            prepare = connect.prepareStatement(changePass);
+                            prepare.executeUpdate();
+                            Old_Pass_Label.setText(null);
+                            New_Pass_Label.setText(null);
+                            confirm_Pass_Label.setText(null);
+                            returnPF(Old_Pass_Label);
+                            returnPF(New_Pass_Label);
+                            returnPF(confirm_Pass_Label);
+
+                        }
+                    }else{
+                        alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Confirm your new password correctly.");
+                        alert.showAndWait();
+                    }
+                }else{
+                    Old_Pass_Label.setStyle("-fx-background-radius: 15px");
+                    Old_Pass_Label.setStyle("-fx-border-color: #a40518");
+
+                    if (New_Pass_Label.getText().equals(confirm_Pass_Label.getText())) {
+                        New_Pass_Label.setStyle("-fx-background-radius: 15px");
+                        New_Pass_Label.setStyle("-fx-border-color: #05a40a");
+                        confirm_Pass_Label.setStyle("-fx-background-radius: 15px");
+                        confirm_Pass_Label.setStyle("-fx-border-color: #05a40a");
+                    }else{
+                        confirm_Pass_Label.setStyle("-fx-background-radius: 15px");
+                        confirm_Pass_Label.setStyle("-fx-border-color: #a40518");
+                    }
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Write your old password correctly.");
+                    alert.showAndWait();
+                }
+            } catch (SQLException ee) {
+                ee.printStackTrace();
+            }
+
+        }
+    }
+
+    public void returnPF(TextField t){
+        t.setStyle("-fx-background-color: transparent;\n" +
+                "    -fx-background-radius: 15px;\n" +
+                "    -fx-border-color: #000000FF;\n" +
+                "    -fx-border-radius: 5px 5px 5px 5px;\n" +
+                "    -fx-border-width: 0.5px;");
+    }
+    //////////////////////////////////////////
+
+
+    public void setText(String text,int id) {
         username.setText(text);
+        receptionistID = id;
     }
     @FXML
     void creditPayOnAction(ActionEvent event){
@@ -308,6 +400,7 @@ public class ReceptionistController  implements Initializable {
     @FXML
     void switchForm(ActionEvent event) {
         if(event.getSource()==checkin_btn){
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(true);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -317,6 +410,7 @@ public class ReceptionistController  implements Initializable {
             reset();
 
         }else if(event.getSource()==checkout_btn){
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(true);
             rooms_form.setVisible(false);
@@ -324,6 +418,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
 
         }else if(event.getSource()==rooms_btn){
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(true);
@@ -331,6 +426,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
             availableRoomsShowData();
         }else if(event.getSource()==guests_btn){
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -339,13 +435,21 @@ public class ReceptionistController  implements Initializable {
             guestShowData();
             guestSearchData();
         }else if(event.getSource()==services_btn){
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
             guests_form.setVisible(false);
             services_form.setVisible(true);
-
         }
+    }
+    public void changePass (MouseEvent e){
+        changepassword_form.setVisible(true);
+        checkin_form.setVisible(false);
+        checkout_form.setVisible(false);
+        rooms_form.setVisible(false);
+        guests_form.setVisible(false);
+        services_form.setVisible(false);
     }
     ////    guestSearchData   ////
     public void availableRoomsSearch(){

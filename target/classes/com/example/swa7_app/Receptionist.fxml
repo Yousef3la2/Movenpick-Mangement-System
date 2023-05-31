@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -80,7 +81,7 @@
                                           <Font name="Harlow Solid Italic" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="username" alignment="CENTER" layoutX="14.0" layoutY="169.0" prefHeight="38.0" prefWidth="191.0" text="Receptionist" textFill="WHITE">
+                                    <Label fx:id="username" alignment="CENTER" layoutX="14.0" layoutY="169.0" onMouseClicked="#changePass" prefHeight="38.0" prefWidth="191.0" text="Receptionist" textFill="WHITE">
                                        <font>
                                           <Font name="Teko SemiBold" size="30.0" />
                                        </font>
@@ -128,6 +129,58 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
+                              <AnchorPane fx:id="changepassword_form" prefHeight="549.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="209.0" layoutY="113.0" prefHeight="322.0" prefWidth="461.0" stylesheets="@AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <VBox alignment="CENTER" layoutX="61.0" layoutY="64.0" prefHeight="194.0" prefWidth="340.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="318.0" spacing="10.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="Old Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <PasswordField fx:id="Old_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="94.0" text="New Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <PasswordField fx:id="New_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" text="Confirm Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <PasswordField fx:id="confirm_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Label layoutX="164.0" layoutY="14.0" text="Change Password">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="ChangePass_btn" layoutX="360.0" layoutY="263.0" mnemonicParsing="false" onAction="#ChangePassOnAction" prefHeight="39.0" prefWidth="80.0" styleClass="ChangePass-btn" stylesheets="@AdminDesign.css" text="Change" textFill="#05a40a" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
                               <AnchorPane fx:id="checkin_form" layoutX="204.0" layoutY="145.0" prefHeight="549.6" prefWidth="880.0" style="-fx-background-color: #f3e7ea;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="468.0" prefWidth="410.0" stylesheets="@AdminDesign.css">

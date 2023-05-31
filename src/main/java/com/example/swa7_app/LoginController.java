@@ -114,13 +114,14 @@ public class LoginController implements Initializable {
                             loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//to connect to the admin #start
                             root = loader.load();
                         } else {
+                            int receptionistID = queryResult.getInt(1);
                             String firstname = queryResult.getString(2);
                             String lastname = queryResult.getString(3);
                             String inputText = firstname + " " + lastname;
                             loader = new FXMLLoader(getClass().getResource("Receptionist.fxml"));//to connect to the receptionist #start
                             root = loader.load();
                             ReceptionistController changeUserName = loader.getController();
-                            changeUserName.setText(inputText);
+                            changeUserName.setText(inputText,receptionistID);
                         }
                         //Parent root = loader.load();
                         //Parent root = loader.load();

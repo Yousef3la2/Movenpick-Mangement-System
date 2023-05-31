@@ -20,7 +20,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Swa7 (The tourist guide)");
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         Image image = new Image("file:icon.png");
         stage.getIcons().add(image);
 

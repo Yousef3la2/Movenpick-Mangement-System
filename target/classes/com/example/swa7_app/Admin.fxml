@@ -118,7 +118,6 @@
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="62.0" layoutY="50.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="92.0" style="-fx-background-color: transparent;" text="                 " />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -135,36 +134,42 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <VBox alignment="CENTER" layoutX="91.0" layoutY="64.0" prefHeight="194.0" prefWidth="278.0">
+                                          <VBox alignment="CENTER" layoutX="61.0" layoutY="64.0" prefHeight="194.0" prefWidth="340.0">
                                              <children>
-                                                <Label alignment="TOP_LEFT" text="Label" />
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="318.0" spacing="10.0">
                                                    <children>
-                                                      <Label text="Label" />
-                                                      <PasswordField />
-                                                      <Button mnemonicParsing="false" text="Button" />
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="Old Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font></Label>
+                                                      <PasswordField fx:id="Old_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
                                                    </children>
                                                 </HBox>
-                                                <Label alignment="TOP_LEFT" text="Label" />
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                                    <children>
-                                                      <Label text="Label" />
-                                                      <PasswordField />
-                                                      <Button mnemonicParsing="false" style="-fx-background-color: transperant;" text="           " />
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="94.0" text="New Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font></Label>
+                                                      <PasswordField fx:id="New_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
                                                    </children>
                                                 </HBox>
-                                                <Label alignment="TOP_LEFT" text="Label" />
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                                    <children>
-                                                      <Label text="Label" />
-                                                      <PasswordField />
-                                                      <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="           " />
+                                                      <Label alignment="CENTER" text="Confirm Password">
+                                                         <font>
+                                                            <Font name="System Bold" size="11.0" />
+                                                         </font></Label>
+                                                      <PasswordField fx:id="confirm_Pass_Label" prefHeight="27.0" prefWidth="175.0" styleClass="payinput" stylesheets="@AdminDesign.css" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <Label layoutX="216.0" layoutY="6.0" text="Label" />
-                                          <Button layoutX="368.0" layoutY="270.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="80.0" text="Button" />
+                                          <Label layoutX="164.0" layoutY="14.0" text="Change Password">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font></Label>
+                                          <Button fx:id="ChangePass_btn" layoutX="360.0" layoutY="263.0" mnemonicParsing="false" onAction="#ChangePassOnAction" prefHeight="39.0" prefWidth="80.0" styleClass="ChangePass-btn" stylesheets="@AdminDesign.css" text="Change" textFill="#05a40a" />
                                        </children>
                                     </AnchorPane>
                                  </children>
