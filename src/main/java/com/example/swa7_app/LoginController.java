@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,14 +12,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,8 +28,7 @@ public class LoginController implements Initializable {
     private Button CancelButton;
     @FXML
     private Button loginButton;
-    @FXML
-    private Button SignupButton;
+
     @FXML
     private Label loginMessageLabel;
     @FXML
@@ -55,9 +50,9 @@ public class LoginController implements Initializable {
         Image lockImage = new Image(lockFile.toURI().toString());
         lockImageView.setImage(lockImage);
     }
-    public void loginButtonOnAction(ActionEvent event){
+    public void loginButtonOnAction(){
 
-        if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
+        if(!usernameTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()){
             loginMessageLabel.setText("You try to login");
             loginMessageLabel.setAlignment(Pos.CENTER);
             validateLogin();
@@ -66,32 +61,16 @@ public class LoginController implements Initializable {
             loginMessageLabel.setAlignment(Pos.CENTER);
         }
     }
-    public void SignupButtonOnAciton(ActionEvent event) throws IOException {
-        ((Node)event.getSource()).getScene().getWindow().hide();
-        //((Node)(event.getSource())).getScene().getWindow().hide();
-        //Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
-        Parent root = loader.load();
 
-        Stage sstage = new Stage();
-        sstage.setScene(new Scene(root));
-        sstage.setTitle("Add Employee");
-        sstage.initStyle(StageStyle.UNDECORATED);
-        Image image = new Image("file:icon.png");
-        sstage.getIcons().add(image);
 
-        sstage.show();
-    }
-
-    public void cancelButtonOnAction(ActionEvent event){
+    public void cancelButtonOnAction(){
         Stage stage = (Stage) CancelButton.getScene().getWindow();
         stage.close();
         Platform.exit();
     }
 
     public void validateLogin(){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
+        Connection connectDB = DatabaseConnection.getConnection();
 
         String verifyLogin = "SELECT count(1) FROM user_account WHERE username = '" + usernameTextField.getText() + "' and password = '" + enterPasswordField.getText() +"';";
 
@@ -107,8 +86,8 @@ public class LoginController implements Initializable {
 
                     String checkAdmin = "SELECT account_id,firstname,lastname FROM user_account WHERE username = '" + usernameTextField.getText() + "' and password = '" + enterPasswordField.getText() +"';";
                     queryResult = statement.executeQuery(checkAdmin);
-                    FXMLLoader loader = null ;
-                    Parent root = null ;
+                    FXMLLoader loader ;
+                    Parent root ;
                     while(queryResult.next()) {
                         if (queryResult.getInt(1) == 1) {
                             loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//to connect to the admin #start
@@ -123,8 +102,7 @@ public class LoginController implements Initializable {
                             ReceptionistController changeUserName = loader.getController();
                             changeUserName.setText(inputText,receptionistID);
                         }
-                        //Parent root = loader.load();
-                        //Parent root = loader.load();
+
                         Stage sstage = new Stage();
                         sstage.setScene(new Scene(root));
                         sstage.setTitle("Admin Panel");
