@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -24,10 +26,10 @@
          <center>
             <AnchorPane prefHeight="243.0" prefWidth="674.0" BorderPane.alignment="CENTER">
                <children>
-                  <GridPane layoutX="86.0" layoutY="4.0" prefHeight="150.0" prefWidth="547.0">
+                  <GridPane layoutX="34.0" layoutY="4.0" prefHeight="150.0" prefWidth="603.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.20001220703125" minWidth="10.0" prefWidth="61.199986267089855" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.80001373291014" minWidth="10.0" prefWidth="480.80001373291014" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.20001220703125" minWidth="10.0" prefWidth="67.19996795654296" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.000032043457" minWidth="10.0" prefWidth="536.000032043457" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,36 +37,48 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fitHeight="47.0" fitWidth="51.0">
+                        <ImageView fitHeight="47.0" fitWidth="51.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../../../../../Graphics/Home/check.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="51.0" GridPane.rowIndex="1">
+                        <ImageView fitHeight="47.0" fitWidth="51.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../../../../../Graphics/Home/check.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="51.0" GridPane.rowIndex="2">
+                        <ImageView fitHeight="47.0" fitWidth="51.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../../../../../Graphics/Home/check.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="labeltext1" text=" Log in to your All account or Join Now to save up to 25% on your stay" textFill="#998146" GridPane.columnIndex="1">
+                        <Label fx:id="labeltext2" text="Book and stay until 15 September 2023" textFill="#998146" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labeltext2" text=" Book and stay until 15 September 2023" textFill="#998146" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="labeltext3" text="Plus, you can use your existing earned Reward points to book this offer!" textFill="#998146" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labeltext3" text=" Plus, you can use your existing earned Reward points to book this offer!" textFill="#998146" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="514.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="labeltext1" alignment="CENTER" contentDisplay="CENTER" text="VoucherCodeSentence" textFill="#998146" textOverrun="CLIP">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="vCode" text="VoucherCode">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
                      </children>
                   </GridPane>
                   <Button fx:id="closeButton" layoutX="292.0" layoutY="193.0" mnemonicParsing="false" onAction="#CloseOnAction" prefHeight="41.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="close" textFill="#7d373f" underline="true">

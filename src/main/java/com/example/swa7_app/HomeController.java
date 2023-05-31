@@ -65,6 +65,8 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("offerpop.fxml"));
         Parent root = loader.load();
 
+        OfferPopController changeOfferDetaails = loader.getController();
+
         Stage sstage = new Stage();
         sstage.setScene(new Scene(root));
         sstage.setTitle(" Offer Voucher ");
@@ -74,28 +76,28 @@ public class HomeController {
         sstage.show();
 
         if(event.getSource()==offer1Img) {
-            labeltext1=" Log in to your All account or Join Now to save up to 50% on your stay";
+            changeOfferDetaails.setText(1);
         }
         if(event.getSource()==offer1label) {
-            System.out.println("Label");
+            changeOfferDetaails.setText(1);
         }
         if(event.getSource()==offer2Img) {
-            System.out.println("Work");
+            changeOfferDetaails.setText(2);
         }
         if(event.getSource()==offer2label) {
-            System.out.println("Label");
+            changeOfferDetaails.setText(2);
         }
         if(event.getSource()==offer3Img) {
-            System.out.println("Work");
+            changeOfferDetaails.setText(3);
         }
         if(event.getSource()==offer3label) {
-            System.out.println("Label");
+            changeOfferDetaails.setText(3);
         }
         if(event.getSource()==offer4Img) {
-            System.out.println("Work");
+            changeOfferDetaails.setText(4);
         }
         if(event.getSource()==offer4label) {
-            System.out.println("Label");
+            changeOfferDetaails.setText(4);
         }
 
 

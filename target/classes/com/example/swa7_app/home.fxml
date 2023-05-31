@@ -174,7 +174,7 @@
                                        <children>
                                           <ImageView fx:id="offer1Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../../../../Graphics/Home/3.jpeg" />
+                                                <Image url="@../../../../../Graphics/Home/1.jpeg" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="offer2Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
@@ -182,24 +182,24 @@
                                                 <Image url="@../../../../../Graphics/Home/4.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="offer1label" onMouseClicked="#Offer" text="All ways on mind" textFill="#8c7343" GridPane.rowIndex="1">
+                                          <Label fx:id="offer1label" onMouseClicked="#Offer" text="Romantic Bliss" textFill="#8c7343" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="offer2label" onMouseClicked="#Offer" text="Anniversary Offer" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <Label fx:id="offer2label" onMouseClicked="#Offer" text="Friendship Birds Retreat Offer" textFill="#8c7343" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="51.0" prefWidth="392.0" text="Save up to 25% this summer on your stay inclusive of breakfast at Mövenpick participating hotels in the Middle East, Sub Saharan, East Africa and Türkiye." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="2" />
-                                          <Label prefHeight="18.0" prefWidth="461.0" text="Celebrating 50 years of Mövenpick Hotels &amp; Resorts. Save 100$ off food &amp; drink." textAlignment="JUSTIFY" textFill="#474747" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Celebrate your special moments together and save 25% on your reservation for a romantic honeymoon suite." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="2" />
+                                          <Label prefHeight="53.0" prefWidth="401.0" text="Get a remarkable 40% discount on your reservation for a cozy and luxurious double room. Create beautiful memories in the perfect setting with your best friend." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                                           <ImageView fx:id="offer3Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@../../../../../Graphics/Home/2.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="offer3label" onMouseClicked="#Offer" text="Stay in the moment" textFill="#8c7343" GridPane.rowIndex="4">
+                                          <Label fx:id="offer3label" onMouseClicked="#Offer" text="Tranquil Solo Escape" textFill="#8c7343" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -209,11 +209,11 @@
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="51.0" prefWidth="392.0" text="Experience mouth-watering culinary experiences, a slice of cosmopolitan culture with art, design and delicious views on the side at Mövenpick Hotels &amp; Resorts." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="5" />
-                                          <Label prefHeight="51.0" prefWidth="392.0" text="Enjoy amazing discounts and breakfast included during your stay at Mövenpick Hotels &amp; Resorts across Africa, Asia, Europe, and the Middle East." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Avail yourself a delightful 10% discount on your reservation for a single room. Revel in tranquility as you embark on a solo retreat, surrounded by comfort and elegance." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.rowIndex="5" />
+                                          <Label prefHeight="51.0" prefWidth="392.0" text="Gather your loved ones and embark on a joyous adventure . Create lasting memories as you bask in the luxurious amenities and ample space provided for your comfort and enjoyment." textAlignment="JUSTIFY" textFill="#474747" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                           <ImageView fx:id="offer4Img" fitHeight="260.0" fitWidth="400.0" onMouseClicked="#Offer" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
-                                                <Image url="@../../../../../Graphics/Home/1.jpeg" />
+                                                <Image url="@../../../../../Graphics/Home/5.png" />
                                              </image>
                                           </ImageView>
                                        </children>
