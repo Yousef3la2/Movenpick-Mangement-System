@@ -595,6 +595,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                     roomtype.setDisable(true);
                     roomtype1.setDisable(true);
                     checkValidate.setText("Delete");
+                    VoucherCode_Input.setEditable(false);
                     test = 1;
                 }
             } else if (VoucherCode_Input.getText().equals("SING10OFF")) {
@@ -615,6 +616,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                     roomtype.setDisable(true);
                     roomtype1.setDisable(true);
                     checkValidate.setText("Delete");
+                    VoucherCode_Input.setEditable(false);
                     test = 1;
                 } }
 
@@ -627,6 +629,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                         roomtype.setDisable(true);
                         roomtype1.setDisable(true);
                         checkValidate.setText("Delete");
+                        VoucherCode_Input.setEditable(false);
                         test = 1;
                     }
 
@@ -646,6 +649,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                         roomtype.setDisable(true);
                         roomtype1.setDisable(true);
                         checkValidate.setText("Delete");
+                        VoucherCode_Input.setEditable(false);
                         test = 1;}
                 }
 
@@ -670,6 +674,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                 checkValidate.setText("Check");
                 roomtype.setDisable(false);
                 roomtype1.setDisable(false);
+            VoucherCode_Input.setEditable(true);
                 resetroomdata();
                 code1 = 0;
                 code4 = 0;
