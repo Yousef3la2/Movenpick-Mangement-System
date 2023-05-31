@@ -522,7 +522,7 @@ availableRooms_search.textProperty().addListener((Observable,oldValue,newValue )
     }
 
 
- private String[] type ={"Single Room","Double Room" ,"Triple Room","Quad Room","Ring Room"};
+ private String[] type ={"Single Room","Double Room" ,"Quad Room","Suite"};
 
      public void availableRoomsRoomType() {
             List<String> listdata =new ArrayList<>();

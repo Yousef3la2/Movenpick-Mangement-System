@@ -27,7 +27,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -571,76 +573,112 @@ public class ReceptionistController  implements Initializable {
         displaytotalpay();
         totalDays();
     }
-public int code1=0,code2=0,code3=0, code4=0,i=0 ;
+public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
     @FXML
     void checkValidateclick(ActionEvent event) {
-        code1=0;code2=0;code3=0;code4=0;i=0;
-        int t= roomtype1.getItems().size();
-        if(VoucherCode_Input.getText().equals("123")||VoucherCode_Input.getText().equals("105")){
-            i=1;
-            if(roomtype1.getItems().contains("Double Room")||roomtype.getItems().contains("Double Room")){
-                if(VoucherCode_Input.getText().equals("123"))
-                code1=1;
-                else if (VoucherCode_Input.getText().equals("105"))
-                    code4=1;
 
-                if(CreditPay.isSelected()){
-               roomtype.getSelectionModel().select(0);}
-            else{
-                roomtype1.getSelectionModel().select(0);
-            }}}
+        code1 = 0;
+        code2 = 0;
+        code3 = 0;
+        code4 = 0;
+        i = 0;
 
-
-
-        else  if (VoucherCode_Input.getText().equals("456")){
-            i=1;
-            if(roomtype1.getItems().contains("Single Room")||roomtype.getItems().contains("Single Room")) {
-                code2 = 1;
-                if (CreditPay.isSelected()) {
-
-                        roomtype.getSelectionModel().select((t-1));
-                    roomtype.setDisable(true);
-                } else {
-                        roomtype1.getSelectionModel().select((t-1));
-                    roomtype1.setDisable(true);
-                } } }
-
-
-        else  if (VoucherCode_Input.getText().equals("789")) {
-            i=1;
-            if(roomtype1.getItems().contains("Quad Room")||roomtype.getItems().contains("Quad Room")){
-                code3=1;
-                if(CreditPay.isSelected()){
-                if((t==3) ||(t==2&&roomtype.getItems().contains("Double Room")))
-                    roomtype.getSelectionModel().select(1);
-                else if((t==1)||(t==2&&roomtype.getItems().contains("Single Room")))
+        int t = roomtype1.getItems().size();
+        if (test == 0) {
+            resetroomdata();
+            if (VoucherCode_Input.getText().equals("DOUB40OFF")) {
+                i = 1;
+                if (roomtype1.getItems().contains("Double Room") || roomtype.getItems().contains("Double Room")) {
+                    code4 = 1;
                     roomtype.getSelectionModel().select(0);
-            }
-            else {
-                    if ((t == 3) || (t == 2 && roomtype1.getItems().contains("Double Room")))
-                        roomtype1.getSelectionModel().select(1);
-                    else if ((t == 1) || (t == 2 && roomtype1.getItems().contains("Single Room")))
+                    roomtype1.getSelectionModel().select(0);
+                    roomtype.setDisable(true);
+                    roomtype1.setDisable(true);
+                    checkValidate.setText("Delete");
+                    test = 1;
+                }
+            } else if (VoucherCode_Input.getText().equals("SING10OFF")) {
+                i=1;
+                if (roomtype1.getItems().contains("Single Room") || roomtype.getItems().contains("Single Room")) {
+                    code2 = 1;
+                    if(t==2&&(roomtype.getItems().contains("Suite")||roomtype1.getItems().contains("Suite"))){
+                        roomtype.getSelectionModel().select(0);
                         roomtype1.getSelectionModel().select(0);
-                }}}
+                    }
+                    if ((t == 4) || (t == 2 && (roomtype.getItems().contains("Double Room")||roomtype1.getItems().contains("Double Room"))) || (t == 3 && ((roomtype.getItems().contains("Quad Room") && roomtype.getItems().contains("Double Room"))||(roomtype1.getItems().contains("Quad Room") && roomtype1.getItems().contains("Double Room"))))) {
+                        roomtype.getSelectionModel().select(2);
+                        roomtype1.getSelectionModel().select(2);
+                    } else {
+                        roomtype.getSelectionModel().select(1);
+                        roomtype1.getSelectionModel().select(1);
+                    }
+                    roomtype.setDisable(true);
+                    roomtype1.setDisable(true);
+                    checkValidate.setText("Delete");
+                    test = 1;
+                } }
 
-        if(i==0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error message");
-            alert.setHeaderText(null);
-            alert.setContentText("Not Found This Offer");
-            alert.showAndWait();
-        }
-        else if (code1==0&&code2==0&&code3==0&&code4==0){
+            else if (VoucherCode_Input.getText().equals("HONEYMOON25OFF")) {
+                    i = 1;
+                    if (roomtype1.getItems().contains("Suite") || roomtype.getItems().contains("Suite")) {
+                        code3 = 1;
+                        roomtype.getSelectionModel().select((t - 1));
+                        roomtype1.getSelectionModel().select((t - 1));
+                        roomtype.setDisable(true);
+                        roomtype1.setDisable(true);
+                        checkValidate.setText("Delete");
+                        test = 1;
+                    }
 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error message");
-                alert.setHeaderText(null);
-                alert.setContentText("Sorry this offer not available at this time");
-                alert.showAndWait();
+
+                } else if (VoucherCode_Input.getText().equals("QUAD25OFF")) {
+                    i = 1;
+                    if (roomtype1.getItems().contains("Quad Room") || roomtype.getItems().contains("Quad Room")) {
+                        code1 = 1;
+                        if ((t == 4) || (t == 2 && roomtype.getItems().contains("Double Room")) || (t == 3 && (((roomtype.getItems().contains("Suite") && roomtype.getItems().contains("Double Room"))||(roomtype1.getItems().contains("Suite") && roomtype1.getItems().contains("Double Room")))
+                                ||((roomtype.getItems().contains("Double Room") && roomtype.getItems().contains("Single Room"))||(roomtype1.getItems().contains("Double Room") && roomtype1.getItems().contains("Single Room")))))) {
+                            roomtype.getSelectionModel().select(1);
+                            roomtype1.getSelectionModel().select(1);
+                        } else {
+                            roomtype.getSelectionModel().select(0);
+                            roomtype1.getSelectionModel().select(0);
+                        }
+                        roomtype.setDisable(true);
+                        roomtype1.setDisable(true);
+                        checkValidate.setText("Delete");
+                        test = 1;}
+                }
+
+
+                if (i == 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Not Found This Offer");
+                    alert.showAndWait();
+                } else if (code1 == 0 && code2 == 0 && code3 == 0 && code4 == 0) {
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Sorry this offer not available at this time");
+                    alert.showAndWait();
+                }
+
+
+            } else if (test == 1) {
+                checkValidate.setText("Check");
+                roomtype.setDisable(false);
+                roomtype1.setDisable(false);
+                resetroomdata();
+                code1 = 0;
+                code4 = 0;
+                code3 = 0;
+                code2 = 0;
+                test = 0;
+                VoucherCode_Input.setText(null);
             }
-
-
-    }
+        }
 
 
 
@@ -845,6 +883,9 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ;
                         reset();
                         roomTypeList();
                         roomNumberList();
+                        //LocalDate Date =LocalDate.now();
+                      // if(checkindata1.getValue().compareTo( date.));
+
 
                     } else {
                         return;
@@ -893,7 +934,24 @@ public void totalDays() {
                     alert.showAndWait();
 
                 } else {
+
+                    //Month month1=
+                    if(checkindata.getValue().getMonth().equals(chekoutdata.getValue().getMonth()))
                     getData.totalDays = newValue.compareTo(checkindata.getValue());
+                    else {
+                        int year =((checkindata.getValue().getYear())-(chekoutdata.getValue().getYear()))*365;
+                        int month =(chekoutdata.getValue().getMonth().compareTo(checkindata.getValue().getMonth()))*(checkindata.getValue().lengthOfMonth());
+                        if(checkindata.getValue().getDayOfMonth()<chekoutdata.getValue().getDayOfMonth())
+                        {
+                            int days =(chekoutdata.getValue().getDayOfMonth())-(checkindata.getValue().getDayOfMonth());
+                            getData.totalDays =(year+month+days);
+                        }
+                        else {
+                                    int days =((checkindata.getValue().lengthOfMonth())-(checkindata.getValue().getDayOfMonth()))+chekoutdata.getValue().getDayOfMonth()-(checkindata.getValue().lengthOfMonth());
+                            getData.totalDays =(year+month+days);
+                        }
+                    }
+
                     totalDay1.setText(String.valueOf(getData.totalDays));
                     displaytotalpay();
                 }
@@ -947,21 +1005,14 @@ public void totalDays() {
                 pricedata=result.getDouble("price");
             }
             float totalpay=(float)((pricedata)*getData.totalDays);
-            if(code1==1) {
-                totalpay = (totalpay * 80) / 100;
-                if (CreditPay.isSelected())
-                    totalpayment1.setText("$" + String.valueOf(totalpay));
-                else
-                    totalpayment.setText("$" + String.valueOf(totalpay));
-            }
-            else if(code2==1) {
+             if(code2==1) {
                 totalpay = (totalpay * 90) / 100;
                 if (CreditPay.isSelected())
                     totalpayment1.setText("$" + String.valueOf(totalpay));
                 else
                     totalpayment.setText("$" + String.valueOf(totalpay));
             }
-            else if(code3==1) {
+            else if(code3==1||code1==1) {
                 totalpay = (totalpay * 75) / 100;
                 if (CreditPay.isSelected())
                     totalpayment1.setText("$" + String.valueOf(totalpay));
@@ -1118,8 +1169,29 @@ public void totalDays() {
         reset();
     }
 
+    void resetroomdata() {
+        roomtype.setValue(null);
+        roomnumber.setValue(null);
+        checkindata.setValue(null);
+        chekoutdata.setValue(null);
+        ///\
+        roomtype1.setValue(null);
+        roomnumber1.setValue(null);
+        checkindata1.setValue(null);
+        chekoutdata1.setValue(null);
+        totalpayment.setText("$0.0");
+        totalpayment1.setText("$0.0");
+        totalDay1.setText("00");
+        totalDay.setText("00");
+        getData.totalpays=0;
+        getData.totalDays=0;
+        displaytotalpay();
+        totalDays();
 
-    void reset(){
+
+    }
+
+        void reset(){
         roomtype.setValue(null);
         roomnumber.setValue(null);
         checkindata.setValue(null);
