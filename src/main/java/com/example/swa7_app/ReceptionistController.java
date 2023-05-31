@@ -605,7 +605,7 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                         roomtype.getSelectionModel().select(0);
                         roomtype1.getSelectionModel().select(0);
                     }
-                    if ((t == 4) || (t == 2 && (roomtype.getItems().contains("Double Room")||roomtype1.getItems().contains("Double Room"))) || (t == 3 && ((roomtype.getItems().contains("Quad Room") && roomtype.getItems().contains("Double Room"))||(roomtype1.getItems().contains("Quad Room") && roomtype1.getItems().contains("Double Room"))))) {
+                    else if ((t == 4) || (t == 3 && ((roomtype.getItems().contains("Quad Room") && roomtype.getItems().contains("Double Room"))||(roomtype1.getItems().contains("Quad Room") && roomtype1.getItems().contains("Double Room"))))) {
                         roomtype.getSelectionModel().select(2);
                         roomtype1.getSelectionModel().select(2);
                     } else {
@@ -890,6 +890,16 @@ public int code1=0,code2=0,code3=0, code4=0,i=0 ,test=0;
                     } else {
                         return;
                     }
+                checkValidate.setText("Check");
+                roomtype.setDisable(false);
+                roomtype1.setDisable(false);
+                resetroomdata();
+                code1 = 0;
+                code4 = 0;
+                code3 = 0;
+                code2 = 0;
+                test = 0;
+                VoucherCode_Input.setText(null);
                 }
 
 //else {
@@ -935,7 +945,6 @@ public void totalDays() {
 
                 } else {
 
-                    //Month month1=
                     if(checkindata.getValue().getMonth().equals(chekoutdata.getValue().getMonth()))
                     getData.totalDays = newValue.compareTo(checkindata.getValue());
                     else {
@@ -947,16 +956,12 @@ public void totalDays() {
                             getData.totalDays =(year+month+days);
                         }
                         else {
-                                    int days =((checkindata.getValue().lengthOfMonth())-(checkindata.getValue().getDayOfMonth()))+chekoutdata.getValue().getDayOfMonth()-(checkindata.getValue().lengthOfMonth());
+                            int days =((checkindata.getValue().lengthOfMonth())-(checkindata.getValue().getDayOfMonth()))+chekoutdata.getValue().getDayOfMonth()-(checkindata.getValue().lengthOfMonth());
                             getData.totalDays =(year+month+days);
-                        }
-                    }
-
+                        }}
                     totalDay1.setText(String.valueOf(getData.totalDays));
                     displaytotalpay();
-                }
-            }
-        });
+                }}});
     } else {
 
         chekoutdata1.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -972,13 +977,23 @@ public void totalDays() {
 
                 } else {
 
-                    getData.totalDays = newValue.compareTo(checkindata1.getValue());
+                    if (checkindata1.getValue().getMonth().equals(chekoutdata1.getValue().getMonth()))
+                        getData.totalDays = newValue.compareTo(checkindata1.getValue());
+                    else {
+                        int year = ((checkindata1.getValue().getYear()) - (chekoutdata1.getValue().getYear())) * 365;
+                        int month = (chekoutdata1.getValue().getMonth().compareTo(checkindata1.getValue().getMonth())) * (checkindata1.getValue().lengthOfMonth());
+                        if (checkindata1.getValue().getDayOfMonth() < chekoutdata1.getValue().getDayOfMonth()) {
+                            int days = (chekoutdata1.getValue().getDayOfMonth()) - (checkindata1.getValue().getDayOfMonth());
+                            getData.totalDays = (year + month + days);
+                        } else {
+                            int days = ((checkindata1.getValue().lengthOfMonth()) - (checkindata1.getValue().getDayOfMonth())) + chekoutdata1.getValue().getDayOfMonth() - (checkindata1.getValue().lengthOfMonth());
+                            getData.totalDays = (year + month + days);
+                        }
+                    }
+
                     totalDay.setText(String.valueOf(getData.totalDays));
                     displaytotalpay();
-
-                }
-            }
-        });}}
+                }}});}}
 
 
     public void displaytotalpay() {
