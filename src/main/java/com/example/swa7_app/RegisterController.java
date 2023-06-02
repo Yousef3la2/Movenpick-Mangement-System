@@ -1,34 +1,18 @@
 package com.example.swa7_app;
 
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ResourceBundle;
-
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Button;
 
 
 public class RegisterController {
@@ -58,6 +42,32 @@ public class RegisterController {
             registerUser();
         }
     }
+
+
+    private employeeData employee;
+
+    public void setEmployeeData (employeeData Data){
+        this.employee = Data;
+        // Set the selected employee data in the components of RegisterController
+        FirstnameInput.setText(employee.getFirstname());
+        LastnameInput.setText(employee.getLastname());
+        Nationalityinput.setText(employee.getNationality());
+        PhoneNumberInput.setText(employee.getPhonenumber());
+        usernameInput.setText(employee.getUsername());
+        EmailAddressInput.setText(employee.getEmailaddress());
+
+        // Set the gender radio button based on the selected employee's gender
+
+        if (employee.getGender().equals("male")) {
+            male.setSelected(true);
+        } else if (employee.getGender().equals("female")) {
+            female.setSelected(true);
+        }
+
+
+
+    }
+
 
 
     public void cancelButtonOnAction(ActionEvent event) {
@@ -155,7 +165,6 @@ public class RegisterController {
             fail.setContentText("you didn't enter your emailaddress");
             fail.showAndWait();
             checkAll -=1;
-
         }
         else if (PhoneNumberInput.getText().trim().isEmpty()) {
             Alert fail= new Alert(Alert.AlertType.INFORMATION);
@@ -163,7 +172,6 @@ public class RegisterController {
             fail.setContentText("you didn't enter your phone number");
             fail.showAndWait();
             checkAll -=1;
-
         }
 
         if(checkAll == 8){

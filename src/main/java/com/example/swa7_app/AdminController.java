@@ -621,6 +621,31 @@ availableRooms_roomType.setItems(list);
 
     // -------------------------------------------employee--------------------------------------------
     employeeData roomD;
+
+    public void employeesUpdate(ActionEvent event) throws IOException {
+        roomD = employee_tableView.getSelectionModel().getSelectedItem();
+        if (roomD == null) {
+            // No row selected, return or show an error message
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+        Parent root = loader.load();
+
+        RegisterController registerController = loader.getController();
+        registerController.setEmployeeData(roomD); // Pass the selected data to RegisterController
+        registerController.setParentController(this);
+
+        Stage sstage = new Stage();
+        sstage.setScene(new Scene(root));
+        sstage.setTitle("Update Employee");
+        sstage.initStyle(StageStyle.UNDECORATED);
+        Image image = new Image("file:icon.png");
+        sstage.getIcons().add(image);
+        sstage.show();
+        availableemployeeShowData();
+    }
+
     public void availableemployeesSelectionData(){
          roomD =employee_tableView.getSelectionModel().getSelectedItem();
         int num = employee_tableView.getSelectionModel().getSelectedIndex();
