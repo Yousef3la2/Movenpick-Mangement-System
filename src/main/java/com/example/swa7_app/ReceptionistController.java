@@ -1007,32 +1007,32 @@ public void totalDays() {
              if(code2==1) {
                 totalpay = (totalpay * 90) / 100;
                 if (CreditPay.isSelected())
-                    totalpayment1.setText("$" + String.valueOf(totalpay));
+                    totalpayment1.setText("EGP" + String.valueOf(totalpay));
                 else
-                    totalpayment.setText("$" + String.valueOf(totalpay));
+                    totalpayment.setText("EGP" + String.valueOf(totalpay));
             }
             else if(code3==1||code1==1) {
                 totalpay = (totalpay * 75) / 100;
                 if (CreditPay.isSelected())
-                    totalpayment1.setText("$" + String.valueOf(totalpay));
+                    totalpayment1.setText("EGP" + String.valueOf(totalpay));
                 else
-                    totalpayment.setText("$" + String.valueOf(totalpay));
+                    totalpayment.setText("EGP" + String.valueOf(totalpay));
             }
             else if(code4==1) {
                 totalpay = (totalpay * 60) / 100;
                 if (CreditPay.isSelected())
-                    totalpayment1.setText("$" + String.valueOf(totalpay));
+                    totalpayment1.setText("EGP" + String.valueOf(totalpay));
                 else
-                    totalpayment.setText("$" + String.valueOf(totalpay));
+                    totalpayment.setText("EGP" + String.valueOf(totalpay));
             }
 
 
 
             else {
                 if (CreditPay.isSelected())
-                    totalpayment1.setText("$" + String.valueOf(totalpay));
+                    totalpayment1.setText("EGP" + String.valueOf(totalpay));
                 else
-                    totalpayment.setText("$" + String.valueOf(totalpay));
+                    totalpayment.setText("EGP" + String.valueOf(totalpay));
 
             }
 
@@ -1178,8 +1178,8 @@ public void totalDays() {
         roomnumber1.setValue(null);
         checkindata1.setValue(null);
         chekoutdata1.setValue(null);
-        totalpayment.setText("$0.0");
-        totalpayment1.setText("$0.0");
+        totalpayment.setText("EGP0.0");
+        totalpayment1.setText("EGP0.0");
         totalDay1.setText("00");
         totalDay.setText("00");
         getData.totalpays=0;
@@ -1215,8 +1215,8 @@ public void totalDays() {
         emailinput.setText(null);
         getData.totalDays=0;
         getData.totalpays=0;
-        totalpayment.setText("$0.0");
-        totalpayment1.setText("$0.0");
+        totalpayment.setText("EGP0.0");
+        totalpayment1.setText("EGP0.0");
        totalDay1.setText("00");
        totalDay.setText("00");
 

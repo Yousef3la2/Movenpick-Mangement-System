@@ -817,7 +817,7 @@ private int count =0;
 
     public void displaydashboardincometoday(){
         dashboardincometoday();
-        dashboard_incomeToday.setText("$"+String.valueOf(sumtoday));
+        dashboard_incomeToday.setText("EGP"+String.valueOf(sumtoday));
     }
 
     private double sumtotal =0;
@@ -842,7 +842,7 @@ private int count =0;
 
     public void displaydashboardincometotal(){
         dashboardincometotal();
-        dashboard_totalIncome.setText("$"+String.valueOf(sumtotal));
+        dashboard_totalIncome.setText("EGP"+String.valueOf(sumtotal));
     }
 
     public void Dashboard_areaChart(){
