@@ -1,4 +1,5 @@
 package com.example.swa7_app;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
         Scene scene = new Scene(root);
 
-        stage.setTitle("Swa7 (The tourist guide)");
+        stage.setTitle("Home Page");
         //stage.initStyle(StageStyle.UNDECORATED);
         Image image = new Image("file:icon.png");
         stage.getIcons().add(image);

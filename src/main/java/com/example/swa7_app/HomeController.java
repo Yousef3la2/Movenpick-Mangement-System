@@ -21,16 +21,10 @@ public class HomeController {
     private ImageView offer1Img,offer2Img,offer3Img,offer4Img;
     @FXML
     private Label offer1label,offer2label,offer3label,offer4label;
-
     @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button OffersButton,HomeButton  ;
-
+    private Button OffersButton,HomeButton,loginButton  ;
     @FXML
     private AnchorPane home_page,offers_page;
-
     @FXML
     private String labeltext1;
 

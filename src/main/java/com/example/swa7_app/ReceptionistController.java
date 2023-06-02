@@ -2,6 +2,8 @@ package com.example.swa7_app;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,28 +14,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 
 public class ReceptionistController  implements Initializable {
 
@@ -321,22 +311,6 @@ public class ReceptionistController  implements Initializable {
 
     }
 
-/*if(event.getSource()==checkin_btn){
-            checkin_form.setVisible(true);
-            checkout_form.setVisible(false);
-            rooms_form.setVisible(false);
-            guests_form.setVisible(false);
-            services_form.setVisible(false);
-
-        }else if(event.getSource()==checkout_btn){
-            checkin_form.setVisible(false);
-            checkout_form.setVisible(true);
-            rooms_form.setVisible(false);
-            guests_form.setVisible(false);
-            services_form.setVisible(false);
-
-        }*/
-
     @FXML
     void closepage(ActionEvent event) {
         System.exit(0);
@@ -402,7 +376,7 @@ public class ReceptionistController  implements Initializable {
     @FXML
     void switchForm(ActionEvent event) {
         if(event.getSource()==checkin_btn){
-            //changepassword_form.setVisible(false);
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(true);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -412,7 +386,7 @@ public class ReceptionistController  implements Initializable {
             reset();
 
         }else if(event.getSource()==checkout_btn){
-            //changepassword_form.setVisible(false);
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(true);
             rooms_form.setVisible(false);
@@ -420,7 +394,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
 
         }else if(event.getSource()==rooms_btn){
-            //changepassword_form.setVisible(false);
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(true);
@@ -428,7 +402,7 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(false);
             availableRoomsShowData();
         }else if(event.getSource()==guests_btn){
-            //changepassword_form.setVisible(false);
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -437,7 +411,7 @@ public class ReceptionistController  implements Initializable {
             guestShowData();
             guestSearchData();
         }else if(event.getSource()==services_btn){
-            //changepassword_form.setVisible(false);
+            changepassword_form.setVisible(false);
             checkin_form.setVisible(false);
             checkout_form.setVisible(false);
             rooms_form.setVisible(false);
@@ -445,13 +419,15 @@ public class ReceptionistController  implements Initializable {
             services_form.setVisible(true);
         }
     }
-    public void changePass (MouseEvent e){
-        changepassword_form.setVisible(true);
-        checkin_form.setVisible(false);
-        checkout_form.setVisible(false);
-        rooms_form.setVisible(false);
-        guests_form.setVisible(false);
-        services_form.setVisible(false);
+    public void changePass (MouseEvent event){
+        if(event.getSource()==username) {
+            changepassword_form.setVisible(true);
+            checkin_form.setVisible(false);
+            checkout_form.setVisible(false);
+            rooms_form.setVisible(false);
+            guests_form.setVisible(false);
+            services_form.setVisible(false);
+        }
     }
     ////    guestSearchData   ////
     public void availableRoomsSearch(){

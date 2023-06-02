@@ -5,13 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 
 public class OfferPopController {
     @FXML
     private Button closeButton;
 
     @FXML
-    private Label labeltext1,labeltext2,labeltext3,vCode;
+    private Label labeltext1,labeltext2,labeltext3,vCode,copiedLabel;
 
 
     private final String[] voucherCode ={"","HONEYMOON25OFF","DOUB40OFF","SING10OFF" ,"QUAD25OFF"};
@@ -49,6 +52,19 @@ public class OfferPopController {
                 break;
         }
 
+    }
+
+    public void labelCopy(MouseEvent event){
+
+        String textToCopy = vCode.getText();
+
+        // Copy the label's text to the clipboard
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+        content.putString(textToCopy);
+        clipboard.setContent(content);
+
+        copiedLabel.setText("Copied!");
     }
     @FXML
     public void CloseOnAction(ActionEvent event) {
