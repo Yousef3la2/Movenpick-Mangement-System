@@ -6,5 +6,3 @@ Welcome to the Movenpick Management System! This is a comprehensive hotel manage
   - JavaFX
   - MySQL
   - Scene Builder
-
-Demo : https://youtu.be/
